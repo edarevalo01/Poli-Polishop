@@ -15,10 +15,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { PantallaProductoComponent } from './components/pantalla-producto/pantalla-producto.component';
+import { PantallaInicioComponent } from './components/pantalla-inicio/pantalla-inicio.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PantallaProductoComponent,
+    PantallaInicioComponent
   ],
   imports: [
     BrowserModule,
