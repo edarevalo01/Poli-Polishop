@@ -1,0 +1,233 @@
+/*-------------------------------------------------HEADER UNO----------------------------------------------------*/
+.header_uno{
+    width: 100%;
+    height: 135px;
+    background-color: #0F385A;
+}
+.img_logo_container{
+    width: 200px;
+    height: 80px;
+    background-color: #0F385A;
+    float: left;
+    margin-top: 27.5px;
+    margin-right: 60px;
+    margin-left: 80px;
+}
+.input_buscar{
+    width: 440px;
+    height: 39px;
+    float: left;
+    margin-top: 48px;
+    margin-right: 1px;
+    margin-left: 100px;
+}
+#in-buscar{
+    width: 100%;
+    height: 100%;
+    border: 0px solid transparent;
+    font-size: 17px;
+    padding-left: 5%;
+    padding-right: 2%;
+}
+.button_buscar{
+    width: 64px;
+    height: 39px;
+    background-color: white;
+    float: left;
+    margin-top: 47px;
+    margin-right: 50px;
+}
+#btn-buscar{
+    width: 60px;
+    height: 100%;
+    padding: 0px;
+    color: #7C7C7C;
+}
+.button_ingresar{
+    width: 150px;
+    height: 41px;
+    background-color: #0F385A;
+    float: left;
+    margin-top: 47px;
+    margin-left: 50px;
+    margin-right: 10px;
+}
+#btn-ingresar{
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    font-size: 17px;
+    color: white;
+    border-radius: 0px;
+}
+.button_carrito{
+    width: 100px;
+    height: 60px;
+    background-color: #0F385A;
+    float: left;
+    margin-top: 41px;
+    margin-left: 15px;
+}
+.iconn{
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 10px;
+    font-size: 40px;
+    margin: auto;
+}
+#icon-btn{
+    color: white;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 0px;
+}
+
+/*-------------------------------------------------HEADER DOS----------------------------------------------------*/
+
+.header_dos{
+    width: 100%;
+    height: 50px;
+    background-color: #0F385A;
+    margin: auto;
+}
+.lista_categorias{
+    width: 240px;
+    height: 50px;
+    background-color: #0F385A;
+    float: left;
+    margin-left: 323px;
+    font-family: arial;
+    color: white;
+}
+.vender{
+    width: 240px;
+    height: 50px;
+    background-color: #0F385A;
+    float: left;
+    margin-right: 3px;
+    margin-left: 3px; 
+    font-family: arial;
+    color: white;
+}
+.ayuda{
+    width: 240px;
+    height: 50px;
+    background-color: #0F385A;
+    float: left;
+    font-family: arial;
+    color: white;
+}
+#lis-categorias, #men-vender, #men-ayuda{
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    color: white;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 0px;
+}
+.lista_categorias :hover, .vender :hover, .ayuda :hover,
+.button_ingresar :hover, .button_carrito :hover { /*Color de botones cuando pasa el mouse*/
+    background-color: #3FA8D9;
+}
+.cdk-overlay-pane {
+    width: 100%!important;
+}
+.mat-menu-panel.dropdownn{
+    max-width:none;
+    width: 1200px; 
+    margin: auto;
+}
+#categorias_parent{
+    width: 1180px;
+    height: 420px;
+    margin: 0px 10px 0px 10px;
+}
+#categorias-container{
+    width: 400px;
+    float: left;
+}
+
+
+/*-------------------------------------------------BODY----------------------------------------------------*/
+
+.body{
+    height: 1230px;
+}
+#carrusel1{
+    width: 100%;
+    height: 500px;
+    background-color: grey;
+}
+#carrusel2{
+    width: 100%;
+    height: 500px;
+    background-color: olive;
+}
+#carrusel3{
+    width: 100%;
+    height: 500px;
+    background-color: orange;
+}
+#img1, #img2, #img3{ /*Imagenes de gran carrusel (no se usan por ahora)*/
+    height: 500px;
+}
+#carruselPoli{
+    background-color: #EEEEEE;
+}
+#big-carrusel-poli{
+    width: 100%;
+    height: 280px;
+}
+#carruselOtros{
+    background-color: #EEEEEE;
+}
+#big-carrusel-otros{
+    width: 100%;
+    height: 280px;
+}
+#left-car, #center-car, #rigth-car{ /*Elementos de carrusel Poli y otros*/
+    width: 27.7%;
+    height: 230px;
+    float: left;
+    background-color: violet;
+    margin: 25px 10px 25px 10px;
+}
+#left-car{ /*Para centrar el carrusel de poli y otros*/
+    margin-left: 95px;
+}
+.carousel-control-prev { /*Modificar el ícono de control de carrusel izquierdo*/
+    position: absolute;
+    top: 35%;
+    bottom: 35%;
+    left: 5px;
+    width: 5%;
+    background-color: #C6C6C650;
+}
+.carousel-control-prev-icon{
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ACACAC' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+.carousel-control-next { /*Modificar el ícono de control de carrusel Derecho*/
+    position: absolute;
+    top: 35%;
+    bottom: 35%;
+    right: 5px;
+    width: 5%;
+    background-color: #C6C6C650;
+}
+.carousel-control-next-icon{
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ACACAC' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+/*-------------------------------------------------FOOTER----------------------------------------------------*/
+
+
+.footer{
+    background-color: #0F385A;
+    height: 250px;
+}

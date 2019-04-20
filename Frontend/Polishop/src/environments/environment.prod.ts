@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: false,
+  urlGetAllCategorias: 'http://localhost:8080/getAllCategorias'
 };
