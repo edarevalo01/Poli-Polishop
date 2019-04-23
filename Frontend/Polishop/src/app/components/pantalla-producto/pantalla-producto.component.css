@@ -1,0 +1,110 @@
+.body{
+    background-color: cadetblue;
+    width: 100%;
+    height: 1300px;
+}
+/*---------------------------DESCRIPCION DE PRODUCTO----------------------------*/
+.descripcion_producto{
+    background-color: green;
+    width: 100%;
+    height: 500px;
+}
+#miniaturas_imagenes{
+    width: 12.5%;
+    height: 500px;
+    float: left;
+    background-color: blue;
+}
+#imgMini{
+    width: 80%;
+    height: 26.56%;
+    margin: 10.38% 8% 10.38% 8%;
+    background-color: red;
+    border: 1px solid black;
+    float: left;
+}
+#principal_imagen{
+    width: 40.38%;
+    height: 500px;
+    float: left;
+    background-color: yellowgreen;
+}
+#imagenPrincipal{
+    width: 98%;
+    height: 70%;
+    margin: auto;
+    margin-top: 14%;
+    background-color: rebeccapurple;
+}
+#descripcion_imagen{
+    width: 47.11%;
+    height: 500px;
+    float: left;
+    background-color: aquamarine;
+}
+#titulo{
+    width: 98%;
+    height: 22%;
+    background-color: red;
+    margin: 1%;
+}
+#calificacion{
+    width: 98%;
+    height: 6.6%;
+    background-color: bisque;
+    margin: 1%;
+}
+#fecha{
+    width: 98%;
+    height: 6.6%;
+    background-color: cadetblue;
+    margin: 1%;
+}
+#precio{
+    width: 98%;
+    height: 13.2%;
+    background-color: darkgray;
+    margin: 1%;
+}
+#descripcion{
+    width: 98%;
+    height: 32%;
+    background-color: darkcyan;
+    margin: 1%;
+}
+#carrito{
+    width: 98%;
+    height: 10%;
+    background-color: brown;
+    margin: 1%;
+}
+/*---------------------------DETALLES DE VENDEDOR----------------------------*/
+.detalles_vendedor{
+    width: 100%;
+    height: 200px;
+    background-color: blueviolet;
+}
+#tituloDetalles{
+    width: 100%;
+    height: 20%;
+    background-color: yellow;
+    float: left;
+}
+#destallesV{
+    width: 30%;
+    height: 80%;
+    background-color: blue;
+    float: left;
+}
+#calificacionV{
+    width: 70%;
+    height: 80%;
+    background-color: red;
+    float: left;
+}
+/*--------------------------------COMENTARIOS---------------------------------*/
+.comentarios{
+    width: 100%;
+    height: 200px;
+    background-color: darkkhaki;
+}

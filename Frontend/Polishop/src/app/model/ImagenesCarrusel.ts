@@ -1,4 +1,5 @@
 export class ImagenesCarrusel{
     nombre: string;
-    value: string;    
+    value: string;   
+    ruta: string; 
 }

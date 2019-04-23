@@ -17,12 +17,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PantallaProductoComponent } from './components/pantalla-producto/pantalla-producto.component';
 import { PantallaInicioComponent } from './components/pantalla-inicio/pantalla-inicio.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { ProductoPrincipalSliderComponent } from './components/producto-principal-slider/producto-principal-slider.component';
+import { ProductoPrincipalPequenoComponent } from './components/producto-principal-pequeno/producto-principal-pequeno.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PantallaProductoComponent,
-    PantallaInicioComponent
+    PantallaInicioComponent,
+    ProductoPrincipalSliderComponent,
+    ProductoPrincipalPequenoComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import { PantallaInicioComponent } from './components/pantalla-inicio/pantalla-i
     MatInputModule,
     MatMenuModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

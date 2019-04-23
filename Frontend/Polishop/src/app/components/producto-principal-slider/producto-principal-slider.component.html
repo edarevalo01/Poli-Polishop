@@ -1,0 +1,15 @@
+<div class="complete_producto">
+  <div class="imagen_producto">
+    <img src={{mySelectedProducto.urlCarpetaImagenes}} alt="imagenes" id="imagen">
+    <!--img src="assets/system/uno.jpg" alt="Img"-->
+    <!-- ESTO FINALMENTE ES UNA IMAGEN TIPO BANNER COMO LA DE LA PAGINA PRINCIPAL -->
+  </div>
+  <div class="descripcion_producto">
+    <div id="nombreProducto">
+      <p id="nombre"><b>{{mySelectedProducto.nombre.substr(0, 32)}}</b></p>
+    </div>
+    <div id="descripcionProducto">
+      <p id="descripcion">{{mySelectedProducto.descripcion.substr(0, 337)}}...</p>
+    </div>
+  </div>
+</div>

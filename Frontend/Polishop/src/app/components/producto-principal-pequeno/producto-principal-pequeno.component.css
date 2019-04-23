@@ -1,0 +1,16 @@
+.complete_producto{
+    width: 100%;
+    height: 100%;
+}
+.imagen_producto{
+    width: 100%;
+    height: 80%;
+}
+.descripcion_producto{
+    width: 100%;
+    height: 20%;
+}
+p{
+    font-size: 20px;
+    padding: 1.5%;
+}

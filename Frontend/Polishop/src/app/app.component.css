@@ -5,21 +5,21 @@
     background-color: #0F385A;
 }
 .img_logo_container{
-    width: 200px;
+    width: 14.8%;
     height: 80px;
     background-color: #0F385A;
     float: left;
     margin-top: 27.5px;
-    margin-right: 60px;
-    margin-left: 80px;
+    margin-right: 3.4%;
+    margin-left: 6%;
 }
 .input_buscar{
-    width: 440px;
+    width: 32.5%;
     height: 39px;
     float: left;
     margin-top: 48px;
-    margin-right: 1px;
-    margin-left: 100px;
+    margin-right: 0.07%;
+    margin-left: 5.6%;
 }
 #in-buscar{
     width: 100%;
@@ -35,7 +35,7 @@
     background-color: white;
     float: left;
     margin-top: 47px;
-    margin-right: 50px;
+    margin-right: 2x.7%;
 }
 #btn-buscar{
     width: 60px;
@@ -44,13 +44,13 @@
     color: #7C7C7C;
 }
 .button_ingresar{
-    width: 150px;
+    width: 11%;
     height: 41px;
     background-color: #0F385A;
     float: left;
     margin-top: 47px;
-    margin-left: 50px;
-    margin-right: 10px;
+    margin-left: 2.7%;
+    margin-right: 0.74%;
 }
 #btn-ingresar{
     width: 100%;
@@ -61,12 +61,12 @@
     border-radius: 0px;
 }
 .button_carrito{
-    width: 100px;
+    width: 7.4%;
     height: 60px;
     background-color: #0F385A;
     float: left;
     margin-top: 41px;
-    margin-left: 15px;
+    margin-left: 1.11%;
 }
 .iconn{
     width: 100%;
@@ -92,27 +92,27 @@
     margin: auto;
 }
 .lista_categorias{
-    width: 240px;
-    height: 50px;
+    width: 17%;
+    height: 100%;
     background-color: #0F385A;
     float: left;
-    margin-left: 323px;
+    margin-left: 23.9%;
     font-family: arial;
     color: white;
 }
 .vender{
-    width: 240px;
-    height: 50px;
+    width: 17%;
+    height: 100%;
     background-color: #0F385A;
     float: left;
-    margin-right: 3px;
-    margin-left: 3px; 
+    margin-right: 0.22%;
+    margin-left: 0.22%; 
     font-family: arial;
     color: white;
 }
 .ayuda{
-    width: 240px;
-    height: 50px;
+    width: 17%;
+    height: 100%;
     background-color: #0F385A;
     float: left;
     font-family: arial;
@@ -136,21 +136,19 @@
 }
 .mat-menu-panel.dropdownn{
     max-width:none;
-    width: 1200px; 
+    width: 78.8%; 
     margin: auto;
 }
 #categorias_parent{
-    width: 1180px;
+    width: 98.52%;
     height: 420px;
-    margin: 0px 10px 0px 10px;
+    margin: 0% 0.74% 0% 0.74%;
 }
 #categorias-container{
-    width: 400px;
-    float: left;
+    width: 100%;
 }
 
 /*-------------------------------------------------FOOTER----------------------------------------------------*/
-
 
 .footer{
     background-color: #0F385A;
