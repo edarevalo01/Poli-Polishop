@@ -33,9 +33,9 @@ export class ProductoService {
 
   addComentarioProducto(idComprador: number, idProducto: number, comentario: string, puntuacion: number){
     const body = new HttpParams().set('idComprador', idComprador+'')
-                                  .set('idProducto', idProducto+'')
-                                  .set('comentario', comentario)
-                                  .set('puntuacion', puntuacion+'');
+                                 .set('idProducto', idProducto+'')
+                                 .set('comentario', comentario)
+                                 .set('puntuacion', puntuacion+'');
     return this.http.post(environment.urlAddComentarioProducto, body).subscribe();
   }
 }

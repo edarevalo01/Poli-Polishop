@@ -1,5 +1,4 @@
 .body{
-    /*background-color: cadetblue;*/
     width: 100%;
 }
 hr{
@@ -9,7 +8,6 @@ hr{
 }
 /*---------------------------DESCRIPCION DE PRODUCTO----------------------------*/
 .descripcion_producto{
-    /*background-color: green;*/
     width: 100%;
     height: 500px;
 }
@@ -17,13 +15,11 @@ hr{
     width: 12.5%;
     height: 500px;
     float: left;
-    /*background-color: blue;*/
 }
 #imgMini{
     width: 80%;
     height: 26.56%;
     margin: 10.38% 8% 10.38% 8%;
-    /*background-color: red;*/
     float: left;
 }
 #miniImg{
@@ -33,14 +29,12 @@ hr{
     width: 40.38%;
     height: 500px;
     float: left;
-    /*background-color: yellowgreen;*/
 }
 #imagenPrincipal{
     width: 98%;
     height: 70%;
     margin: auto;
     margin-top: 14%;
-    /*background-color: rebeccapurple;*/
 }
 #principalImg{
     margin: 5% 0% 0% 0%;
@@ -49,12 +43,10 @@ hr{
     width: 47.11%;
     height: 500px;
     float: left;
-    /*background-color: aquamarine;*/
 }
 #titulo{
     width: 98%;
     height: 22%;
-    /*background-color: red;*/
     margin: 1% 1% 4% 1%;
 }
 #titulo-producto{
@@ -66,7 +58,6 @@ hr{
 #calificacion{
     width: 98%;
     height: 6.6%;
-    /*background-color: bisque;*/
     margin: 1%;
 }
 #texto-calificacion{
@@ -89,7 +80,6 @@ hr{
 #fecha{
     width: 98%;
     height: 6.6%;
-    /*background-color: cadetblue;*/
     margin: 1%;
 }
 #fecha-producto{
@@ -102,7 +92,6 @@ hr{
 #precio{
     width: 98%;
     height: 13.2%;
-    /*background-color: rgb(153, 151, 151);*/
     margin: 1%;
 }
 #precio-producto{
@@ -114,7 +103,6 @@ hr{
 #descripcion{
     width: 98%;
     height: 32%;
-    /*background-color: darkcyan;*/
     margin: 1% 5% 1% 1%;
 }
 #descripcion-producto{
@@ -125,7 +113,6 @@ hr{
 #carrito{
     width: 98%;
     height: 10%;
-    /*background-color: brown;*/
     margin: 1%;
 }
 #buttonEnviarCarrito{
@@ -138,40 +125,34 @@ hr{
 .detalles_vendedor{
     width: 90%;
     height: 160px;
-    /*background-color: blueviolet;*/
     margin: 0% 0% 0% 2%;
 }
 #tituloDetalles{
     width: 100%;
     height: 20%;
-    /*background-color: yellow;*/
     float: left;
     padding: 1% 0% 3% 2%;
 }
 #detallesV{
     width: 40%;
     height: 80%;
-    /*background-color: blue;*/
     float: left;
 }
 #fotoVendedor{
     width: 22%;
     height: 90%;
-    /*background-color: darkolivegreen;*/
     margin: 1.25% 2% 1.25% 5%;
     float: left;
 }
 #descripcionVendedor{
     width: 65%;
     height: 90%;
-    /*background-color: powderblue;*/
     margin: 1.25% 2% 1.25% 2%;
     float: left;
 }
 #calificacionV{
     width: 60%;
     height: 80%;
-    /*background-color: red;*/
     float: left;
 }
 #texto-calificacionV{
@@ -246,6 +227,5 @@ hr{
     width: 25px;
     height: 25px;
     border: 1px solid orange;
-    /*background-color: transparent;*/
     margin-right: 1%;
 }

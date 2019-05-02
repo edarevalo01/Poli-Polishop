@@ -35,9 +35,7 @@
 }
 #calificacion{
     width: 98%;
-    margin: 0.3% 0% 0% 0%;
-    /*background-color: bisque;*/
-    
+    margin: 0.3% 0% 0% 0%;    
 }
 #texto-calificacion{
     float: left;
