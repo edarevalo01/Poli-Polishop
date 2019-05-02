@@ -14,4 +14,6 @@ public interface ProductoRepository extends CrudRepository<Producto, Long>{
 	
 	public Iterable<Producto> findByCalificacion(Long calificacion);
 	
+	public Iterable<Producto> findByDependenciaOrderByCalificacionDesc(String dependencia);
+	
 }

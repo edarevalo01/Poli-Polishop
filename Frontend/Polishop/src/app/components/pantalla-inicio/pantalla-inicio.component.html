@@ -1,12 +1,11 @@
 <div class='body'>
   <!----------------CARRUSEL GRANDE DE PRODUCTOS PRICIPALES---------------->
   <div id="carrusel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" id='carrusel2'></div>
-      <div class="carousel-item" *ngFor="let producto of productos" >
-        <div id='carrusel'>
+    <div class="carousel-inner">        
+      <div class="carousel-item {{(indice!= 0)? '' : 'active'}}" *ngFor="let producto of productos; let indice = index">
+        <div (click)="goProducto(producto)">
           <app-producto-principal-slider [mySelectedProducto]="producto"></app-producto-principal-slider>
-        </div>
+        </div>  
       </div>
     </div>
     <a class="carousel-control-prev" href="#carrusel" role="button" data-slide="prev">
@@ -22,16 +21,9 @@
   <h6 class="titulosCarrusel"><b>-- PRINCIPALES PRODUCTOS POLI</b></h6>
   <div id="carruselPoli" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item {{(indice!= 0)? '' : 'active'}}" *ngFor = "let row of matrizPrincipalesPoli; let indice = index">
         <div id='big-carrusel-poli'>
-          <div id='element-carrusel-peq'><!----></div>
-          <div id='element-carrusel-peq'><!----></div>
-          <div id='element-carrusel-peq'><!----></div>
-        </div>
-      </div>
-      <div class="carousel-item" *ngFor = "let row of matrizPrincipales">
-        <div id='big-carrusel-poli'>
-          <div id='element-carrusel-peq' *ngFor = "let col of row">
+          <div id='element-carrusel-peq' *ngFor = "let col of row" (click)="goProducto(col)">
             <app-producto-principal-pequeno [mySelectedProducto]="col"></app-producto-principal-pequeno>
           </div>
         </div>
@@ -50,16 +42,9 @@
   <h6 class="titulosCarrusel"><b>-- PRINCIPALES PRODUCTOS COMUNIDAD</b></h6>
   <div id="carruselOtros" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item {{(indice!= 0)? '' : 'active'}}" *ngFor = "let row of matrizPrincipalesComu; let indice = index">
         <div id='big-carrusel-poli'>
-          <div id='element-carrusel-peq'><!----></div>
-          <div id='element-carrusel-peq'><!----></div>
-          <div id='element-carrusel-peq'><!----></div>
-        </div>
-      </div>
-      <div class="carousel-item" *ngFor = "let row of matrizPrincipales">
-        <div id='big-carrusel-poli'>
-          <div id='element-carrusel-peq' *ngFor = "let col of row">
+          <div id='element-carrusel-peq' *ngFor = "let col of row" (click)="goProducto(col)">
             <app-producto-principal-pequeno [mySelectedProducto]="col"></app-producto-principal-pequeno>
           </div>
         </div>

@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},
   {path: 'inicio', component: PantallaInicioComponent},
   {path: 'p-producto', component: PantallaProductoComponent},
-  {path: 'p-princ-slider', component: ProductoPrincipalSliderComponent}
+  {path: 'p-producto/:idProducto', component: PantallaProductoComponent}
 ];
 
 @NgModule({

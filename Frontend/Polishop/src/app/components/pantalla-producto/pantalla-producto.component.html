@@ -2,54 +2,119 @@
   <!---------------------------------DESCRIPCION DE PRODUCTO---------------------------------->
   <div class="descripcion_producto">
     <div id="miniaturas_imagenes">
-      <div id="imgMini"><!--img src="assets/productPhotos/product1.png" alt="imgs"--></div>
-      <div id="imgMini"><!--img src="assets/productPhotos/product1.png" alt="imgs"--></div>
-      <div id="imgMini"><!--img src="assets/productPhotos/product1.png" alt="imgs"--></div>
+      <div id="imgMini"><img src="{{productoTmp.urlCarpetaImagenes}}" alt="imagenmini" width="100%" id = 'miniImg'></div>
+      <div id="imgMini"><img src="{{productoTmp.urlCarpetaImagenes}}" alt="imagenmini" width="100%" id = 'miniImg'></div>
+      <div id="imgMini"><img src="{{productoTmp.urlCarpetaImagenes}}" alt="imagenmini" width="100%" id = 'miniImg'></div>
     </div>
     <div id="principal_imagen">
       <div id="imagenPrincipal">
         <!--IMAGEN!!!-->
+        <img src="{{productoTmp.urlCarpetaImagenes}}" alt="imagenPrincipal" width="100%" id="principalImg">
       </div>
     </div>
     <div id="descripcion_imagen">
       <div id="titulo">
-
+        <div id="titulo-producto"><b>{{productoTmp.nombre}}</b></div>
       </div>
       <div id="calificacion">
-
+        <div id='texto-calificacion'>
+          <b>Calificacion</b>
+        </div>
+        <div id="calificacion-producto">
+          <img src="{{imgCalificacionProducto}}" alt="calificacionProducto" height="30%" width="60%" id="calificacionProducto">
+        </div>
       </div>
       <div id="fecha">
-
+        <div id="fecha-producto">{{productoTmp.fechaPublicacion}}</div>
       </div>
       <div id="precio">
-
+        <div id="precio-producto"><b>{{productoTmp.precio}}</b></div>
       </div>
       <div id="descripcion">
-
+        <div id="descripcion-producto">{{productoTmp.descripcion}}</div>
       </div>
       <div id="carrito">
-
+        <!--BTN CARRITO-->
+        <div id="btnEnviarCarrito">
+          <button id="buttonEnviarCarrito" mat-button (click)='addCarrito()'>Enviar al carrito de compras
+            <mat-icon aria-label="Example icon-button with a heart icon">add_shopping_cart</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <br>
+  <hr>
   <!---------------------------------DETALLES DE VENDEDOR---------------------------------->
   <div class="detalles_vendedor">
     <div id="tituloDetalles">
-
+      <h5><b>DETALLES DEL VENDEDOR</b></h5>
     </div>
-    <div id="destallesV">
-
+    <div id="detallesV">
+      <div id="fotoVendedor">
+        <img src="{{productoTmp.imagenVendedor}}" height="100%" alt="imagenVendedor">
+      </div>
+      <div id="descripcionVendedor">
+        <h6>{{productoTmp.nombreVendedor}}</h6>
+        <h6>{{productoTmp.descripcionVendedor}}</h6>
+        <span>Más detalles</span>
+      </div>
     </div>
     <div id="calificacionV">
-
+      <div id='texto-calificacionV'>
+        <b>Calificacion del vendedor</b>
+      </div>
+      <div id="calificacion-vendedor">
+        <img src="{{imgCalificacionVendedor}}" alt="calificacionVendedor" height="30%" width="60%" id="calificacionVendedor">
+      </div>
     </div>
   </div>
-  <br>
+  <br><br>
+  <hr>
   <!--------------------------------------COMENTARIOS--------------------------------------->
-  <div class="comentarios">
-
+  <div id="completeComentarios">
+    <div class="comentarios">
+      <div id="tituloComentarios">
+        <h5><b>COMENTARIOS DEL PRODUCTO</b></h5>
+      </div>
+      <div id="listComentarios">
+        <div *ngFor = 'let comentario of comentarios' id="listaComentarios">
+          <app-comentario-producto [mySelectedComentario]='comentario'></app-comentario-producto>
+        </div>
+        <div id="agregarComentario">
+          <div id="completeComentAdd">
+            <mat-card class="example-card1">
+              <mat-card-header id="headercard">
+                <div id="titAddComent">
+                  <h6><b>AGREGAR COMENTARIO</b></h6>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div id="textAreaComent">
+                  <mat-form-field appearance="outline" class="textAreaComent">
+                    <textarea matInput placeholder="Escribir comentario" [(ngModel)]='comentario'></textarea>
+                  </mat-form-field>
+                </div>
+                <div id="buttonComent">
+                  <div class="btn-group mr-2" role="group" aria-label="First group" id="calificacionBtns">
+                    <h5 id="titCalProdCom">Calificar producto</h5>
+                    <button mat-fab type="button" class="btnCalif" (click)="clickPuntuacion(1)" id="1" [ngStyle]="{'background-color': buttonColor1}"></button>
+                    <button mat-fab type="button" class="btnCalif" (click)="clickPuntuacion(2)" id="2" [ngStyle]="{'background-color': buttonColor2}"></button>
+                    <button mat-fab type="button" class="btnCalif" (click)="clickPuntuacion(3)" id="3" [ngStyle]="{'background-color': buttonColor3}"></button>
+                    <button mat-fab type="button" class="btnCalif" (click)="clickPuntuacion(4)" id="4" [ngStyle]="{'background-color': buttonColor4}"></button>
+                    <button mat-fab type="button" class="btnCalif" (click)="clickPuntuacion(5)" id="5" [ngStyle]="{'background-color': buttonColor5}"></button>
+                  </div>
+                  <div id="btnEnviarComent">
+                    <button id="buttonEnviar" mat-button (click)='addComentario()'>Enviar comentario</button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
 
 </div>

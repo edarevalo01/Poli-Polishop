@@ -36,6 +36,8 @@ public class Vendedor {
 	@NotNull
 	private String contrasena;
 	
+	private String descripcion;
+	
 	@NotNull
 	private String pais;
 	
@@ -128,6 +130,14 @@ public class Vendedor {
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 }

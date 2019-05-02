@@ -1,0 +1,33 @@
+<mat-card class="example-card">
+  <mat-card-header id="headercard">
+    <div mat-card-avatar class="example-header-image"
+      [style.background-image]="'url('+ mySelectedComentario.imagenComprador +')'">
+    </div>
+    <div id="nombreComprador">
+      <mat-card-title><b>{{mySelectedComentario.nombreComprador}}</b></mat-card-title>
+    </div>
+    <div id="fecha">
+      <mat-card-subtitle>{{mySelectedComentario.fecha}}</mat-card-subtitle>
+    </div>
+    <div id="calificacion">
+      <div id='texto-calificacion'>
+        <b>Calificacion de Producto</b>
+      </div>
+      <div id="calificacion-comentario">
+        <img src="{{(mySelectedComentario.puntuacionProducto == 0)? 
+          'assets/system/calificacionCero.png' : (mySelectedComentario.puntuacionProducto == 1)?
+          'assets/system/calificacionUno.png' : (mySelectedComentario.puntuacionProducto == 2)?
+          'assets/system/calificacionDos.png' : (mySelectedComentario.puntuacionProducto == 3)?
+          'assets/system/calificacionTres.png' : (mySelectedComentario.puntuacionProducto == 4)?
+          'assets/system/calificacionCuatro.png' : (mySelectedComentario.puntuacionProducto == 5)?
+          'assets/system/calificacionCinco.png' : '' }}" 
+          alt="calificacionComentario" height="30%" width="60%" id="calificacionComentario">
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <p id="comentario">
+      {{mySelectedComentario.comentario}}
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -4,7 +4,7 @@
     <img src="assets/system/LogoHeader.png" alt="logo_header" width="180px">
   </div>
   <div class='input_buscar'>
-    <input matInput  placeholder="Buscar" type="text" id="in-buscar">
+    <input matInput placeholder="Buscar" type="text" id="in-buscar">
   </div>
   <div class='button_buscar'>
     <button mat-button id='btn-buscar'>
@@ -31,7 +31,7 @@
       <div id = 'categorias_parent' class="row notification-row">
         <mat-nav-list>
           <div id="categorias-container">
-            <a mat-list-item href="/login" *ngFor="let categoria of categorias" >{{categoria.nombre}} </a>
+            <a mat-list-item href="/login" *ngFor="let categoria of categorias" >{{categoria.nombre}}</a>
           </div>
         </mat-nav-list>
       </div>

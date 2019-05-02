@@ -10,16 +10,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+
 import { PantallaProductoComponent } from './components/pantalla-producto/pantalla-producto.component';
 import { PantallaInicioComponent } from './components/pantalla-inicio/pantalla-inicio.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProductoPrincipalSliderComponent } from './components/producto-principal-slider/producto-principal-slider.component';
 import { ProductoPrincipalPequenoComponent } from './components/producto-principal-pequeno/producto-principal-pequeno.component';
+import { ComentarioProductoComponent } from './components/comentario-producto/comentario-producto.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { ProductoPrincipalPequenoComponent } from './components/producto-princip
     PantallaProductoComponent,
     PantallaInicioComponent,
     ProductoPrincipalSliderComponent,
-    ProductoPrincipalPequenoComponent
+    ProductoPrincipalPequenoComponent,
+    ComentarioProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,9 @@ import { ProductoPrincipalPequenoComponent } from './components/producto-princip
     MatMenuModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

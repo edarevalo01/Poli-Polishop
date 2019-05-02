@@ -44,6 +44,8 @@ public class Producto {
 	
 	private String urlCarpetaImagenes;
 	
+	private String dependencia; //Si es poli o comunidad
+	
 	@NotNull
 	private Long idVendedor;
 	
@@ -181,6 +183,14 @@ public class Producto {
 
 	public void setCategoriaProducto(List<CategoriaProducto> categoriaProducto) {
 		this.categoriaProducto = categoriaProducto;
+	}
+
+	public String getDependencia() {
+		return dependencia;
+	}
+
+	public void setDependencia(String dependencia) {
+		this.dependencia = dependencia;
 	}
 	
 }

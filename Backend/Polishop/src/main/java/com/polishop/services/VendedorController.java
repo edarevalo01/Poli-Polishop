@@ -24,13 +24,14 @@ public class VendedorController {
 	@RequestMapping(path = "/addVendedor", method = RequestMethod.POST)
 	public @ResponseBody String addVendedor
 	(@RequestParam String nombres, @RequestParam String apellidos, @RequestParam String correo, 
-			@RequestParam String contrasena, @RequestParam String pais, @RequestParam String ciudad, 
-			@RequestParam String urlFoto, @RequestParam Long puntuacionVendedor){
+			@RequestParam String contrasena, @RequestParam String descripcion, @RequestParam String pais, 
+			@RequestParam String ciudad,  @RequestParam String urlFoto, @RequestParam Long puntuacionVendedor){
 		Vendedor vendedor = new Vendedor();
 		vendedor.setNombres(nombres);
 		vendedor.setApellidos(apellidos);
 		vendedor.setCorreo(correo.toLowerCase());
 		vendedor.setContrasena(contrasena);
+		vendedor.setDescripcion(descripcion);
 		vendedor.setPais(pais);
 		vendedor.setCiudad(ciudad);
 		vendedor.setUrlFoto(urlFoto);

@@ -1,5 +1,9 @@
 package com.polishop.negocio;
 
+/**
+ * @author Alejandro
+ * Clase para gestionar el Login de usuario
+ */
 public class Login {
 	
 	private String correo;
