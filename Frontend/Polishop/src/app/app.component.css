@@ -137,7 +137,7 @@
 }
 .mat-menu-panel.dropdownn{
     max-width:none;
-    width: 78.8%; 
+    width: 28.8%; 
     margin: auto;
 }
 #categorias_parent{
@@ -146,7 +146,8 @@
     margin: 0% 0.74% 0% 0.74%;
 }
 #categorias-container{
-    width: 100%;
+    width: 90%;
+    margin: 0% 0% 0% 10%
 }
 
 /*-------------------------------------------------FOOTER----------------------------------------------------*/
@@ -154,4 +155,14 @@
 .footer{
     background-color: #0F385A;
     height: 250px;
+}
+
+/*-------------------------------------------------LOGIN-----------------------------------------------------*/
+
+#modalBody{
+    width: 80%;
+    margin: auto;
+}
+.matLogin{
+    width: 100%;
 }

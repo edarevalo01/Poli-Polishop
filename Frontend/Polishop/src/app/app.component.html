@@ -1,7 +1,7 @@
 <!-------------------------------------------------HEADER UNO---------------------------------------------------->
 <div class='header_uno'>
   <div class='img_logo_container'>
-    <img src="assets/system/LogoHeader.png" alt="logo_header" width="180px">
+    <img src="assets/system/LogoHeader.png" alt="logo_header" width="180px" routerLink="/inicio">
   </div>
   <div class='input_buscar'>
     <input matInput placeholder="Buscar" type="text" id="in-buscar">
@@ -12,15 +12,15 @@
     </button>
   </div>
   <div class='button_ingresar'>
-    <button mat-button class="btn btn-outline-primary" id='btn-ingresar'>
-        <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
-        <b>INGRESAR</b>
+    <button mat-button class="btn btn-outline-primary" id='btn-ingresar' data-toggle="modal" data-target="#loginSection">
+      <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
+      <b>{{loginText}}</b> 
     </button>
   </div>
   <div class='button_carrito'>
-      <button type="button" class="btn btn-outline-primary" id='icon-btn'>
-        <mat-icon aria-label="Example icon-button with a heart icon" class="iconn">shopping_cart</mat-icon>    
-      </button>
+    <button type="button" class="btn btn-outline-primary" id='icon-btn'>
+      <mat-icon aria-label="Example icon-button with a heart icon" class="iconn">shopping_cart</mat-icon>    
+    </button>
   </div>
 </div>
 <!-------------------------------------------------HEADER DOS---------------------------------------------------->
@@ -31,6 +31,7 @@
       <div id = 'categorias_parent' class="row notification-row">
         <mat-nav-list>
           <div id="categorias-container">
+            <p>Categorias</p>
             <a mat-list-item href="/login" *ngFor="let categoria of categorias" >{{categoria.nombre}}</a>
           </div>
         </mat-nav-list>
@@ -38,11 +39,7 @@
     </mat-menu>
   </div>
   <div class='vender'>
-    <button type="button" class="btn btn-outline-primary" [matMenuTriggerFor]="menu2" id='men-vender'><b>VENDER</b></button>
-    <mat-menu #menu2="matMenu" class="dropdownn">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
+    <button type="button" class="btn btn-outline-primary" id='men-vender' routerLink="/p-vender"><b>VENDER</b></button>
   </div>
   <div class='ayuda'>
     <button type="button" class="btn btn-outline-primary" [matMenuTriggerFor]="menu3" id='men-ayuda'><b>AYUDA</b></button>
@@ -57,4 +54,34 @@
 <!--------------------------------------------FOOTER--------------------------------------------------------->
 <div class='footer'>
   <!--FOOTER-->
+</div>
+<!--------------------------------------------LOGIN---------------------------------------------------------->
+<div class="modal fade" id="loginSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Iniciar sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <mat-form-field class="matLogin">
+          <input matInput placeholder = 'Correo' [formControl] = 'correo' required [(ngModel)] = 'email'><!--[(ngModel)] = 'email'-->
+          <mat-error *ngIf = 'correo.invalid'>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="matLogin">
+          <input matInput placeholder='Contraseña' [type]="hide ? 'password' : 'text'" required [(ngModel)] = 'password'>
+          <mat-icon matSuffix (click)='hide = !hide'>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <br><br>
+        <p>¿Olvidó su nombre de usuario o contraseña?</p>
+      </div>
+      <div class="modal-footer">
+        <p id = 'invalidaContra' [ngStyle]="{color: hintColor}">{{errorLogin}}</p>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)='loginComprador()'>Ingresar</button>
+      </div>
+    </div>
+  </div>
 </div>

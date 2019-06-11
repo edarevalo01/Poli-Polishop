@@ -1,0 +1,49 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
+#whysell{
+    width: 100%;
+}
+#completeVender{
+    width: 100%;
+    background-color: #EEEEEE
+}
+#accordionVender{
+    width: 50%;
+    margin: auto;
+    padding: 4% 0% 3% 0%;
+}
+.form-login{
+    width: 100%;
+}
+.input-container{
+    width: 60%;
+    margin: auto;
+    margin: 3% 20% 0% 20%;
+}
+.full-width{
+    width: 100%;
+}
+.matLogin{
+    margin: 2% 15% 2% 15%;
+    width: 70%;
+}
+#buttonLoginVendedor{
+    width: 100%;
+}
+#buttonLoginV{
+    width: 20%;
+    margin: 0% 40% 0% 40%;
+    background-color: #3FA8D9;
+    color: white;
+}

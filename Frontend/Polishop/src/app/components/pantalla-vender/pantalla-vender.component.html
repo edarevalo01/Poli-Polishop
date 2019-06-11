@@ -1,0 +1,89 @@
+<div id="completeVender">
+  <div id="accordionVender">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>PoliShop</b>
+          </mat-panel-title>
+          <mat-panel-description>
+            ¿Porqué vender en PoliShop?
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div id="mat_panel_body_uno">
+          <img src="assets/system/porquevender.jpg" alt="porque_vender" id="whysell">
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>Iniciar sesión</b>
+          </mat-panel-title>
+          <mat-panel-description>
+            Iniciar sesión como vendedor.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div id="mat_panel_body_dos">
+          <div class="form-login"> <!--LOGIN-->
+              <div class="input-container">
+                <mat-form-field class="matLogin">
+                  <input matInput placeholder = 'Correo' [formControl] = 'correo' required [(ngModel)] = 'email'><!--[(ngModel)] = 'email'-->
+                  <mat-error *ngIf = 'correo.invalid'>{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="matLogin">
+                  <input matInput placeholder='Contraseña' [type]="!hide? 'password' : 'text'" required [(ngModel)] = 'password'>
+                  <mat-icon matSuffix (click)='hide = !hide'>{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+                <br><br>
+                <p>¿Olvidó su nombre de usuario o contraseña?</p>
+              </div><br>
+              <div id="buttonLoginVendedor">
+                <button mat-button id="buttonLoginV">Iniciar sesión</button>
+              </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>Registro</b>
+          </mat-panel-title>
+          <mat-panel-description>
+            Registrate como vendedor.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div id="mat_panel_body_tres"><!--/////////////7-->
+          <div id="mat_panel_body_tres">
+            <mat-form-field class="matLogin">
+              <input matInput placeholder = 'Nombre legal' required [(ngModel)] = 'nombreRegistro'>
+              <mat-hint><p matTooltip="{{legalName}}" matTooltipPosition="right" id="nombreLegalQ">¿Qué es un nombre legal?</p></mat-hint>
+            </mat-form-field>
+            <mat-form-field class="matLogin">
+              <input matInput placeholder = 'Ubicación (Ciudad)' required [(ngModel)] = 'ubicacion'>
+            </mat-form-field>
+            <mat-form-field class="matLogin">
+              <input matInput placeholder = 'Correo Institucional' required [(ngModel)] = 'correoIns'>
+            </mat-form-field>
+            <mat-form-field class="matLogin">
+              <input matInput placeholder = 'Contraseña' required [(ngModel)] = 'contrasena1'>
+            </mat-form-field>
+            <mat-form-field class="matLogin">
+              <input matInput placeholder = 'Confirmar contraseña' required [(ngModel)] = 'contrasena2'>
+            </mat-form-field>
+            <mat-form-field class="matLogin">
+              <input matInput placeholder = 'Número celular' required [(ngModel)] = 'celular'>
+            </mat-form-field>
+            <mat-form-field class="matLogin">
+              <textarea matInput placeholder = 'Información adicional (descripción)' required [(ngModel)] = 'adicional'></textarea>
+            </mat-form-field><br>
+            Foto: <input type="file" name="Foto" id="foto">
+            <br>
+            <button mat-button>Registrar</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

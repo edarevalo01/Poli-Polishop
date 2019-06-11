@@ -60,6 +60,7 @@ export class PantallaProductoComponent implements OnInit {
     );
   }
 
+  //Es más breve, que reciba dos parametros, el numero y la imagen que va a reemplazar y así queda un sólo método
   setImgCalificacionProducto(calificacionProducto: number){
     switch(calificacionProducto){
       case 0: this.imgCalificacionProducto = 'assets/system/calificacionCero.png'; break;

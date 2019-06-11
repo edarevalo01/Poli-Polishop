@@ -49,7 +49,7 @@ public class CompradorController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/loginUsuaio")
+	@RequestMapping(path = "/loginUsuario")
 	public Login getLoginComprador(@RequestParam String correo) {
 		Optional<Comprador> optComprador = compradorRepositoryDAO.findByCorreo(correo.toLowerCase());
 		if(!optComprador.isPresent()) return null;

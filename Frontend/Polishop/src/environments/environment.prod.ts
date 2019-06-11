@@ -5,5 +5,9 @@ export const environment = {
   urlGetAllProductosByDependencia: 'http://localhost:8080/getAllProductosByDependencia',
   urlGetProductoById: 'http://localhost:8080/getProductoById',
   urlGetProductoComentarios: 'http://localhost:8080/getComentarioByProducto',
-  urlAddComentarioProducto: 'http://localhost:8080/addComentario'
+  urlAddComentarioProducto: 'http://localhost:8080/addComentario',
+  urlLoginComprador: 'http://localhost:8080/loginUsuario',
+  urlLoginVendedor: 'http://localhost:8080/loginVendedor',
+  urlLoginAdmin: 'http://localhost:8080/loginAdmin',
+  urlGetInfoComprador: 'http://localhost:8080/getUsuarioByCorreo'
 };
