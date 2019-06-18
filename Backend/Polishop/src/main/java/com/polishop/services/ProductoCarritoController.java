@@ -24,6 +24,7 @@ public class ProductoCarritoController {
 		ProductoCarrito productoCarrito = new ProductoCarrito();
 		productoCarrito.setIdCarrito(idCarrito);
 		productoCarrito.setIdProducto(idProducto);
+		productoCarrito.setCantidad(1L);
 		productoCarritoRepositoryDAO.save(productoCarrito);
 		return "Producto de carrito agregado.";
 	}

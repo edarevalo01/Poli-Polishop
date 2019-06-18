@@ -31,6 +31,9 @@ import { ProductoPrincipalPequenoComponent } from './components/producto-princip
 import { ComentarioProductoComponent } from './components/comentario-producto/comentario-producto.component';
 import { PantallaVenderComponent } from './components/pantalla-vender/pantalla-vender.component';
 import { PantallaVendedorComponent } from './components/pantalla-vendedor/pantalla-vendedor.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
+import { PantallaCarritoComponent } from './components/pantalla-carrito/pantalla-carrito.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { PantallaVendedorComponent } from './components/pantalla-vendedor/pantal
     ProductoPrincipalPequenoComponent,
     ComentarioProductoComponent,
     PantallaVenderComponent,
-    PantallaVendedorComponent
+    PantallaVendedorComponent,
+    BusquedaComponent,
+    AyudaComponent,
+    PantallaCarritoComponent
   ],
   imports: [
     BrowserModule,

@@ -41,6 +41,14 @@ public class CompradorController {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(path = "/getUsuarioById")
+	public Comprador getCompradorById(@RequestParam Long id) {
+		Optional<Comprador> optComprador = compradorRepositoryDAO.findById(id);
+		if(!optComprador.isPresent()) return null;
+		return optComprador.get();
+	}
+	
+	@CrossOrigin
 	@RequestMapping(path = "/getUsuarioByCorreo")
 	public Comprador getCompradorByCorreo(@RequestParam String correo) {
 		Optional<Comprador> optComprador = compradorRepositoryDAO.findByCorreo(correo.toLowerCase());

@@ -9,5 +9,7 @@ export const environment = {
   urlLoginComprador: 'http://localhost:8080/loginUsuario',
   urlLoginVendedor: 'http://localhost:8080/loginVendedor',
   urlLoginAdmin: 'http://localhost:8080/loginAdmin',
-  urlGetInfoComprador: 'http://localhost:8080/getUsuarioByCorreo'
+  urlGetInfoComprador: 'http://localhost:8080/getUsuarioByCorreo',
+  urlGetInfoCompradorById: 'http://localhost:8080/getUsuarioById',
+  urlSaveCarritoConCompra: 'http://localhost:8080/saveCarritoConCompra'
 };

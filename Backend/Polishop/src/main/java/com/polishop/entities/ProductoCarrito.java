@@ -22,6 +22,8 @@ public class ProductoCarrito {
 	
 	private Long idProducto;
 	
+	private Long cantidad;
+	
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idCarrito", referencedColumnName = "id", insertable = false, updatable = false)
@@ -70,6 +72,14 @@ public class ProductoCarrito {
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+
+	public Long getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Long cantidad) {
+		this.cantidad = cantidad;
 	}
 
 }

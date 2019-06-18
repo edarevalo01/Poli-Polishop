@@ -18,4 +18,6 @@ public interface CompraRepository extends CrudRepository<Compra, Long>{
 	
 	public Optional<Compra> findByIdCarrito(Long idCarrito);
 	
+	public Optional<Compra> findByIdCompradorAndEstado(Long idComprador, String estado);
+	
 }

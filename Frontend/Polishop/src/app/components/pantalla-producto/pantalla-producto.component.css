@@ -109,6 +109,7 @@ hr{
     width: 85%;
     margin: 0% 5% 0% 2%;
     color: rgb(32, 32, 32);
+    text-align: justify;
 }
 #carrito{
     width: 98%;

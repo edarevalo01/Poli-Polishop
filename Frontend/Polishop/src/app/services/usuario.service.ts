@@ -21,4 +21,10 @@ export class UsuarioService {
     const param = new HttpParams().set('correo', email);
     return this.http.get<Comprador>(environment.urlGetInfoComprador, {params: param});
   }
+
+  getInfoCompradorById(id: number): Observable<Comprador>{
+    const param = new HttpParams().set('id', id+'');
+    return this.http.get<Comprador>(environment.urlGetInfoCompradorById, {params: param});
+  }
+
 }

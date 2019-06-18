@@ -20,6 +20,7 @@ export class PantallaProductoComponent implements OnInit {
   comentario: string = '';
 
   constructor(private productoService: ProductoService, private activeRoute: ActivatedRoute) { 
+    scrollTo(0,0)
     activeRoute.queryParams.subscribe(
       retorno => {
         let retid = retorno['idProd'];
@@ -129,8 +130,27 @@ export class PantallaProductoComponent implements OnInit {
   }
 
   addComentario(){ //El id del comprador esta quemado.
-    this.productoService.addComentarioProducto(1, this.productoTmp.id, this.comentario, this.calificacionComentario);
+    if(this.comentario == '') return;
+    this.productoService.addComentarioProducto(+sessionStorage.getItem('user'), this.productoTmp.id, this.comentario, this.calificacionComentario);
     location.reload();
+  }
+
+  addCarrito(){
+    this.productoService.saveCarritoConProducto(this.productoTmp.id, +sessionStorage.getItem('user'));
+  }
+
+  logueado(){
+    if(sessionStorage.getItem('user') != null){
+      return true;
+    }
+    return false;
+  }
+
+  compraHabilitada(){
+    if(sessionStorage.getItem('user') != null){
+      return false;
+    }
+    return true;
   }
 
   ngOnInit() {

@@ -61,6 +61,8 @@ public class Compra {
 	
 	private String metodoPago;
 	
+	private String estado; //comprando pendiente enviado entregado
+	
 	private Long idCarrito;
 	
 	@JsonManagedReference
@@ -199,6 +201,14 @@ public class Compra {
 
 	public void setMetodoPago(String metodoPago) {
 		this.metodoPago = metodoPago;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Long getIdCarrito() {

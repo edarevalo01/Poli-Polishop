@@ -3,8 +3,9 @@
   <div id="carrusel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">        
       <div class="carousel-item {{(indice!= 0)? '' : 'active'}}" *ngFor="let producto of productos; let indice = index">
-        <div (click)="goProducto(producto)">
+        <div>
           <app-producto-principal-slider [mySelectedProducto]="producto"></app-producto-principal-slider>
+          <button mat-button (click)="goProducto(producto)" id='btn_verProducto'><b>Ver producto</b></button>
         </div>  
       </div>
     </div>
@@ -18,7 +19,7 @@
     </a>
   </div>
   <!----------------CARRUSEL PRODUCTOS PRICIPALES DEL POLI---------------->
-  <h6 class="titulosCarrusel"><b>-- PRINCIPALES PRODUCTOS POLI</b></h6>
+  <h6 class="titulosCarrusel"><b>-- PRINCIPALES PRODUCTOS POLI <a href="search?object=Poli&type=poli" class='vermas'>ver más</a></b></h6>
   <div id="carruselPoli" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item {{(indice!= 0)? '' : 'active'}}" *ngFor = "let row of matrizPrincipalesPoli; let indice = index">
@@ -39,7 +40,7 @@
     </a>
   </div>
   <!----------------CARRUSEL PRODUCTOS PRINCIPALES DE COMUNIDAD---------------->
-  <h6 class="titulosCarrusel"><b>-- PRINCIPALES PRODUCTOS COMUNIDAD</b></h6>
+  <h6 class="titulosCarrusel"><b>-- PRINCIPALES PRODUCTOS COMUNIDAD <a href="search?object=Comunity&type=comunidad" class='vermas'>ver más</a></b></h6>
   <div id="carruselOtros" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item {{(indice!= 0)? '' : 'active'}}" *ngFor = "let row of matrizPrincipalesComu; let indice = index">

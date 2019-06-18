@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { CategoriaService } from './services/categoria.service';
 import { Categoria } from './model/Categoria';
 import { FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from './services/usuario.service';
 import { Comprador } from './model/Comprador';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,12 +27,16 @@ export class AppComponent {
 
   comprador: Comprador = null;
 
-  constructor(private categoriaService: CategoriaService, private usuarioService: UsuarioService){
-    console.log(sessionStorage.getItem('user'));
+  searchProduct: string;
+
+  logueado: boolean = false;
+
+  constructor(private categoriaService: CategoriaService, private usuarioService: UsuarioService, private router: Router){
     this.hintColor = '#FFFFFF';
     this.loadCategorias();
     if(sessionStorage.getItem('user') != null){
       this.loginText = sessionStorage.getItem('nameLogin').toUpperCase();
+      this.getInfoCompradorById(+sessionStorage.getItem('user'));
     }
   }
 
@@ -65,6 +70,11 @@ export class AppComponent {
     );
   }
 
+  logoutComprador(){
+    sessionStorage.clear();
+    location.reload();
+  }
+
   getInfoCompradorLogin(email: string){
     this.usuarioService.getInfoComprador(email).subscribe(
       infoCompradorObs => {
@@ -79,6 +89,25 @@ export class AppComponent {
         sessionStorage.setItem('user', this.comprador.id+'');
         sessionStorage.setItem('nameLogin', this.comprador.nombres.split(' ')[0]);
         this.loginText = this.comprador.nombres.split(' ')[0].toUpperCase();
+        this.logueado = true;
+        location.reload();
+      }
+    );
+  }
+
+  getInfoCompradorById(id: number){
+    this.usuarioService.getInfoCompradorById(id).subscribe(
+      infoCompradorObs => {
+        this.comprador = infoCompradorObs;
+      },
+      error => {
+        console.error("ERROR GET INFO: ", error);
+      },
+      () => {
+        console.log("Comprador cargado exitosamente.");
+        console.log(this.comprador);
+        this.loginText = this.comprador.nombres.split(' ')[0].toUpperCase();
+        this.logueado = true;
       }
     );
   }
@@ -101,4 +130,45 @@ export class AppComponent {
     return this.correo.hasError('required') ? 'Debes ingresar un correo.' :
             this.correo.hasError('email') ? 'Correo inválido.' : '';
   }
+
+  btnSearch(){
+    if(this.searchProduct.trim() == ''){
+      return 
+    }
+    this.router.navigate(
+      ['search'],
+      {queryParams: {
+        object: this.searchProduct,
+        type: 'search'
+      },
+      skipLocationChange: false}
+    );
+  }
+
+  onKeydown(event){
+    if(event.key == 'Enter'){
+      this.btnSearch();
+    }
+  }
+
+  searchCategoria(categoria){
+    this.router.navigate(
+      ['search'],
+      {queryParams: {
+        object: categoria.nombre,
+        type: 'categoria'
+      },
+      skipLocationChange: false}
+    );
+  }
+
+  modificarInfo(){
+    console.log('toca pensar bien esta');
+  }
+
+  goToInicio(){
+    this.router.navigateByUrl('/inicio');
+    this.searchProduct = '';
+  }
+
 }

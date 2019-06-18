@@ -7,6 +7,10 @@
     height: 500px;
     background-color: rgba(182, 182, 182, 0.314);
 }
+#btn_verProducto{
+    background-color: #3FA8D9;
+    color: white;
+}
 #img1, #img2, #img3{ /*Imagenes de gran carrusel (no se usan por ahora)*/
     height: 500px;
 }
@@ -63,4 +67,8 @@
     color: #0F385A;
     padding: 1.5% 0% 1.5% 4%;
     font-size: 17px;
+}
+.vermas{
+    margin: 0% 0% 0% 1%;
+    color: #3FA8D9;
 }

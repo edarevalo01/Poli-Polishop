@@ -34,9 +34,16 @@
       </div>
       <div id="carrito">
         <div id="btnEnviarCarrito">
-          <button id="buttonEnviarCarrito" mat-button (click)='addCarrito()'>Enviar al carrito de compras
+          <button 
+            id="buttonEnviarCarrito" 
+            mat-button (click)='addCarrito()' 
+            data-target="#sendCarrito" 
+            data-toggle="modal"
+            *ngIf='!compraHabilitada()'>
+            Enviar al carrito de compras
             <mat-icon aria-label="Example icon-button with a heart icon">add_shopping_cart</mat-icon>
           </button>
+          <button id="buttonEnviarCarrito" mat-button disabled=true *ngIf='compraHabilitada()'>¡Inicia sesión para comprar!</button>
         </div>
       </div>
     </div>
@@ -55,7 +62,6 @@
       <div id="descripcionVendedor">
         <h6>{{productoTmp.nombreVendedor}}</h6>
         <h6>{{productoTmp.descripcionVendedor}}</h6>
-        <span>Más detalles</span>
       </div>
     </div>
     <div id="calificacionV">
@@ -79,7 +85,7 @@
         <div *ngFor = 'let comentario of comentarios' id="listaComentarios">
           <app-comentario-producto [mySelectedComentario]='comentario'></app-comentario-producto>
         </div>
-        <div id="agregarComentario">
+        <div id="agregarComentario" *ngIf='logueado()'>
           <div id="completeComentAdd">
             <mat-card class="example-card1">
               <mat-card-header id="headercard">
@@ -103,7 +109,13 @@
                     <button mat-fab type="button" class="btnCalif" (click)="clickPuntuacion(5)" id="5" [ngStyle]="{'background-color': buttonColor5}"></button>
                   </div>
                   <div id="btnEnviarComent">
-                    <button id="buttonEnviar" mat-button (click)='addComentario()'>Enviar comentario</button>
+                    <button 
+                      id="buttonEnviar" 
+                      mat-button (click)='addComentario()' 
+                      [disabled]="comentario.trim() === ''? true : false" 
+                      [ngStyle] = "comentario.trim() == ''? {'background-color': '#C1C1C1'} : {'background-color': '#3FA8D9'}">
+                      Enviar comentario
+                    </button>
                   </div>
                 </div>
               </mat-card-content>
@@ -114,5 +126,18 @@
       </div>
     </div>
   </div>
+</div>
 
+<!---------------------------Modales---------------------------------->
+<div class="modal fade" id="sendCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Producto enviado al carrito de compras!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

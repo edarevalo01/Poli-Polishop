@@ -26,7 +26,6 @@ export class PantallaInicioComponent implements OnInit {
     this.cargarProductosPoli();
     this.cargarProductosComu();
     this.cargarTodosProductos();
- 
   }
 
   cargarProductosPoli(){
@@ -110,9 +109,18 @@ export class PantallaInicioComponent implements OnInit {
       }, 
       skipLocationChange: false}
     );
+    this.delay(5);
+  }
+
+  doSomething(){
+    console.log('did something');
   }
 
   ngOnInit() {
+  }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>location.reload());
   }
 
 }
