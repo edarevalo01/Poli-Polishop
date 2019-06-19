@@ -1,16 +1,16 @@
 .complete_producto{
     width: 100%;
-    height: 100%;
 }
 .imagen_producto{
     width: 60%;
-    height: 100%;
+    height: 500px;
     float: left;
+    object-fit: fill;
 }
 #imagen{
     width: 90%;
-    height: 72%;
-    margin: 8% 0% 9% 5%;
+    margin: 6% 0% 9% 5%;
+    object-fit: fill;
 }
 .descripcion_producto{
     width: 40%;

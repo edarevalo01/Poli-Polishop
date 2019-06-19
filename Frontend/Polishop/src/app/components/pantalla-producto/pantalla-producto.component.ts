@@ -19,6 +19,8 @@ export class PantallaProductoComponent implements OnInit {
   calificacionComentario: number = 0;
   comentario: string = '';
 
+  imgs: string [];
+
   constructor(private productoService: ProductoService, private activeRoute: ActivatedRoute) { 
     scrollTo(0,0)
     activeRoute.queryParams.subscribe(
@@ -43,6 +45,9 @@ export class PantallaProductoComponent implements OnInit {
         this.cargarComentarios();
         this.setImgCalificacionProducto(this.productoTmp.calificacion);
         this.setImgCalificacionVendedor(this.productoTmp.calificacionVendedor);
+        var filess = (this.productoTmp.nombre+'guid'+this.productoTmp.nombreVendedor).replace(/[^A-Z0-9]/ig, '').toLowerCase();
+        console.log(filess);
+        this.imgs = ['p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png'];
       }
     );
   }

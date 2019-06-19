@@ -11,33 +11,56 @@ hr{
     width: 100%;
     height: 500px;
 }
-#miniaturas_imagenes{
-    width: 12.5%;
-    height: 500px;
-    float: left;
-}
 #imgMini{
     width: 80%;
     height: 26.56%;
     margin: 10.38% 8% 10.38% 8%;
     float: left;
 }
-#miniImg{
-    margin: 20% 0% 0% 0%;
-}
 #principal_imagen{
-    width: 40.38%;
+    width: 52%;
     height: 500px;
     float: left;
 }
-#imagenPrincipal{
+.imagenPrincipal{
     width: 98%;
-    height: 70%;
+    height: 90%;
     margin: auto;
-    margin-top: 14%;
+    margin-top: 4%;
 }
 #principalImg{
-    margin: 5% 0% 0% 0%;
+    margin: 4% 0% 0% 0%;
+    object-fit: fill;
+}
+.carousel-control-prev { /*Modificar el ícono de control de carrusel izquierdo*/
+    position: absolute;
+    top: 35%;
+    bottom: 35%;
+    left: 5px;
+    width: 5%;
+}
+.carousel-control-prev-icon{
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ACACAC' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+.carousel-control-next { /*Modificar el ícono de control de carrusel Derecho*/
+    position: absolute;
+    top: 35%;
+    bottom: 35%;
+    right: 5px;
+    width: 5%;
+}
+.carousel-control-next-icon{
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ACACAC' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+.carousel-indicators li {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #3FA8D9;
 }
 #descripcion_imagen{
     width: 47.11%;
