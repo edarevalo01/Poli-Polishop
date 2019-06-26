@@ -11,5 +11,8 @@ export const environment = {
   urlLoginAdmin: 'http://localhost:8080/loginAdmin',
   urlGetInfoComprador: 'http://localhost:8080/getUsuarioByCorreo',
   urlGetInfoCompradorById: 'http://localhost:8080/getUsuarioById',
-  urlSaveCarritoConCompra: 'http://localhost:8080/saveCarritoConCompra'
+  urlGetInfoVendedor: 'http://localhost:8080/getVendedorByCorreo',
+  urlGetInfoVendedorById: 'http://localhost:8080/getVendedorById',
+  urlSaveCarritoConCompra: 'http://localhost:8080/saveCarritoConCompra',
+  urlAddVendedor: 'http://localhost:8080/addVendedor'
 };

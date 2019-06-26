@@ -29,7 +29,7 @@ hr{
     margin-top: 4%;
 }
 #principalImg{
-    margin: 4% 0% 0% 0%;
+    margin: 0% 0% 0% 0%;
     object-fit: fill;
 }
 .carousel-control-prev { /*Modificar el ícono de control de carrusel izquierdo*/

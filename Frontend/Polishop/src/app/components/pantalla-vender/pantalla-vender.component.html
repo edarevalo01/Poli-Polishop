@@ -25,7 +25,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div id="mat_panel_body_dos">
-          <div class="form-login"> <!--LOGIN-->
+          <div class="form-login" *ngIf='!logueado'> <!--LOGIN-->
               <div class="input-container">
                 <mat-form-field class="matLogin">
                   <input matInput placeholder = 'Correo' [formControl] = 'correo' required [(ngModel)] = 'email'><!--[(ngModel)] = 'email'-->
@@ -38,9 +38,13 @@
                 <br><br>
                 <p>¿Olvidó su nombre de usuario o contraseña?</p>
               </div><br>
+              <p id='invalidaContra' [ngStyle]="{color: hintColor}">{{errorLogin}}</p>
               <div id="buttonLoginVendedor">
-                <button mat-button id="buttonLoginV">Iniciar sesión</button>
+                <button mat-button id="buttonLoginV" (click)='loginVendedor()'>Iniciar sesión</button>
               </div>
+          </div>
+          <div class="form-login" *ngIf='logueado'> 
+            <button mat-button (click)='logoutVendedor()'>Logout</button>
           </div>
         </div>
       </mat-expansion-panel>
@@ -57,30 +61,33 @@
         <div id="mat_panel_body_tres"><!--/////////////7-->
           <div id="mat_panel_body_tres">
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Nombre legal' required [(ngModel)] = 'nombreRegistro'>
-              <mat-hint><p matTooltip="{{legalName}}" matTooltipPosition="right" id="nombreLegalQ">¿Qué es un nombre legal?</p></mat-hint>
+              <input matInput placeholder = 'Nombre legal' required [(ngModel)] = 'vendedorRegistro.nombres'>
+              <mat-hint><p matTooltip="{{legalName}}" matTooltipPosition="right" id="nombreLegalQ">¿Qué es un nombre legal?*</p></mat-hint>
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Ubicación (Ciudad)' required [(ngModel)] = 'ubicacion'>
+              <input matInput placeholder = 'Apellidos(opcional)' [(ngModel)] = 'vendedorRegistro.apellidos' type="text">
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Correo Institucional' required [(ngModel)] = 'correoIns'>
+              <input matInput placeholder='Correo Institucional' [formControl]='correo' required [(ngModel)]='vendedorRegistro.correo'>
+              <mat-error *ngIf='correo.invalid'>{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Contraseña' required [(ngModel)] = 'contrasena1'>
+              <input matInput placeholder = 'Contraseña' [type]="!hide1? 'password':'text'" required [(ngModel)] = 'vendedorRegistro.contrasena'>
+              <mat-icon matSuffix (click)='hide1=!hide1'>{{hide1? 'visibility_off':'visibility'}}</mat-icon>
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Confirmar contraseña' required [(ngModel)] = 'contrasena2'>
-            </mat-form-field>
-            <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Número celular' required [(ngModel)] = 'celular'>
-            </mat-form-field>
-            <mat-form-field class="matLogin">
-              <textarea matInput placeholder = 'Información adicional (descripción)' required [(ngModel)] = 'adicional'></textarea>
+              <textarea matInput placeholder = 'Información adicional (descripción)' required [(ngModel)] = 'vendedorRegistro.descripcion'></textarea>
             </mat-form-field><br>
-            Foto: <input type="file" name="Foto" id="foto">
+            Foto: 
+            <input 
+              type="file" 
+              name="profileUploadSeller" 
+              #Image accept="imagen/*" 
+              id="foto" multiple
+              (change)="selectFile($event)"
+              >
             <br>
-            <button mat-button>Registrar</button>
+            <button mat-button (click)='registroVendedor()'>Registrar</button>
           </div>
         </div>
       </mat-expansion-panel>

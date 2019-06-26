@@ -30,6 +30,7 @@ export class AppComponent {
   searchProduct: string;
 
   logueado: boolean = false;
+  vendedor: boolean = false;
 
   constructor(private categoriaService: CategoriaService, private usuarioService: UsuarioService, private router: Router){
     this.hintColor = '#FFFFFF';
@@ -37,6 +38,10 @@ export class AppComponent {
     if(sessionStorage.getItem('user') != null){
       this.loginText = sessionStorage.getItem('nameLogin').toUpperCase();
       this.getInfoCompradorById(+sessionStorage.getItem('user'));
+    }
+    if(sessionStorage.getItem('seller') != null){
+      this.loginText = sessionStorage.getItem('nameLogin').toUpperCase();
+      this.vendedor = true;
     }
   }
 
@@ -163,7 +168,12 @@ export class AppComponent {
   }
 
   modificarInfo(){
-    console.log('toca pensar bien esta');
+    if(this.vendedor){
+      console.log('toca pensar bien esta xd');
+    }
+    else{
+      console.log('y este también')
+    }
   }
 
   goToInicio(){
