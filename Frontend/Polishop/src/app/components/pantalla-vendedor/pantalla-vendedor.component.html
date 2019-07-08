@@ -1,3 +1,94 @@
-<p>
-  pantalla-vendedor works!
-</p>
+<div id='totalVendedor'>
+  <h3>Lista de tus productos</h3>
+  <p-table [value]="productosVendedor" [paginator]="true" [rows]="6">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th style="width:10em">Precio</th>
+            <th style="width:10em">Calificación</th>
+            <th style="width:10em">Modificar</th>
+            <th style="width:10em">Eliminar</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-producto>
+        <tr>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.calificacion}}</td>
+            <td><button pButton icon="pi pi-pencil" class="ui-button-raised" (click)='showDialog(producto)' label='Modificar'></button></td>
+            <td><button pButton icon="pi pi-trash" class="ui-button-raised ui-button-danger" (click)='eliminar(producto)' label='Eliminar'></button></td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
+<!--selectCarWithButton(rowData)-->
+
+<p-dialog header="{{productoSel.nombre}}" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+  <div>
+    <p>Nombre del producto</p>
+    <textarea rows="1" cols="40" pInputTextarea autoResize="autoResize" [(ngModel)]='nuevoNombre'></textarea>
+  </div>
+  <div class="ui-inputgroup">
+      <p>Precio</p>
+      <span class="ui-inputgroup-addon">$</span>
+      <input type="text" pInputText pKeyFilter="money" placeholder="Price" [(ngModel)]='nuevoPrecio'>   
+  </div>
+  <div>
+      <p>Descripción del producto</p>
+    <textarea rows="5" cols="40" pInputTextarea autoResize="autoResize" [(ngModel)]='nuevaDescripcion'></textarea>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="actualizar(productoSel, 'actualizar')" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="actualizar(productoSel, 'cancelar')" label="No" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<!--------------------------------------CREAR PRODUCTO----------------------------------------->
+<br>
+<div id = 'crearProducto'>
+  <h3>Agregar nuevo producto <button id='reiniciarTodo' pButton icon="pi pi-trash" class="ui-button-raised ui-button-success" label='Reiniciar o crear nuevo producto' (click)='reiniciarCrear()'></button></h3>
+  <div id='formCrearProducto'>
+    <mat-horizontal-stepper #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Información del producto</ng-template>
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Nombre del producto" [(ngModel)]='addNombre'>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Precio del producto (sin puntos ni comas)" [(ngModel)]='addPrecio'>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput placeholder="Descripción del producto" [(ngModel)]='addDescripcion'></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button 
+            mat-button 
+            matStepperNext 
+            (click)="crearProducto()" 
+            [ngStyle] = "addNombre.trim() === '' || addPrecio.trim() === '' || addDescripcion.trim() === ''? {'background-color': '#C1C1C1'} : {'background-color': '#3FA8D9'}"
+            id = 'btnContinuarCrear'
+            [disabled]="addNombre.trim() === '' || addPrecio.trim() === '' || addDescripcion.trim() === ''? true : false">
+              <b>Continuar</b>
+            </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Imágenes</ng-template>
+        <div>
+          <h5>Cargar imágenes del producto (máximo 5)</h5>
+          <p-fileUpload name="demo[]" customUpload="true" (uploadHandler)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+            <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

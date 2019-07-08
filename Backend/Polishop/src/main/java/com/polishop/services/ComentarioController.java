@@ -43,6 +43,17 @@ public class ComentarioController {
 		ncomentario.setFecha(new Date());
 		ncomentario.setPuntuacion(puntuacion);
 		comentarioRepositoryDAO.save(ncomentario);
+		Iterable<Comentario> comentariosTotales = comentarioRepositoryDAO.findByIdProducto(idProducto);
+		double sum = 0, size = 0;
+		for (Comentario comentario2 : comentariosTotales) {
+			sum += comentario2.getPuntuacion();
+			size++;
+		}
+		double res = sum / size;
+		System.out.println(res + " - " + sum + " - " + size);
+		Producto producto = productoRepositoryDAO.findById(idProducto).get();  
+		producto.setCalificacion(Math.round(res));
+		productoRepositoryDAO.save(producto);
 		return "Comentario agregado.";
 	}
 

@@ -53,6 +53,7 @@ export class UsuarioService {
     body.append('descripcion', vendedor.descripcion)
     body.append('pais', 'null')
     body.append('ciudad', 'null')
+    body.append('celular', vendedor.celular)
     body.append('urlFoto', foto)
     body.append('puntuacionVendedor', '0');
     return this.http.post(environment.urlAddVendedor, body).subscribe();

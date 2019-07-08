@@ -23,6 +23,18 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { FileUploadModule } from 'primeng/fileupload';
+
 import { PantallaProductoComponent } from './components/pantalla-producto/pantalla-producto.component';
 import { PantallaInicioComponent } from './components/pantalla-inicio/pantalla-inicio.component';
 import { MatDividerModule } from '@angular/material/divider';
@@ -70,7 +82,18 @@ import { PantallaCarritoComponent } from './components/pantalla-carrito/pantalla
     MatSnackBarModule,
     MatExpansionModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    ToastModule,
+    MessagesModule,
+    MessageModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    InputTextareaModule,
+    KeyFilterModule,
+    InputMaskModule,
+    ConfirmDialogModule,
+    FileUploadModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

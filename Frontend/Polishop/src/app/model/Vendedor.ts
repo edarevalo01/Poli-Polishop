@@ -7,6 +7,7 @@ export class Vendedor{
   descripcion: string;
   pais: string;
   ciudad: string;
+  celular: string;
   urlFoto: string;
   puntuacionVendedor: string;
 }

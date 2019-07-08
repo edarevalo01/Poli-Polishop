@@ -1,0 +1,25 @@
+#totalVendedor{
+  margin: 4% 10% 4% 10%;
+}
+#crearProducto{
+  margin: 2% 10% 4% 10%;
+}
+#formCrearProducto{
+  margin: 2% 15% 0% 15%;
+}
+#reiniciarTodo{
+  margin-left: 5%
+}
+#btnContinuarCrear{
+  color: white;
+  width: 35%;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}

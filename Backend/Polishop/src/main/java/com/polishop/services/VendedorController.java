@@ -3,8 +3,12 @@ package com.polishop.services;
 import java.io.IOException;
 import java.util.Optional;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,13 +31,17 @@ public class VendedorController {
 	@Value("${ruta.files.images}")
 	private String upload_folder;
 	
+	@Autowired
+    private JavaMailSender sender;
+	
 	
 	@CrossOrigin
 	@RequestMapping(path = "/addVendedor", method = RequestMethod.POST)
 	public @ResponseBody String addVendedor
 	(@RequestParam String nombres, @RequestParam String apellidos, @RequestParam String correo, 
 			@RequestParam String contrasena, @RequestParam String descripcion, @RequestParam String pais, 
-			@RequestParam String ciudad,  @RequestParam("urlFoto") MultipartFile urlFoto, @RequestParam Long puntuacionVendedor) throws IOException{
+			@RequestParam String ciudad,  @RequestParam("urlFoto") MultipartFile urlFoto, 
+			@RequestParam Long puntuacionVendedor, @RequestParam String celular) throws IOException{
 		GuardarImagenes img = new GuardarImagenes();
 		String nombreImagen = correo.replaceAll("[^a-zA-Z0-9]", "");
 		String pathFile = img.cargaArchivos(urlFoto, upload_folder, nombreImagen);
@@ -44,10 +52,13 @@ public class VendedorController {
 		vendedor.setContrasena(contrasena);
 		vendedor.setDescripcion(descripcion);
 		vendedor.setPais(pais);
+		vendedor.setCelular(celular);
 		vendedor.setCiudad(ciudad);
 		vendedor.setUrlFoto(pathFile);
 		vendedor.setPuntuacionVendedor(puntuacionVendedor);
 		vendedorRepositoryDAO.save(vendedor);
+		try { sendMail(vendedor.getCorreo()); }
+		catch (Exception e) {}
 		return "Vendedor guardado.";
 	}
 
@@ -82,6 +93,17 @@ public class VendedorController {
 	@RequestMapping("/getAllVendedores")
 	public Iterable<Vendedor> getAllVendedores() {
 		return vendedorRepositoryDAO.findAll();
+	}
+	
+	private void sendMail(String correo) throws Exception{
+		MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+         
+        helper.setTo("edarevalo100@gmail.com");
+        helper.setText("How are you? " + correo);
+        helper.setSubject("Hi");
+         
+        sender.send(message);
 	}
 
 }

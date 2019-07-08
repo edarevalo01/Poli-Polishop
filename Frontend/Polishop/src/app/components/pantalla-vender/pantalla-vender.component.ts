@@ -3,6 +3,8 @@ import { FormControl, Validators } from "@angular/forms";
 import { UsuarioService } from "src/app/services/usuario.service";
 import { Vendedor } from "src/app/model/Vendedor";
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: "app-pantalla-vender",
@@ -26,7 +28,8 @@ export class PantallaVenderComponent implements OnInit {
   vendedorRegistro: Vendedor;
   imageVendedor: File;
   selectedFiles: FileList;
-  constructor(private usuarioService: UsuarioService, private router: Router) {
+  
+  constructor(private usuarioService: UsuarioService, private router: Router, private snackBar: MatSnackBar) {
     this.vendedorRegistro = new Vendedor();
     if (sessionStorage.getItem("seller") != null) {
       this.getInfoVendedorLoginById(+sessionStorage.getItem("seller"));
@@ -122,7 +125,7 @@ export class PantallaVenderComponent implements OnInit {
   }
 
   registroVendedor(){
-    
+    this.snackBar.open('¡Gracias por registrarte! Tu solicitud de vendedor ha sido creada con éxito, en poco tiempo te enviaremos un correo con respuesta a tu solicitud. :)', 'Cerrar');
     this.imageVendedor = this.selectedFiles.item(0);
     this.usuarioService.saveRegistroComprador(this.vendedorRegistro, this.imageVendedor);
     this.vendedorRegistro = new Vendedor();

@@ -46,6 +46,8 @@ public class Vendedor {
 	
 	private String urlFoto;
 	
+	private String celular;
+	
 	private Long puntuacionVendedor;
 	
 	@JsonBackReference
@@ -138,6 +140,14 @@ public class Vendedor {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 }

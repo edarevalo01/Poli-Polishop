@@ -1,11 +1,21 @@
 export const environment = {
   production: false,
-  urlGetAllCategorias: 'http://localhost:8080/getAllCategorias',
+  //Productos
+  urlGetProductoById: 'http://localhost:8080/getProductoById',
   urlGetAllProductos: 'http://localhost:8080/getAllProductos',
   urlGetAllProductosByDependencia: 'http://localhost:8080/getAllProductosByDependencia',
-  urlGetProductoById: 'http://localhost:8080/getProductoById',
-  urlGetProductoComentarios: 'http://localhost:8080/getComentarioByProducto',
+  urlGetAllCategorias: 'http://localhost:8080/getAllCategorias',
+  urlUpdateProducto: 'http://localhost:8080/updateProducto',
+  urldeleteProducto: 'http://localhost:8080/deleteProducto',
+  urlGetProductosByVendedor: 'http://localhost:8080/getProductosVendedor',
+  urlAddProducto: 'http://localhost:8080/addProducto',
+  urlAddImagenProducto: 'http://localhost:8080/saveImagenesProducto',
+  
+  //Comentarios
   urlAddComentarioProducto: 'http://localhost:8080/addComentario',
+  urlGetProductoComentarios: 'http://localhost:8080/getComentarioByProducto',
+
+  //Usuarios
   urlLoginComprador: 'http://localhost:8080/loginUsuario',
   urlLoginVendedor: 'http://localhost:8080/loginVendedor',
   urlLoginAdmin: 'http://localhost:8080/loginAdmin',
@@ -14,5 +24,5 @@ export const environment = {
   urlGetInfoVendedor: 'http://localhost:8080/getVendedorByCorreo',
   urlGetInfoVendedorById: 'http://localhost:8080/getVendedorById',
   urlSaveCarritoConCompra: 'http://localhost:8080/saveCarritoConCompra',
-  urlAddVendedor: 'http://localhost:8080/addVendedor'
+  urlAddVendedor: 'http://localhost:8080/addVendedor',
 };
