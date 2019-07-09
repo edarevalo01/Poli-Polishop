@@ -181,4 +181,15 @@ export class AppComponent {
     this.searchProduct = '';
   }
 
+  carritoHabilitado(){
+    if(sessionStorage.getItem('user') != null){
+      return true;
+    }
+    return false;
+  }
+
+  goShoppingCart(){
+    this.router.navigateByUrl('shopping-cart');
+  }
+
 }

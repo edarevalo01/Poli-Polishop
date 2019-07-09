@@ -141,7 +141,7 @@ export class PantallaProductoComponent implements OnInit {
   }
 
   addCarrito(){
-    this.productoService.saveCarritoConProducto(this.productoTmp.id, +sessionStorage.getItem('user'));
+    this.productoService.saveCarritoConProducto(this.productoTmp.id, +sessionStorage.getItem('user'), 1);
   }
 
   logueado(){

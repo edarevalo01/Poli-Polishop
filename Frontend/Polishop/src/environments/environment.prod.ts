@@ -25,4 +25,8 @@ export const environment = {
   urlGetInfoVendedorById: 'http://localhost:8080/getVendedorById',
   urlSaveCarritoConCompra: 'http://localhost:8080/saveCarritoConCompra',
   urlAddVendedor: 'http://localhost:8080/addVendedor',
+
+  //compra
+  urlGetProductosCarrito: 'http://localhost:8080/getProductosCarrito',
+  urlEliminarProductoCarrito: 'http://localhost:8080/eliminarProductoCarrito',
 };

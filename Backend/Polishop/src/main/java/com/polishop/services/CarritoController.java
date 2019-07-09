@@ -58,7 +58,7 @@ public class CarritoController {
 	
 	@CrossOrigin
 	@RequestMapping(path = "/saveCarritoConCompra")
-	public String saveCarritoConCompra(@RequestParam Long idProducto, @RequestParam Long idComprador) {
+	public String saveCarritoConCompra(@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam Long cantidad) {
 		boolean nuevo = false;
 		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, "comprando");
 		if(!optCompra.isPresent()) {
@@ -103,7 +103,7 @@ public class CarritoController {
 			Optional<ProductoCarrito> optPC = productoCarritoRepositoryDAO.findByIdProductoAndIdCarrito(idProducto, compra.getIdCarrito());
 			if(optPC.isPresent()) {
 				ProductoCarrito newProductoCarrito = optPC.get();
-				newProductoCarrito.setCantidad(newProductoCarrito.getCantidad()+1);
+				newProductoCarrito.setCantidad(newProductoCarrito.getCantidad()+cantidad);
 				productoCarritoRepositoryDAO.save(newProductoCarrito);	
 			}
 			else {
@@ -115,6 +115,15 @@ public class CarritoController {
 			}
 		}
 		return nuevo? "Pedido creado" : "Pedido modificado";
+	}
+	
+	@CrossOrigin
+	@RequestMapping(path = "/eliminarProductoCarrito")
+	public String eliminarProductoCarrito (@RequestParam Long idCarrito, @RequestParam Long idProducto) {
+		Optional<ProductoCarrito> optPC = productoCarritoRepositoryDAO.findByIdProductoAndIdCarrito(idProducto, idCarrito);
+		if(!optPC.isPresent()) return "El producto no existe en este carrito";
+		productoCarritoRepositoryDAO.deleteById(optPC.get().getId());
+		return "Producto Eliminado";
 	}
 	
 }

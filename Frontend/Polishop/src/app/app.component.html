@@ -17,8 +17,8 @@
       <b>{{loginText}}</b> 
     </button>
   </div>
-  <div class='button_carrito'>
-    <button type="button" class="btn btn-outline-primary" id='icon-btn' routerLink='shopping-cart'>
+  <div class='button_carrito' *ngIf='carritoHabilitado()'>
+    <button type="button" class="btn btn-outline-primary" id='icon-btn' routerLink='shopping-cart' (click)='goShoppingCart()'>
       <mat-icon aria-label="Example icon-button with a heart icon" class="iconn">shopping_cart</mat-icon>    
     </button>
   </div>

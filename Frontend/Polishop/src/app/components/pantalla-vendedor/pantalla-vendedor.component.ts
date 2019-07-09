@@ -69,8 +69,7 @@ export class PantallaVendedorComponent implements OnInit {
       reject: () => {
         console.log('none');
       }
-  });
-   
+    });
   }
 
   actualizar(producto: Producto, accion){

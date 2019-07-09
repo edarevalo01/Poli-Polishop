@@ -1,3 +1,51 @@
-<p>
-  pantalla-carrito works!
-</p>
+<div id="completeListaProductos">
+  <div id="bodyProductos">
+    <div class="ui-g">
+      <div class="ui-g-6"><h4><b>Carrito de compras</b></h4></div>
+      <div class="ui-g-2"><span class = 'titulosEncabezado'>Valor c/u</span></div>
+      <div class="ui-g-2"><span class = 'titulosEncabezado'>Cantidad</span></div>
+      <div class="ui-g-2"><span class = 'titulosEncabezado'>Eliminar del carrito</span></div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div id="bodyProductos" *ngFor='let producto of productosCarrito'>
+    <div class="ui-g">
+      <div class="ui-g-1" id = 'imagen'>
+        <img src="assets/productPhotos/producto2guidnataliacardenas/p1.png" width="100%" alt="imagen">
+      </div>
+      <div class="ui-g-5" id = 'nombreP'>
+        <span class = 'letrasAzules'>{{producto.nombreProducto}} </span>
+        <br>
+        <span class = 'letrasClaras'>{{producto.nombreVendedor}}</span>
+      </div>
+      <div class="ui-g-2" id = 'valor'>
+        <span class = 'letrasAzules'>${{producto.valor}}</span>
+      </div>
+      <div class="ui-g-2" id = 'cantidad'>
+        <input class="form-control" [(ngModel)]='producto.cantidad' id="input" disabled>
+        <p-button icon="pi pi-minus" id="inputbtn" (click)='sumProducto(-1, producto)'></p-button>
+        <p-button icon="pi pi-plus" id="inputbtn" (click)='sumProducto(1, producto)'></p-button>
+      </div>
+      <div class="ui-g-2" >
+          <button pButton id='eliminar' type="button" icon="pi pi-trash" class="ui-button-raised" (click)='confirm(producto)'></button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div id="bodyProductos">
+    <div class="ui-g">
+      <div class="ui-g-7">
+        <h3 id='precios'>TOTAL</h3>
+        <span class="precio" id='precios'>({{productosCarrito.length}} Productos):</span><span class='precio' id='preciototal'>${{totalPrecio}}</span>
+      </div>
+      <div class="ui-g-5">
+        <br>
+        <button id="buttonRealizarCompra" mat-button>
+          Comprar productos
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

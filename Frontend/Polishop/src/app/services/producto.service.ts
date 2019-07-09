@@ -39,9 +39,10 @@ export class ProductoService {
     return this.http.post(environment.urlAddComentarioProducto, body).subscribe();
   }
 
-  saveCarritoConProducto(idProducto: number, idComprador: number){
+  saveCarritoConProducto(idProducto: number, idComprador: number, cantidad: number){
     const body = new HttpParams().set('idProducto', idProducto+'')
-                                  .set('idComprador', idComprador+'');
+                                  .set('idComprador', idComprador+'')
+                                  .set('cantidad', cantidad+'');
     return this.http.post(environment.urlSaveCarritoConCompra, body).subscribe();
   }
 

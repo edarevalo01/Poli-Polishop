@@ -1,0 +1,63 @@
+#completeListaProductos{
+  margin: 4%;
+}
+
+#bodyProductos{
+  margin: 1% 3% 1% 3%;
+}
+
+.titulosEncabezado{
+  color: rgb(160, 160, 160);
+}
+
+.letrasAzules{
+  color: #0F385A;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.letrasClaras{
+  color: rgb(129, 150, 167);
+}
+
+#input{
+  width: 25%;
+  float: left;
+}
+
+#inputbtn{
+  float: left;
+  margin: 2.5px 0px 0px 5px;
+}
+
+#eliminar{
+  color: red;
+  background: white;
+  border: 1px solid white;
+  font-size: 20px;
+  width: 70%;
+}
+
+#precios{
+  margin: 1% 0% 1% 7%;
+  color: #0F385A;
+}
+
+.precio{
+  font-size: 25px;
+}
+
+#preciototal{
+  color: red;
+  margin-left: 7px;
+}
+
+#buttonRealizarCompra{
+  background-color: #3FA8D9;
+  color: white;
+  float: right;
+  margin: 1% 30% 0% 0%;
+  width: 60%;
+  font-size: 20px;
+
+}

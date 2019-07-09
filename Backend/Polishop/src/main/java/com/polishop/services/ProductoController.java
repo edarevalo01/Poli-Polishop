@@ -189,5 +189,31 @@ public class ProductoController {
 		}
 		return productosNegocio;
 	}
+	
+	@CrossOrigin
+	@RequestMapping(path = "/busquedaProducto")
+	public Iterable<ProductoNegocio> busquedaProducto(@RequestParam String nombre){
+		Iterable<Producto> productoIterable = productoRepositoryDAO.findByNombreContaining(nombre);
+		ArrayList<ProductoNegocio> productosNegocio = new ArrayList<ProductoNegocio>();
+		for(Producto producto: productoIterable) {
+			ProductoNegocio newProductoNegocio = new ProductoNegocio();
+			newProductoNegocio.setId(producto.getId());
+			newProductoNegocio.setNombre(producto.getNombre());
+			newProductoNegocio.setDescripcion(producto.getDescripcion());
+			newProductoNegocio.setPrecio(producto.getPrecio());
+			newProductoNegocio.setCalificacion(producto.getCalificacion());
+			newProductoNegocio.setFechaPublicacion(String.valueOf(producto.getFechaPublicacion()).substring(0,10));
+			newProductoNegocio.setUrlCarpetaImagenes(producto.getUrlCarpetaImagenes());
+			Vendedor vendedor = vendedorRepositoryDAO.findById(producto.getIdVendedor()).get();
+			newProductoNegocio.setNombreVendedor(vendedor.getNombres() + " " + vendedor.getApellidos());
+			newProductoNegocio.setDescripcionVendedor(vendedor.getDescripcion());
+			newProductoNegocio.setImagenVendedor(vendedor.getUrlFoto());
+			newProductoNegocio.setCalificacionVendedor(vendedor.getPuntuacionVendedor());
+			newProductoNegocio.setDependencia(producto.getDependencia());
+			newProductoNegocio.setIdPropietario(producto.getIdPropietario());
+			productosNegocio.add(newProductoNegocio);
+		}
+		return productosNegocio;
+	}
 
 }
