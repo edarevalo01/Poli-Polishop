@@ -45,6 +45,7 @@ public class VendedorController {
 		GuardarImagenes img = new GuardarImagenes();
 		String nombreImagen = correo.replaceAll("[^a-zA-Z0-9]", "");
 		String pathFile = img.cargaArchivos(urlFoto, upload_folder, nombreImagen);
+		String ruta = "/assets/ImagenesPolishop/"+nombreImagen+".png";
 		Vendedor vendedor = new Vendedor();
 		vendedor.setNombres(nombres);
 		vendedor.setApellidos(apellidos);
@@ -54,7 +55,7 @@ public class VendedorController {
 		vendedor.setPais(pais);
 		vendedor.setCelular(celular);
 		vendedor.setCiudad(ciudad);
-		vendedor.setUrlFoto(pathFile);
+		vendedor.setUrlFoto(ruta);
 		vendedor.setPuntuacionVendedor(puntuacionVendedor);
 		vendedorRepositoryDAO.save(vendedor);
 		try { sendMail(vendedor.getCorreo()); }

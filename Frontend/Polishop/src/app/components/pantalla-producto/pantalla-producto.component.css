@@ -107,10 +107,10 @@ hr{
 }
 #fecha-producto{
     height: 100%;
-    width: 30%;
+    width: 60%;
     margin-left: 2%;
     float: left;
-    color: lightgrey;
+    color: rgb(179, 178, 178);
 }
 #precio{
     width: 98%;

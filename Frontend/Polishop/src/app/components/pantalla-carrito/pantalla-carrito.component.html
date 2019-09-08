@@ -11,7 +11,7 @@
   <div id="bodyProductos" *ngFor='let producto of productosCarrito'>
     <div class="ui-g">
       <div class="ui-g-1" id = 'imagen'>
-        <img src="assets/productPhotos/producto2guidnataliacardenas/p1.png" width="100%" alt="imagen">
+        <img src="{{producto.urlCarpetaImagenes}}/p1.png" width="100%" alt="imagen">
       </div>
       <div class="ui-g-5" id = 'nombreP'>
         <span class = 'letrasAzules'>{{producto.nombreProducto}} </span>

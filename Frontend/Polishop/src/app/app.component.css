@@ -172,7 +172,13 @@
 
 .footer{
     background-color: #0F385A;
-    height: 250px;
+    height: 50px;
+}
+.msjFooter{
+    padding: 1%;
+    color: white;
+    align-items: center;
+    text-align: center;
 }
 
 /*-------------------------------------------------LOGIN-----------------------------------------------------*/

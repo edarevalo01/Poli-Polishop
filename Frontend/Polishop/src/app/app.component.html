@@ -52,7 +52,7 @@
 <router-outlet></router-outlet>
 <!--------------------------------------------FOOTER--------------------------------------------------------->
 <div class='footer'>
-  <!--FOOTER-->
+  <div class="msjFooter"><span>©Polishop 2019 Institución Universitaria Politécnico Grancolombiano</span></div>
 </div>
 <!--------------------------------------------LOGIN---------------------------------------------------------->
 <div class="modal fade" id="loginSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf='!logueado && !vendedor'>
@@ -103,7 +103,7 @@
               {{comprador.correo}}
             </p>
           </div>
-          <button id="modificarInfoLogueado" mat-button class="btn btn-secondary" (click)='modificarInfo()'>Modificar información</button>
+          <a mat-raised-button id="modificarInfoLogueado" class="btn btn-secondary" href="https://cpo.poligran.edu.co" target="_blank">Modificar información</a>
           <button id="cerrarSesionLogueado" mat-button class="btn btn-primary" (click)='logoutComprador()'>Cerrar sesión</button>
         </div>
     </div>
@@ -119,7 +119,7 @@
         </button>
       </div>
       <div class="modal-body" id="contentLogueado">
-        <button id="modificarInfoLogueado" mat-button class="btn btn-secondary" (click)='modificarInfo()'>Modificar información</button>
+        <a mat-raised-button id="modificarInfoLogueado" class="btn btn-secondary" href="https://cpo.poligran.edu.co" target="_blank">Modificar información</a>
         <button id="cerrarSesionLogueado" mat-button class="btn btn-primary" (click)='logoutComprador()'>Cerrar sesión</button>
       </div>
     </div>

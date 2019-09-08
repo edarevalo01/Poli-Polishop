@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OverlayModule } from "@angular/cdk/overlay";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -25,7 +27,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
+import { MessageModule } from 'primeng/message'; 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -34,6 +36,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ListboxModule } from 'primeng/listbox';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { PantallaProductoComponent } from './components/pantalla-producto/pantalla-producto.component';
 import { PantallaInicioComponent } from './components/pantalla-inicio/pantalla-inicio.component';
@@ -46,6 +50,7 @@ import { PantallaVendedorComponent } from './components/pantalla-vendedor/pantal
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { PantallaCarritoComponent } from './components/pantalla-carrito/pantalla-carrito.component';
+import { HistorialComprasComponent } from './components/historial-compras/historial-compras.component';
 
 @NgModule({
   declarations: [
@@ -59,12 +64,12 @@ import { PantallaCarritoComponent } from './components/pantalla-carrito/pantalla
     PantallaVendedorComponent,
     BusquedaComponent,
     AyudaComponent,
-    PantallaCarritoComponent
+    PantallaCarritoComponent,
+    HistorialComprasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule, 
@@ -94,6 +99,9 @@ import { PantallaCarritoComponent } from './components/pantalla-carrito/pantalla
     InputMaskModule,
     ConfirmDialogModule,
     FileUploadModule,
+    ListboxModule,
+    MatDialogModule,
+    OverlayModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

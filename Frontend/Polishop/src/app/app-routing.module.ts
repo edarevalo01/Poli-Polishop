@@ -7,6 +7,7 @@ import { PantallaVendedorComponent } from './components/pantalla-vendedor/pantal
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { PantallaCarritoComponent } from './components/pantalla-carrito/pantalla-carrito.component';
+import { HistorialComprasComponent } from './components/historial-compras/historial-compras.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},
@@ -17,11 +18,13 @@ const routes: Routes = [
   {path: 'p-vendedor', component: PantallaVendedorComponent},
   {path: 'search', component: BusquedaComponent},
   {path: 'help-polishop', component: AyudaComponent},
-  {path: 'shopping-cart', component: PantallaCarritoComponent}
+  {path: 'shopping-cart', component: PantallaCarritoComponent},
+  {path: 'historial-compras-vendedor', component: HistorialComprasComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })], //Produccion
+  //imports: [RouterModule.forRoot(routes)], //Local
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

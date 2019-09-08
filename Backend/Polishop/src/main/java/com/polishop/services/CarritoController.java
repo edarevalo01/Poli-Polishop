@@ -118,6 +118,34 @@ public class CarritoController {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(path="/addInfoCompra")
+	public String addInfoCompra(
+			@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam String pais,
+			@RequestParam String departamento, @RequestParam String ciudad, @RequestParam String numeroDocumento,
+			@RequestParam String nombreDestinatario, @RequestParam String direccionEnvio, @RequestParam String observaciones,
+			@RequestParam String telUno, @RequestParam String telDos) {
+		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, "comprando");
+		if(optCompra.isPresent()) {
+			Compra newCompra = optCompra.get();
+			newCompra.setPais(pais);
+			newCompra.setDepartamento(departamento);
+			newCompra.setCiudad(ciudad);
+			newCompra.setTipoDocumento("Cédula de ciudadanía");
+			newCompra.setNumeroDocumento(numeroDocumento);
+			newCompra.setNombreDestinatario(nombreDestinatario);
+			newCompra.setDireccionEnvio(direccionEnvio);
+			newCompra.setObservaciones(observaciones);
+			newCompra.setTelefonoUno(telUno);
+			newCompra.setTelefonoDos(telDos);
+			newCompra.setMetodoPago("no-reply");
+			newCompra.setEstado("pendiente");
+			compraRepositoryDAO.save(newCompra);
+			return "Informacion agregada.";
+		}
+		return "La compra no existe.";
+	}
+	
+	@CrossOrigin
 	@RequestMapping(path = "/eliminarProductoCarrito")
 	public String eliminarProductoCarrito (@RequestParam Long idCarrito, @RequestParam Long idProducto) {
 		Optional<ProductoCarrito> optPC = productoCarritoRepositoryDAO.findByIdProductoAndIdCarrito(idProducto, idCarrito);

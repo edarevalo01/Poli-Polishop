@@ -1,3 +1,55 @@
-<p>
-  {{textRoute}}
-</p>
+<div id="complete">
+  <div id='cantidadResultados'>
+    <span>Se encontraron {{productos.length}} resultados para "{{textRoute}}"</span>
+  </div>
+  <mat-divider></mat-divider><br>
+  <div id="body" class="ui-g">
+    <div class="ui-g-4">
+      <mat-nav-list id='categorias_children'>
+        <div id="categorias-container">
+          <p id='tituloCategorias'><b>CATEGORÍAS</b></p>
+          <a mat-list-item *ngFor="let categoria of categorias" (click)='searchCategoria(categoria)' id='categorias'>
+            <mat-icon aria-hidden="false" aria-label="RowIcon" id='iconCategoria'>arrow_forward_ios</mat-icon>
+            <span id='nameCategoria'>{{categoria.nombre}}</span>
+          </a>
+        </div>
+      </mat-nav-list>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="ui-g-7" id="bodyProductos">
+      <div>
+        <div class="ui-g">
+          <div class="ui-g-7"><h5><b>Productos relacionados</b></h5></div>
+          <div class="ui-g-2"><span class = 'titulosEncabezado'>Valor c/u</span></div>
+          <div class="ui-g-3"><span class = 'titulosEncabezado'>Ver producto</span></div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+      <div id='listaProductos' *ngFor='let producto of productos'>
+        <div class="ui-g">
+          <div class="ui-g-2" id = 'imagen'>
+            <img src="{{producto.urlCarpetaImagenes}}/p1.png" width="100%" alt="imagen">
+          </div>
+          <div class="ui-g-5" id = 'nombreP'>
+            <span class = 'letrasAzules'>{{producto.nombre}} </span>
+          </div>
+          <div class="ui-g-2" id = 'calificacion'>
+            <span class = 'letrasAzules'>${{producto.precio}}</span>
+          </div>
+          <div class="ui-g-3" id='btnGo'>
+            <button 
+              pButton 
+              id='botonVer' 
+              type="button" 
+              icon="pi pi-external-link" 
+              class="ui-button-raised" 
+              (click)='btnVerProducto(producto)'
+              label='Ver producto'>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

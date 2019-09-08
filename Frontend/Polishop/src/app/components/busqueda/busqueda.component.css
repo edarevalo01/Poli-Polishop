@@ -1,0 +1,40 @@
+#complete{
+ margin: 2% 5% 5% 5%;
+}
+#cantidadResultados{
+  margin: 0% 0% 2% 3%;
+  color:  rgb(130, 130, 130);
+  font-size: 18px;
+}
+
+#tituloCategorias{
+  font-size: 20px;
+}
+
+.letrasAzules{
+  color: #0F385A;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#listCat{
+  font-size: 18px;
+  font-weight: bold;
+  color: red
+}
+
+#botonVer{
+  width: 100%;
+}
+#bodyProductos{
+  margin-left: 2%;
+}
+
+.titulosEncabezado{
+  color: rgb(160, 160, 160);
+}
+
+.mat-divider-vertical{
+  border: solid  3px;
+  color: rgba(209, 209, 209, 0.596)
+}

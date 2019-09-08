@@ -1,0 +1,38 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.principal{
+  width: 100%;
+  margin: 0%;
+  background-color: white;
+}
+
+.titform{
+  width: 50%;
+  margin: 5% 30% 0% 30%;
+  color: #0F385A;
+}
+
+.form{
+  width: 50%;
+  margin: 1% 30% 4% 27%;
+  padding: 3% 5% 2% 5%;
+  background-color: rgb(218, 218, 218)
+}
+
+.formulario{
+  width: 80%;
+  margin: auto;
+}
+
+.btnenviar{
+  background-color: #3FA8D9;
+  width: 70%;
+  color: white;
+}

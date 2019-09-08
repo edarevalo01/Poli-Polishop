@@ -1,4 +1,6 @@
 <div id='totalVendedor'>
+  <h3>Ver historial de compras <button id='reiniciarTodo' pButton icon="pi pi-external-link" class="ui-button-raised ui-button-success" label='Ir a historial' (click)='historial()'></button></h3>
+  <br>
   <h3>Lista de tus productos</h3>
   <p-table [value]="productosVendedor" [paginator]="true" [rows]="6">
     <ng-template pTemplate="header">

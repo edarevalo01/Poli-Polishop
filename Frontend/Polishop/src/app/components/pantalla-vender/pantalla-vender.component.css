@@ -47,3 +47,10 @@ mat-form-field {
     background-color: #3FA8D9;
     color: white;
 }
+#fotodeperfil{
+    color: rgb(136, 135, 135);
+    margin-left: 1.5%;
+}
+#uploadPhoto{
+    margin: 2% 12% 0% 14%;
+}

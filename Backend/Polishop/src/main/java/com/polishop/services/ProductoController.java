@@ -49,9 +49,11 @@ public class ProductoController {
 		producto.setFechaPublicacion(new Date());
 		Vendedor vendedor = vendedorRepositoryDAO.findById(idVendedor).get();
 		String nombreCarpeta = (nombre+"guid"+vendedor.getNombres()+vendedor.getApellidos()).replaceAll("[^a-zA-Z0-9]", ""); //Nombre compuesto por el nombre del producto + "guid" + el nombre del vendedor
-		File directorio = new File("c:\\ImagenesPolishop\\Productos\\"+nombreCarpeta.toLowerCase());
+		//File directorio = new File("c:\\apache-tomcat-8.5.43\\webapps\\PoliF\\assets\\ImagenesPolishop\\Productos\\"+nombreCarpeta.toLowerCase()); //windows
+		File directorio = new File("/opt/apache-tomcat-8.5.43/webapps/PoliF/assets/ImagenesPolishop/Productos/"+nombreCarpeta.toLowerCase()); //linux
+		//apache-tomcat-8.5.43/webapps/PoliF/assets/ImagenesPolishop/
 		directorio.mkdir();
-		producto.setUrlCarpetaImagenes("C:/ImagenesPolishop/Productos/"+nombreCarpeta.toLowerCase());
+		producto.setUrlCarpetaImagenes("assets/ImagenesPolishop/Productos/"+nombreCarpeta.toLowerCase());
 		producto.setDependencia(dependencia);
 		producto.setIdVendedor(idVendedor);
 		producto.setIdPropietario(idPropietario);

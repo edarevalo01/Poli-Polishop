@@ -4,6 +4,7 @@ import { Producto } from 'src/app/model/Producto';
 import { ConfirmationService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pantalla-vendedor',
@@ -28,7 +29,10 @@ export class PantallaVendedorComponent implements OnInit {
   idNuevoProducto: string = '';
   uploadedFiles: any[] = [];
   
-  constructor(private productoService: ProductoService, private confirmationService: ConfirmationService, private _formBuilder: FormBuilder, private snackBar: MatSnackBar) { 
+  constructor(private productoService: ProductoService, private confirmationService: ConfirmationService, private _formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) { 
+    if(!sessionStorage.getItem('seller')){
+      this.router.navigateByUrl('inicio');
+    }
     this.getProductosByVendedor();
   }
 
@@ -149,6 +153,10 @@ export class PantallaVendedorComponent implements OnInit {
 
   reiniciarCrear(){
     location.reload();
+  }
+
+  historial(){
+    this.router.navigateByUrl('historial-compras-vendedor');
   }
 
 }

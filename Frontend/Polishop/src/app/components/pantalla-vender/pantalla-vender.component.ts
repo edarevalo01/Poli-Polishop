@@ -26,8 +26,11 @@ export class PantallaVenderComponent implements OnInit {
   logueado: boolean = false;
 
   vendedorRegistro: Vendedor;
-  imageVendedor: File;
+  imageVendedor: any;
   selectedFiles: FileList;
+
+  uploadedFiles: any[] = [];
+  hide1: boolean;
   
   constructor(private usuarioService: UsuarioService, private router: Router, private snackBar: MatSnackBar) {
     this.vendedorRegistro = new Vendedor();
@@ -121,13 +124,18 @@ export class PantallaVenderComponent implements OnInit {
   }
 
   selectFile(event) {
-    this.selectedFiles = event.target.files;
+    for(let file of event.files) {
+      this.selectedFiles = file;
+      this.uploadedFiles.push(file);
+    }
   }
 
   registroVendedor(){
     this.snackBar.open('¡Gracias por registrarte! Tu solicitud de vendedor ha sido creada con éxito, en poco tiempo te enviaremos un correo con respuesta a tu solicitud. :)', 'Cerrar');
-    this.imageVendedor = this.selectedFiles.item(0);
+    this.imageVendedor = this.selectedFiles;
     this.usuarioService.saveRegistroComprador(this.vendedorRegistro, this.imageVendedor);
     this.vendedorRegistro = new Vendedor();
+    this.uploadedFiles = [];
   }
+
 }

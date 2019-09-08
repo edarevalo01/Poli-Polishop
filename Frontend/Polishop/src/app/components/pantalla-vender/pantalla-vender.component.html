@@ -81,14 +81,23 @@
             <mat-form-field class="matLogin">
               <input matInput placeholder = 'Número celular' [(ngModel)] = 'vendedorRegistro.celular' type="number">
             </mat-form-field><br>
-            Foto: 
-            <input 
-              type="file" 
-              name="profileUploadSeller" 
-              #Image accept="imagen/*" 
-              id="foto" multiple
-              (change)="selectFile($event)"
-              >
+            <div id='uploadPhoto'>
+              <p id='fotodeperfil'>Foto de perfil</p>
+              <p-fileUpload 
+                mode="advanced" 
+                name="profileUploadSeller" 
+                customUpload="true"
+                (onSelect)="selectFile($event)"
+                accept="image/*" 
+                [showUploadButton]="false"
+                maxFileSize="1000000">
+                <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
             <br>
             <button mat-button (click)='registroVendedor()'>Registrar</button>
           </div>

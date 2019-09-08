@@ -1,3 +1,26 @@
-<p>
-  ayuda works!
-</p>
+<div class="principal">
+  <div class="titform">
+    <h3>PARA MAYOR INFORMACIÓN</h3>
+    <h3>DÉJANOS TUS DATOS.</h3>
+  </div>
+  <div class="form">
+    <div class="example-container formulario">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre completo" value="" [(ngModel)]='nombre'>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Corroe Electrónico" value="" [(ngModel)]='correo'>
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Mensaje" [(ngModel)]='mensaje'></textarea>
+      </mat-form-field>
+
+      <button mat-button class="btnenviar" (click)='enviar()'>Enviar</button>
+
+      <br>
+      <p *ngIf='mostrar'>Nos pondremos en contacto contigo para brindarte toda la información necesaria.</p>
+    </div>
+  </div>
+</div>

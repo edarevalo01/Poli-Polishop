@@ -16,6 +16,7 @@ import com.polishop.entities.Compra;
 import com.polishop.entities.Producto;
 import com.polishop.entities.ProductoCarrito;
 import com.polishop.entities.Vendedor;
+import com.polishop.negocio.CompraNegocio;
 import com.polishop.negocio.ProductoCarritoNegocio;
 import com.polishop.repositories.CompraRepository;
 import com.polishop.repositories.ProductoCarritoRepository;
@@ -131,6 +132,37 @@ public class CompraController {
 			productosCarrito.add(pcn);
 		}
 		return productosCarrito;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(path="/getHistorial")
+	public Iterable<CompraNegocio> getHistorial(@RequestParam Long idVendedor){
+		ArrayList<CompraNegocio> compras = new ArrayList<CompraNegocio>();
+		Iterable<Compra> listaCompras = compraRepositoryDAO.findAll();
+		for(Compra compra: listaCompras) {
+			Iterable<ProductoCarrito> carrito = productoCarritoRepositoryDAO.findByIdCarrito(compra.getIdCarrito());
+			loop: for(ProductoCarrito prodCar: carrito) {
+				Producto producto = productoRepositoryDAO.findById(prodCar.getIdProducto()).get();
+				if(producto.getIdVendedor() == idVendedor) {
+					if(compra.getEstado().equals("comprando")) {
+						continue loop;
+					}
+					CompraNegocio n = new CompraNegocio();
+					n.setNombreComprador(compra.getNombreDestinatario());
+					n.setCiudadComprador(compra.getCiudad());
+					n.setDireccionComprador(compra.getDireccionEnvio());
+					n.setDocumentoComprador(compra.getNumeroDocumento());
+					n.setNombreDestinatario(compra.getNombreDestinatario());
+					n.setTelefono1(compra.getTelefonoUno());
+					n.setTelefono2(compra.getTelefonoDos());
+					n.setNombreProducto(producto.getNombre());
+					n.setCantidad(prodCar.getCantidad());
+					n.setEstadoCompra(compra.getEstado());
+					compras.add(n);
+				}
+			}
+		}
+		return compras;
 	}
 
 }

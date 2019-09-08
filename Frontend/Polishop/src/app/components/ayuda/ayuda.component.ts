@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AyudaComponent implements OnInit {
 
+  nombre: string;
+  correo: string;
+  mensaje: string;
+  mostrar: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  enviar(){
+    this.correo = '';
+    this.nombre = '';
+    this.mensaje = '';
+    this.mostrar = true;
   }
 
 }

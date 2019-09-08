@@ -4,6 +4,8 @@ import { Producto } from '../model/Producto';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
 import { Comentario } from '../model/Comentario';
+import { Compra } from '../model/Compra';
+import { CompraHist } from '../model/CompraHist';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +82,15 @@ export class ProductoService {
     body.append('imagenProducto', imagenProducto)
     body.append('nombreImagen', nombreImagen);
     return this.http.post(environment.urlAddImagenProducto, body).subscribe();
+  }
+
+  busquedaProducto(nombre: string): Observable<Producto[]>{
+    const param = new HttpParams().set('nombre', nombre);
+    return this.http.get<Producto[]>(environment.urlBusquedaProducto, {params: param});
+  }
+
+  getHistorialProductos(idVendedor: number): Observable<CompraHist[]>{
+    const param = new HttpParams().set('idVendedor', idVendedor+'');
+    return this.http.get<CompraHist[]>(environment.urlGetHistorial, {params: param});
   }
 }
