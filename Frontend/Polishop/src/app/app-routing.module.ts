@@ -23,8 +23,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })], //Produccion
-  //imports: [RouterModule.forRoot(routes)], //Local
+  //imports: [RouterModule.forRoot(routes, { useHash: true })], //Produccion
+  imports: [RouterModule.forRoot(routes)], //Local
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
