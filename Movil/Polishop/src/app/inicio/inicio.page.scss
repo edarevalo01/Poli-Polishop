@@ -1,0 +1,17 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+.cropped2 {
+  width: 100%; /* width of container */
+  height: 10%; /* height of container */
+  object-fit: cover;
+}
+
+.nombre-producto {
+  background-color: #003057;
+  padding: 3% 0% 3% 0%;
+  color: white;
+  font-weight: bold;
+}

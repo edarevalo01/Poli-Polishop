@@ -1,0 +1,52 @@
+import { Component } from '@angular/core';
+import { GeneralService } from '../Services/general.service';
+import { Producto } from '../model/producto';
+
+@Component({
+  selector: 'app-inicio',
+  templateUrl: 'inicio.page.html',
+  styleUrls: ['inicio.page.scss']
+})
+export class InicioPage {
+  public productosPoli: Producto[] = [];
+  public productosComu: Producto[] = [];
+
+  constructor(private service: GeneralService) {
+    this.getProductosPoli();
+    this.getProductosComunidad();
+  }
+
+  getProductosPoli() {
+    this.service.getProductosByDependencia('Poli').subscribe(
+      poliObs => {
+        this.productosPoli = poliObs;
+      },
+      error => {
+        console.error('Error al cargar productos principales poli');
+      },
+      () => {
+        console.log("Productos Poli Done");
+      }
+    );
+  }
+  
+  getProductosComunidad() {
+    this.service.getProductosByDependencia('Comunidad').subscribe(
+      comunidadObs => {
+        this.productosComu = comunidadObs;
+      },
+      error => {
+        console.error('Error al cargar productos principales de la comunidad');
+      },
+      () => {
+        console.log("Productos Comunidad Done");
+      }
+    );
+  }
+
+  slideOpts = {
+    initialSlide: 0,
+    speed: 1000,
+    autoplay: true
+  };
+}

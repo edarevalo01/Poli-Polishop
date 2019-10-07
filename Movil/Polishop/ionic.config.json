@@ -1,0 +1,7 @@
+{
+  "name": "Polishop",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

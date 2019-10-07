@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Inicio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-divider>
+    <ion-label>
+      Productos principales Poli
+    </ion-label>
+  </ion-item-divider>
+  <ion-slides scrollbar='true' [options]="slideOpts">
+    <ion-slide *ngFor='let producto of productosPoli'>
+      <div style="font-size: 14px">
+        <div class="imagen-producto">
+          <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="{{producto.nombre}}" width="100%" class="cropped2">
+        </div>
+        <div class="nombre-producto">
+          {{producto.nombre.substring(0,35)}}...
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-item-divider>
+    <ion-label>
+      Productos principales comunidad
+    </ion-label>
+  </ion-item-divider>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor='let producto of productosComu'>
+      <div style="font-size: 14px">
+        <div class="imagen-producto">
+          <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="{{producto.nombre}}">
+        </div>
+        <div class="nombre-producto">
+          {{producto.nombre.substring(0,35)}}...
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
