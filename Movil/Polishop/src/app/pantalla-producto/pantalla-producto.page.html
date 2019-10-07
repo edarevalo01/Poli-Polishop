@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color='poli'>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="start">
+      Producto
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name='search'></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf='cargado'>
+    <ion-slides scrollbar='true' [options]="slideOpts">
+      <ion-slide *ngFor='let img of imgs'>
+        <img src="{{ producto.urlCarpetaImagenes }}/{{img}}" alt="{{producto.nombre}}" width="100%">
+      </ion-slide>
+    </ion-slides>
+    <h3 style="padding: 1% 3% 0% 3%; color: #003057; font-weight: bold">{{producto.nombre}}</h3>
+    <h4>{{producto.precio}}</h4>
+
+  </div>
+</ion-content>

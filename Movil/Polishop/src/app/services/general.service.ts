@@ -20,4 +20,8 @@ export class GeneralService {
     return this.http.get<Producto[]>(environment.urlGetAllProductosByDependencia, {params: param});
   }
 
+  getAllProductoById(id: number): Observable<Producto>{
+    const param = new HttpParams().set('id', id+'');
+    return this.http.get<Producto>(environment.urlGetProductoById, {params: param});
+  }
 }

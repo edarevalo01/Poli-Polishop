@@ -14,7 +14,7 @@
   </ion-item-divider>
   <ion-slides scrollbar='true' [options]="slideOpts">
     <ion-slide *ngFor='let producto of productosPoli'>
-      <div style="font-size: 14px">
+      <div style="font-size: 14px" (click)='goProduct(producto)'>
         <div class="imagen-producto">
           <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="{{producto.nombre}}" width="100%" class="cropped2">
         </div>
@@ -32,7 +32,7 @@
   </ion-item-divider>
   <ion-slides pager="true" [options]="slideOpts">
     <ion-slide *ngFor='let producto of productosComu'>
-      <div style="font-size: 14px">
+      <div style="font-size: 14px" (click)='goProduct(producto)'>
         <div class="imagen-producto">
           <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="{{producto.nombre}}">
         </div>

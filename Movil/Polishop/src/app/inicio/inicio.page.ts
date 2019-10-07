@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GeneralService } from '../Services/general.service';
 import { Producto } from '../model/producto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -11,7 +12,7 @@ export class InicioPage {
   public productosPoli: Producto[] = [];
   public productosComu: Producto[] = [];
 
-  constructor(private service: GeneralService) {
+  constructor(private service: GeneralService, private router: Router) {
     this.getProductosPoli();
     this.getProductosComunidad();
   }
@@ -42,6 +43,23 @@ export class InicioPage {
         console.log("Productos Comunidad Done");
       }
     );
+  }
+
+  goProduct(producto: Producto) {
+    this.router.navigate(
+      ['/pantalla-producto/', producto.id],
+      { 
+        queryParams: {
+          idProd: producto.id,
+          nameProd: producto.nombre
+        },
+        skipLocationChange: false
+      });
+  }
+
+  async delay(ms: number) {
+    await new Promise(
+      resolve => setTimeout(()=>resolve(), ms)).then(()=>location.reload());
   }
 
   slideOpts = {
