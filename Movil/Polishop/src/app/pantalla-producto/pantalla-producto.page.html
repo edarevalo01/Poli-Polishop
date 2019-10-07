@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color='poli'>
+  <ion-toolbar color="poli">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
@@ -8,21 +8,37 @@
     </ion-title>
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon slot="icon-only" name='search'></ion-icon>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf='cargado'>
-    <ion-slides scrollbar='true' [options]="slideOpts">
-      <ion-slide *ngFor='let img of imgs'>
-        <img src="{{ producto.urlCarpetaImagenes }}/{{img}}" alt="{{producto.nombre}}" width="100%">
+  <div *ngIf="cargado">
+    <ion-slides scrollbar="true" [options]="slideOpts">
+      <ion-slide *ngFor="let img of imgs">
+        <img src="{{ producto.urlCarpetaImagenes }}/{{ img }}" alt="{{ producto.nombre }}" width="100%" />
       </ion-slide>
     </ion-slides>
-    <h3 style="padding: 1% 3% 0% 3%; color: #003057; font-weight: bold">{{producto.nombre}}</h3>
-    <h4>{{producto.precio}}</h4>
-
+    <ion-item>
+      <h3 style="padding: 0% 3% 0% 3%; color: #003057; font-weight: bold">{{ producto.nombre }}</h3>
+    </ion-item>
+    <h4 style="padding-left: 7%">Precio: {{ producto.precio }}</h4>
+    <p style="padding-left: 7%; color: #9c9c9c; font-size: 12px">Fecha de publicación: {{ producto.fechaPublicacion }}</p>
+    <ion-item>
+      <ion-label>
+        Calificación:
+      </ion-label>
+      <p-rating [(ngModel)]="producto.calificacion" [cancel]="false" class="rating-product"></p-rating>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="{{ producto.nombre }}" width="100%" />
+      </ion-avatar>
+      <ion-label>
+        Vendedor
+      </ion-label>
+    </ion-item>
   </div>
 </ion-content>
