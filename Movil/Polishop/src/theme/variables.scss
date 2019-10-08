@@ -3,6 +3,14 @@
 
 /** Ionic CSS Variables #003057 **/
 :root {
+  /** transparent **/
+  --ion-color-transparent: transparent;
+  --ion-color-transparent-rgb: transparent;
+  --ion-color-transparent-contrast: transparent;
+  --ion-color-transparent-contrast-rgb: transparent;
+  --ion-color-transparent-shade: transparent;
+  --ion-color-transparent-tint: transparent;
+
   /** poli **/
   --ion-color-poli: #003057;
   --ion-color-poli-rgb: 56, 128, 255;
@@ -91,4 +99,13 @@
   --ion-color-contrast-rgb: var(--ion-color-poli-contrast-rgb) !important;
   --ion-color-shade: var(--ion-color-poli-shade) !important;
   --ion-color-tint: var(--ion-color-poli-tint) !important;
+}
+
+.ion-color-transparent {
+  --ion-color-base: var(--ion-color-transparent) !important;
+  --ion-color-base-rgb: var(--ion-color-transparent-rgb) !important;
+  --ion-color-contrast: var(--ion-color-transparent-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-transparent-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-transparent-shade) !important;
+  --ion-color-tint: var(--ion-color-transparent-tint) !important;
 }

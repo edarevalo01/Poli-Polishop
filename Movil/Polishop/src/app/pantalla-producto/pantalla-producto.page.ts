@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Producto } from "../model/producto";
 import { GeneralService } from "../Services/general.service";
+import { Comentario } from "../model/comentario";
 
 @Component({
   selector: "app-pantalla-producto",
@@ -12,6 +13,7 @@ export class PantallaProductoPage implements OnInit {
   public producto: Producto = new Producto();
   public imgs = ["p1.png", "p2.png", "p3.png", "p4.png", "p5.png"];
   public cargado: boolean = false;
+  public comentarios: Comentario[];
 
   constructor(private service: GeneralService, private activeRoute: ActivatedRoute) {
     this.getParams();
@@ -33,7 +35,20 @@ export class PantallaProductoPage implements OnInit {
       error => {},
       () => {
         this.cargado = true;
-        console.log(this.producto);
+        this.cargarComentarios();
+      }
+    );
+  }
+
+  cargarComentarios() {
+    this.service.getProductoComentarios(this.producto.id).subscribe(
+      comentariosObs => {
+        this.comentarios = comentariosObs;
+      },
+      error => {},
+      () => {
+        //Comentarios cargados.
+        console.log(this.comentarios);
       }
     );
   }
