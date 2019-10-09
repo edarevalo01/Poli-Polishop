@@ -7,5 +7,36 @@
 </ion-header>
 
 <ion-content>
-  Cuenta
+  <div style="width: 100%; margin-top: 13%">
+    <ion-avatar style="width: 150px; height: 150px; margin: auto">
+      <img src="assets/profilePhotos/users/anosorio.png" alt="fotoPerfil" />
+    </ion-avatar>
+
+    <ion-item class="ion-text-center" style="margin-top: 4%">
+      <ion-label>
+        <h1>Nombre completo de usuario</h1>
+        <p>Username</p>
+        <p>Correo electrónico</p>
+        <p>Ciudad</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-button class="btns-cuenta" fill="clear" expand="full">
+      <ion-icon slot="start" name="cart"></ion-icon>
+      Mis compras
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+
+    <ion-button class="btns-cuenta" fill="clear" expand="full">
+      <ion-icon slot="start" name="cart"></ion-icon>
+      Modificar mi información
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+
+    <ion-button class="btns-cuenta" fill="clear" expand="full" (click)="iniciarSesion()">
+      <ion-icon slot="start" name="cart"></ion-icon>
+      Iniciar / Cerrar Sesión
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+  </div>
 </ion-content>
