@@ -16,12 +16,14 @@
 
 <ion-content>
   <div *ngIf="cargado">
+    <!---------------------Imagenes Producto--------------------->
     <ion-slides scrollbar="true" [options]="slideOpts">
       <ion-slide *ngFor="let img of imgs">
         <img src="{{ producto.urlCarpetaImagenes }}/{{ img }}" alt="{{ producto.nombre }}" width="100%" />
       </ion-slide>
     </ion-slides>
-    <ion-item>
+    <!---------------------Nombre y descripción--------------------->
+    <ion-item lines="none">
       <h3 style="padding: 0% 3% 0% 3%; color: #003057; font-weight: bold">{{ producto.nombre }}</h3>
     </ion-item>
     <h4 style="padding-left: 7%">Precio: {{ producto.precio }}</h4>
@@ -37,7 +39,8 @@
         {{ producto.descripcion }}
       </p>
     </ion-label>
-    <ion-item-divider>
+    <!---------------------Detalles vendedor--------------------->
+    <ion-item lines="none">
       <ion-avatar slot="start">
         <img src="{{ producto.imagenVendedor }}" alt="{{ producto.nombreVendedor }}" width="100%" />
       </ion-avatar>
@@ -46,17 +49,25 @@
       </ion-label>
       <ion-button slot="end" fill="clear">
         Ver más
+        <ion-ripple-effect></ion-ripple-effect>
       </ion-button>
-    </ion-item-divider>
-
-    <!-----Comentarios----->
-    <ion-item-divider>
+    </ion-item>
+    <!---------------------Boton Comprar------------------->
+    <div style="width: 100%; padding: 2% 3% 0% 3%">
+      <ion-button expand="block">
+        <ion-icon slot="start" name="cart"></ion-icon>
+        Agregar al carrito de compras
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-button>
+    </div>
+    <!---------------------Comentarios--------------------->
+    <ion-item-divider style="margin-top: 2%">
       <ion-label>
         Comentarios:
       </ion-label>
     </ion-item-divider>
-    <div *ngFor="let comentario of comentarios">
-      <ion-item>
+    <div *ngFor="let comentario of comentarios" style="margin-top: 2%">
+      <ion-item lines="none">
         <ion-avatar slot="start">
           <img src="{{ comentario.imagenComprador }}" alt="{{ comentarios.nombreComprador }}" width="100%" />
         </ion-avatar>
@@ -64,10 +75,16 @@
           {{ comentario.nombreComprador }}
         </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-label>{{ comentario.fecha }}</ion-label>
-        <p-rating [(ngModel)]="comentario.puntuacionProducto" [cancel]="false" class="rating-product"></p-rating>
+      <ion-item  lines="none">
+        <ion-label slot="start"><p-rating [(ngModel)]="comentario.puntuacionProducto" [cancel]="false" class="rating-product"></p-rating></ion-label>
+        <ion-label slot="end"><p>{{ comentario.fecha }}</p></ion-label>
       </ion-item>
+      <ion-label>
+        <p style="padding: 0% 5% 4% 5%; text-align: justify">
+          {{ comentario.comentario }}
+        </p>
+      </ion-label>
+      <ion-item-divider></ion-item-divider>
     </div>
   </div>
 </ion-content>
