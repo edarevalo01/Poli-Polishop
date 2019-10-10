@@ -13,10 +13,7 @@ export class CuentaPage {
   async iniciarSesion() {
     const modal = await this.modalController.create({
       component: ModalPage,
-      componentProps: {
-        nombre: "Alejandro",
-        cel: "123"
-      }
+      componentProps: {}
     });
     return await modal.present();
   }

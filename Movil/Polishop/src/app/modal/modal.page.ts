@@ -7,15 +7,12 @@ import { NavParams, ModalController } from "@ionic/angular";
   styleUrls: ["./modal.page.scss"]
 })
 export class ModalPage implements OnInit {
-  @Input() nombre: string;
-  @Input() cel: string;
+  constructor(private navParams: NavParams, private modalCtrl: ModalController) {}
 
-  constructor(private navParams: NavParams, private modalCtrl: ModalController) {
-    console.log(navParams.get("nombre"));
-  }
-
-  dismiss() {
-    this.modalCtrl.dismiss();
+  cerrarModal() {
+    this.modalCtrl.dismiss({
+      dismissed: true
+    });
   }
 
   ngOnInit() {}
