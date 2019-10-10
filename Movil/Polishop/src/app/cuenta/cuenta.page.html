@@ -6,37 +6,50 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div style="width: 100%; margin-top: 13%">
-    <ion-avatar style="width: 150px; height: 150px; margin: auto">
-      <img src="assets/profilePhotos/users/anosorio.png" alt="fotoPerfil" />
-    </ion-avatar>
+<ion-content style="background-color: #c3c3c3a4">
+  <div class="background-login"></div>
 
-    <ion-item class="ion-text-center" style="margin-top: 4%">
-      <ion-label>
-        <h1>Nombre completo de usuario</h1>
-        <p>Username</p>
-        <p>Correo electrónico</p>
-        <p>Ciudad</p>
-      </ion-label>
-    </ion-item>
+  <ion-avatar class='ion-avatar-profile'>
+    <img class='img-avatar-profile' src="assets/profilePhotos/users/anosorio.png" alt="fotoPerfil" />
+  </ion-avatar>
 
-    <ion-button class="btns-cuenta" fill="clear" expand="full">
-      <ion-icon slot="start" name="cart"></ion-icon>
-      Mis compras
-      <ion-ripple-effect></ion-ripple-effect>
-    </ion-button>
+  <ion-card class='ion-card-profile'>
+    <div style="margin-top: 13%; margin-bottom: 5%">
+      <ion-item lines="none" class="ion-text-center" style="margin-top: 70px">
+        <ion-label>
+          <h1 style="margin-bottom: 5%">Edwar Alejandro Arévalo Nocua Alvarado Cardenas</h1>
+          <p>Username: edarevalo</p>
+          <p>edarevalo@poligran.edu.co</p>
+          <p>Bogotá</p>
+        </ion-label>
+      </ion-item>
+    </div>
 
-    <ion-button class="btns-cuenta" fill="clear" expand="full">
-      <ion-icon slot="start" name="cart"></ion-icon>
-      Modificar mi información
-      <ion-ripple-effect></ion-ripple-effect>
-    </ion-button>
+    <div style="margin-top: 8%; margin-bottom: 6%">
+      <ion-item lines="none" detail class="ion-activatable">
+        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <span>Mis compras</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
 
-    <ion-button class="btns-cuenta" fill="clear" expand="full" (click)="iniciarSesion()">
-      <ion-icon slot="start" name="cart"></ion-icon>
-      Iniciar / Cerrar Sesión
-      <ion-ripple-effect></ion-ripple-effect>
-    </ion-button>
-  </div>
+      <ion-item lines="none" detail class="ion-activatable">
+        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <span>Modificar información</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+
+      <ion-item lines="none" detail class="ion-activatable">
+        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <span>Portal Poli</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+
+      <ion-item lines="none" detail class="ion-activatable" (click)='iniciarSesion()'>
+        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <span>Iniciar sesión</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+    </div>
+  </ion-card>
+
 </ion-content>

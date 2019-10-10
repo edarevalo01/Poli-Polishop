@@ -73,8 +73,8 @@
         </ion-avatar>
         <ion-label>
           <h3>{{ comentario.nombreComprador }}</h3>
-          <p-rating [(ngModel)]="comentario.puntuacionProducto" [cancel]="false" class="rating-product"></p-rating>
         </ion-label>
+        <p-rating slot="end" [(ngModel)]="comentario.puntuacionProducto" [cancel]="false" class="rating-product"></p-rating>
       </ion-item>
       <ion-label>
         <p style="padding: 0% 5% 0% 5%; text-align: end">{{ comentario.fecha }}</p>
