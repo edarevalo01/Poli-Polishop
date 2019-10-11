@@ -9,7 +9,24 @@
 
 <ion-content>
   <div class="background-login"></div>
-  <ion-card class="ion-card-profile">
-    <div style="margin-top: 13%; margin-bottom: 5%; height: 300px;"></div>
+  <ion-card>
+    <div style="margin-top: 8%; margin-bottom: 5%; height: 300px;">
+      <h2 style="text-align: center;">Bienvenido</h2>
+      <ion-item class='input-login'>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input [value]='correoLogin' (input)="correoLogin = $event.target.value"></ion-input>
+      </ion-item>
+
+      <ion-item class='input-login'>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [value]='contrasenaLogin' (input)="contrasenaLogin = $event.target.value" type='password'></ion-input>
+      </ion-item>
+
+      <ion-button class='btn-login-ingresar' (click)='login()'>Ingresar</ion-button>
+
+      <ion-item lines='none' class='olvido-login'>
+        <a href="https://cpo.poligran.edu.co">¿Olvidó su nombre de usuario o contraseña?</a>
+      </ion-item>
+    </div>
   </ion-card>
 </ion-content>
