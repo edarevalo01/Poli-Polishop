@@ -4,13 +4,15 @@ import { Producto } from "../model/producto";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment.prod";
 import { Comentario } from "../model/comentario";
-import { LoginUsuario } from '../model/login-usuario';
-import { Comprador } from '../model/comprador';
+import { LoginUsuario } from "../model/login-usuario";
+import { Comprador } from "../model/comprador";
 
 @Injectable({
   providedIn: "root"
 })
 export class GeneralService {
+  private usuario: Comprador = null;
+
   constructor(private http: HttpClient) {}
 
   getAllProductos(): Observable<Producto[]> {
@@ -31,14 +33,29 @@ export class GeneralService {
     const param = new HttpParams().set("idProducto", idProducto + "");
     return this.http.get<Comentario[]>(environment.urlGetProductoComentarios, { params: param });
   }
-  
-  loginUsuario(email: string): Observable<LoginUsuario>{
-    const param = new HttpParams().set('correo', email);
+
+  loginUsuario(email: string): Observable<LoginUsuario> {
+    const param = new HttpParams().set("correo", email);
     return this.http.get<LoginUsuario>(environment.urlLoginComprador, { params: param });
   }
 
-  getInfoComprador(email: string): Observable<Comprador>{
-    const param = new HttpParams().set('correo', email);
-    return this.http.get<Comprador>(environment.urlGetInfoComprador, {params: param});
+  getInfoComprador(email: string): Observable<Comprador> {
+    const param = new HttpParams().set("correo", email);
+    return this.http.get<Comprador>(environment.urlGetInfoComprador, { params: param });
+  }
+
+  getInfoCompradorById(id: number): Observable<Comprador> {
+    const param = new HttpParams().set("id", id + "");
+    return this.http.get<Comprador>(environment.urlGetInfoCompradorById, { params: param });
+  }
+
+  //------------------------------------------------------------------------------------------------------------------------------------
+
+  setCompradorLogin(comprador: Comprador) {
+    this.usuario = comprador;
+  }
+
+  getCompradorLogin(): Comprador {
+    return this.usuario;
   }
 }

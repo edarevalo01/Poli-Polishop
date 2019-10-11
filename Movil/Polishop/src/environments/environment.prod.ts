@@ -7,5 +7,6 @@ export const environment = {
   urlGetProductoComentarios: "http://localhost:8080/getComentarioByProducto",
   /* Comprador */
   urlLoginComprador: "http://localhost:8080/loginUsuario",
-  urlGetInfoComprador: 'http://localhost:8080/getUsuarioByCorreo'
+  urlGetInfoComprador: "http://localhost:8080/getUsuarioByCorreo",
+  urlGetInfoCompradorById: "http://localhost:8080/getUsuarioById"
 };

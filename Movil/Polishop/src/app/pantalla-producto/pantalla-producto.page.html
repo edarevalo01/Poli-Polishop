@@ -54,10 +54,13 @@
     </ion-item>
     <!---------------------Boton Comprar------------------->
     <div style="width: 100%; padding: 2% 3% 0% 3%">
-      <ion-button expand="block">
+      <ion-button expand="block" *ngIf="userLogged" disabled="!userLogged">
         <ion-icon slot="start" name="cart"></ion-icon>
         Agregar al carrito de compras
         <ion-ripple-effect></ion-ripple-effect>
+      </ion-button>
+      <ion-button expand="block" *ngIf="!userLogged" disabled="!userLogged" style="background-color: #3880ff; color: white">
+        ¡Inicia sesión para comprar!
       </ion-button>
     </div>
     <!---------------------Comentarios--------------------->
