@@ -53,22 +53,24 @@
       </ion-button>
     </ion-item>
     <!---------------------Boton Comprar------------------->
-    <div style="width: 100%; padding: 2% 3% 0% 3%">
-      <ion-button expand="block" *ngIf="userLogged" (click)="agregarCarrito()">
-        <ion-icon slot="start" name="cart"></ion-icon>
-        Agregar al carrito de compras
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-button>
-      <ion-button expand="block" *ngIf="!userLogged" (click)="login()">
-        ¡Inicia sesión para comprar!
-      </ion-button>
-    </div>
+    <ion-item-divider lines="none" sticky>
+      <div style="width: 100%; padding: 2% 3% 2% 3%">
+        <ion-button expand="block" *ngIf="userLogged" (click)="agregarCarrito()">
+          <ion-icon slot="start" name="cart"></ion-icon>
+          Agregar al carrito de compras
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+        <ion-button expand="block" *ngIf="!userLogged" (click)="login()">
+          ¡Inicia sesión para comprar!
+        </ion-button>
+      </div>
+    </ion-item-divider>
     <!---------------------Comentarios--------------------->
-    <ion-item-divider style="margin-top: 2%">
-      <ion-label>
+    <ion-item lines="full">
+      <ion-label style="margin-top: 2%;">
         Comentarios:
       </ion-label>
-    </ion-item-divider>
+    </ion-item>
     <div *ngFor="let comentario of comentarios" style="margin-top: 2%">
       <ion-card>
         <ion-card-header>
@@ -102,7 +104,7 @@
       <h4 style="margin-left: 5%;">Agregar comentario</h4>
       <ion-item-divider></ion-item-divider>
       <ion-item lines="none" style="width: 94%; margin: auto; ">
-        <ion-textarea placeholder="Escribir comentario" [(ngModel)]="nuevoComentario"></ion-textarea>
+        <ion-textarea placeholder="Escribir comentario" [(ngModel)]="nuevoComentario" style="margin-top: 5%;"></ion-textarea>
       </ion-item>
       <ion-item lines="none" style="width: 90%; margin: auto; font-size: 14px;">
         Calificar producto

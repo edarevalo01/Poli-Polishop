@@ -6,6 +6,7 @@ import { environment } from "src/environments/environment.prod";
 import { Comentario } from "../model/comentario";
 import { LoginUsuario } from "../model/login-usuario";
 import { Comprador } from "../model/comprador";
+import { ProductoCarrito } from "../model/producto-carrito";
 
 @Injectable({
   providedIn: "root"

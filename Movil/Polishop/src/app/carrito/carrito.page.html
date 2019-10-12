@@ -6,11 +6,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()">
   <div *ngIf="!userLogged" style=" width: 100%; height: 100%;">
     <img src="assets/system/carrito.png" alt="No hay usuario logueado" class="img-carrito" />
   </div>
   <div *ngIf="userLogged">
+    <ion-item class="item-titulos">
+      <ion-label>
+        <h2>Carrito de compras</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item-divider lines="full" class="item-titulos-precio" sticky>
+      <ion-label>
+        <h3>Total:({{ productosCarrito.length }} Productos): ${{ precioTotal }}</h3>
+      </ion-label>
+      <ion-button slot="end" size="small" class="comprar">Comprar</ion-button>
+    </ion-item-divider>
     <div *ngIf="productosCarrito.length">
       <div *ngFor="let producto of productosCarrito">
         <ion-item-sliding>

@@ -38,6 +38,7 @@ export class CarritoPage {
   }
 
   getProductosCarrito() {
+    this.precioTotal = 0;
     this.service.getProductosCarrito(this.usuario.id).subscribe(
       productosObs => {
         this.productosCarrito = productosObs;
@@ -45,18 +46,16 @@ export class CarritoPage {
       error => {},
       () => {
         this.productosCarrito.forEach(producto => {
-          this.precioTotal += +producto.valor * +producto.cantidad;
+          this.precioTotal += parseInt(producto.valor) * producto.cantidad;
         });
       }
     );
   }
 
-  //TODO: Intentar mejorar este ciclo para que no sea tan ciclico :v
   sumProducto(cantidad: number, producto: ProductoCarrito) {
     var cantAct = producto.cantidad;
     if (cantAct + cantidad <= 0) return;
     else {
-      this.precioTotal = 0;
       this.productosCarrito.forEach(prodFor => {
         if (producto.idProducto === prodFor.idProducto) {
           prodFor.cantidad += cantidad;
@@ -65,7 +64,8 @@ export class CarritoPage {
             error => {},
             () => {
               this.presentToast("Producto agregado.");
-              this.precioTotal += +prodFor.valor * +prodFor.cantidad;
+              if (cantidad < 0) this.precioTotal -= parseInt(prodFor.valor);
+              else if (cantidad > 0) this.precioTotal += parseInt(prodFor.valor);
             }
           );
         }
@@ -91,13 +91,15 @@ export class CarritoPage {
               respuesta => {},
               error => {},
               () => {
+                //this.precioTotal -= parseInt(producto.valor) * producto.cantidad;
                 this.presentToast("Producto eliminado del carrito.");
-                //TODO: Hacer metodito para quitar producto del arreglo, (reactivo)
+                this.getProductosCarrito();
               }
             );
           }
         }
-      ]
+      ],
+      translucent: true
     });
     await alert.present();
   }
