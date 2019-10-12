@@ -151,7 +151,7 @@ public class CarritoController {
 		Optional<ProductoCarrito> optPC = productoCarritoRepositoryDAO.findByIdProductoAndIdCarrito(idProducto, idCarrito);
 		if(!optPC.isPresent()) return "El producto no existe en este carrito";
 		productoCarritoRepositoryDAO.deleteById(optPC.get().getId());
-		return "Producto Eliminado";
+		return "{\"success\": \"Producto Eliminado\"}";
 	}
 	
 }

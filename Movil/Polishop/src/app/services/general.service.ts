@@ -66,6 +66,16 @@ export class GeneralService {
     return this.http.get(environment.urlAddComentarioProducto, { params: param });
   }
 
+  getProductosCarrito(idComprador: number): Observable<ProductoCarrito[]> {
+    const param = new HttpParams().set("idComprador", idComprador + "");
+    return this.http.get<ProductoCarrito[]>(environment.urlGetProductosCarrito, { params: param });
+  }
+
+  eliminarProductoCarrito(idCarrito: number, idProducto: number) {
+    const param = new HttpParams().set("idCarrito", idCarrito + "").set("idProducto", idProducto + "");
+    return this.http.get(environment.urlEliminarProductoCarrito, { params: param });
+  }
+
   //------------------------------------------------------------------------------------------------------------------------------------
 
   setCompradorLogin(comprador: Comprador) {

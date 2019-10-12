@@ -1,1 +1,37 @@
+ion-note {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-inline-end: 0px;
+}
 
+ion-item-divider {
+  margin-top: 0px;
+  min-height: 5px !important;
+}
+
+ion-chip.btns-add-cart {
+  padding: 7px 7px 7px 7px;
+  margin: 0px 0px 0px 0px;
+}
+
+ion-item.producto {
+  --padding-start: 0px;
+}
+
+.btns-add-cart {
+  width: 22px;
+  height: 22px;
+}
+
+.img-carrito {
+  width: 70%;
+  margin: 15% 0% 0% 15%;
+}
+
+.btns-add-cart-number {
+  height: 22px;
+}
+
+.delete {
+  margin-left: 6%;
+}
