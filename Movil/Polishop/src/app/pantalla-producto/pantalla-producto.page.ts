@@ -5,6 +5,8 @@ import { GeneralService } from "../Services/general.service";
 import { Comentario } from "../model/comentario";
 import { Comprador } from "../model/comprador";
 import { Storage } from "@ionic/storage";
+import { ToastController, ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: "app-pantalla-producto",
@@ -19,7 +21,13 @@ export class PantallaProductoPage implements OnInit {
   public userLogged: boolean = false;
   public usuario: Comprador = new Comprador();
 
-  constructor(private service: GeneralService, private activeRoute: ActivatedRoute, private storage: Storage) {
+  constructor(
+    private service: GeneralService, 
+    private activeRoute: ActivatedRoute, 
+    private storage: Storage,
+    private toastController: ToastController,
+    private modalController: ModalController
+  ) {
     storage.get("user").then(val => {
       if (val !== null) {
         if (this.service.getCompradorLogin() === null) {
@@ -31,14 +39,6 @@ export class PantallaProductoPage implements OnInit {
       }
     });
     this.getParams();
-  }
-
-  getParams() {
-    this.activeRoute.queryParams.subscribe(retorno => {
-      let retid = retorno["idProd"];
-      let retname = retorno["nameProd"];
-      this.cargarProducto(retid);
-    });
   }
 
   cargarProducto(productoId: string) {
@@ -76,7 +76,53 @@ export class PantallaProductoPage implements OnInit {
     );
   }
 
+  async login() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {}
+    });
+
+    modal.onDidDismiss().then(data => {
+      if(data.data.user !== undefined){
+        this.usuario = data.data.user;
+        this.userLogged = true;
+        this.service.setCompradorLogin(this.usuario);
+      }
+    });
+    return await modal.present();
+  }
+
+  agregarCarrito() {
+    this.service.saveCarritoConProducto(this.producto.id, this.usuario.id, 1).subscribe(
+      agregado => {},
+      error => {},
+      () => {
+        this.presentToast('Producto agregado satisfactoriamente.');
+      }
+    );
+  }
+
+  agregarComentario() {
+    //Servicio agregar comentario
+  }
+
+  async presentToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   ngOnInit() {}
+
+  getParams() {
+    this.activeRoute.queryParams.subscribe(retorno => {
+      let retid = retorno["idProd"];
+      let retname = retorno["nameProd"];
+      this.cargarProducto(retid);
+    });
+  }
 
   slideOpts = {
     initialSlide: 0,

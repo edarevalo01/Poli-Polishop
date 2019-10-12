@@ -23,12 +23,8 @@ export class InicioPage {
       poliObs => {
         this.productosPoli = poliObs;
       },
-      error => {
-        console.error("Error al cargar productos principales poli");
-      },
-      () => {
-        console.log("Productos Poli Done");
-      }
+      error => {},
+      () => {}
     );
   }
 
@@ -37,12 +33,8 @@ export class InicioPage {
       comunidadObs => {
         this.productosComu = comunidadObs;
       },
-      error => {
-        console.error("Error al cargar productos principales de la comunidad");
-      },
-      () => {
-        console.log("Productos Comunidad Done");
-      }
+      error => {},
+      () => {}
     );
   }
 
@@ -54,10 +46,6 @@ export class InicioPage {
       },
       skipLocationChange: false
     });
-  }
-
-  async delay(ms: number) {
-    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => location.reload());
   }
 
   slideOpts = {

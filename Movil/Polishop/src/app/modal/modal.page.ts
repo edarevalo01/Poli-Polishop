@@ -32,7 +32,6 @@ export class ModalPage implements OnInit {
           if (this.contrasenaLogin == loginObs.contrasena) {
             this.getInfoComprador(loginObs.correo);
           } else {
-            console.log("Contrasena inválida.");
             this.presentToast("Contraseña incorrecta. Intente de nuevo.");
           }
         } else {

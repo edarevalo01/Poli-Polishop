@@ -57,9 +57,11 @@ export class CuentaPage {
       });
 
       modal.onDidDismiss().then(data => {
-        this.usuario = data.data.user;
-        this.userLogged = true;
-        this.services.setCompradorLogin(this.usuario);
+        if(data.data.user !== undefined){
+          this.usuario = data.data.user;
+          this.userLogged = true;
+          this.services.setCompradorLogin(this.usuario);
+        }
       });
       return await modal.present();
     }

@@ -3,6 +3,27 @@ ion-item-divider {
   min-height: 5px !important;
 }
 
+ion-card-header {
+  padding-bottom: 0px !important;
+  padding-top: 10px;
+}
+
+ion-textarea {
+  border: solid 1px #8d8d8dab;
+  border-radius: 5px;
+}
+
+ion-item.comentarios {
+  --padding-start: 0px;
+}
+
 .rating-product {
-  width: 120px !important;
+  width: 100px !important;
+}
+
+.item-native {
+  padding-left: 0px !important;
+}
+span{
+  margin-right: 3px !important;
 }

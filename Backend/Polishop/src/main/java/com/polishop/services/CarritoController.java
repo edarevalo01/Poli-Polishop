@@ -114,7 +114,7 @@ public class CarritoController {
 				productoCarritoRepositoryDAO.save(newProductoCarrito);
 			}
 		}
-		return nuevo? "Pedido creado" : "Pedido modificado";
+		return nuevo? "{\"success\": \"Pedido creado\"}" : "{\"success\": \"Pedido modificado\"}";
 	}
 	
 	@CrossOrigin

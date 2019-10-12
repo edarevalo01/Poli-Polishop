@@ -49,6 +49,13 @@ export class GeneralService {
     return this.http.get<Comprador>(environment.urlGetInfoCompradorById, { params: param });
   }
 
+  saveCarritoConProducto(idProducto: number, idComprador: number, cantidad: number){
+    const param = new HttpParams().set('idProducto', idProducto+'')
+                                  .set('idComprador', idComprador+'')
+                                  .set('cantidad', cantidad+'');
+    return this.http.get(environment.urlSaveCarritoConCompra, { params: param });
+  }
+
   //------------------------------------------------------------------------------------------------------------------------------------
 
   setCompradorLogin(comprador: Comprador) {
