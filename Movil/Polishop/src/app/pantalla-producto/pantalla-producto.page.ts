@@ -5,8 +5,8 @@ import { GeneralService } from "../Services/general.service";
 import { Comentario } from "../model/comentario";
 import { Comprador } from "../model/comprador";
 import { Storage } from "@ionic/storage";
-import { ToastController, ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
+import { ToastController, ModalController } from "@ionic/angular";
+import { ModalPage } from "../modal/modal.page";
 
 @Component({
   selector: "app-pantalla-producto",
@@ -20,10 +20,12 @@ export class PantallaProductoPage implements OnInit {
   public comentarios: Comentario[];
   public userLogged: boolean = false;
   public usuario: Comprador = new Comprador();
+  public nuevoComentario: string = "";
+  public nuevaPuntuacion: number = 5;
 
   constructor(
-    private service: GeneralService, 
-    private activeRoute: ActivatedRoute, 
+    private service: GeneralService,
+    private activeRoute: ActivatedRoute,
     private storage: Storage,
     private toastController: ToastController,
     private modalController: ModalController
@@ -83,7 +85,7 @@ export class PantallaProductoPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data => {
-      if(data.data.user !== undefined){
+      if (data.data.user !== undefined) {
         this.usuario = data.data.user;
         this.userLogged = true;
         this.service.setCompradorLogin(this.usuario);
@@ -97,13 +99,30 @@ export class PantallaProductoPage implements OnInit {
       agregado => {},
       error => {},
       () => {
-        this.presentToast('Producto agregado satisfactoriamente.');
+        this.presentToast("Producto agregado satisfactoriamente.");
       }
     );
   }
 
   agregarComentario() {
-    //Servicio agregar comentario
+    this.service.addComentarioProducto(this.usuario.id, this.producto.id, this.nuevoComentario, this.nuevaPuntuacion).subscribe(
+      respuestaObs => {},
+      error => {},
+      () => {
+        this.presentToast("Comentario enviado.");
+        this.comentarios.push({
+          id: 0,
+          nombreComprador: this.usuario.nombres + " " + this.usuario.apellidos,
+          nombreProducto: this.producto.nombre,
+          comentario: this.nuevoComentario,
+          fecha: "0 segundos",
+          imagenComprador: this.usuario.urlFoto,
+          puntuacionProducto: this.nuevaPuntuacion
+        });
+        this.nuevaPuntuacion = 5;
+        this.nuevoComentario = "";
+      }
+    );
   }
 
   async presentToast(mensaje: string) {

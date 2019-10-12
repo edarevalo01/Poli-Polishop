@@ -49,11 +49,21 @@ export class GeneralService {
     return this.http.get<Comprador>(environment.urlGetInfoCompradorById, { params: param });
   }
 
-  saveCarritoConProducto(idProducto: number, idComprador: number, cantidad: number){
-    const param = new HttpParams().set('idProducto', idProducto+'')
-                                  .set('idComprador', idComprador+'')
-                                  .set('cantidad', cantidad+'');
+  saveCarritoConProducto(idProducto: number, idComprador: number, cantidad: number) {
+    const param = new HttpParams()
+      .set("idProducto", idProducto + "")
+      .set("idComprador", idComprador + "")
+      .set("cantidad", cantidad + "");
     return this.http.get(environment.urlSaveCarritoConCompra, { params: param });
+  }
+
+  addComentarioProducto(idComprador: number, idProducto: number, comentario: string, puntuacion: number) {
+    const param = new HttpParams()
+      .set("idComprador", idComprador + "")
+      .set("idProducto", idProducto + "")
+      .set("comentario", comentario)
+      .set("puntuacion", puntuacion + "");
+    return this.http.get(environment.urlAddComentarioProducto, { params: param });
   }
 
   //------------------------------------------------------------------------------------------------------------------------------------

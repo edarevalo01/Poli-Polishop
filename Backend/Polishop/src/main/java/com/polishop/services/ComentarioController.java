@@ -32,7 +32,7 @@ public class ComentarioController {
 	private ProductoRepository productoRepositoryDAO;
 	
 	@CrossOrigin
-	@RequestMapping(path = "/addComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/addComentario")
 	public @ResponseBody String addComentario
 	(@RequestParam Long idComprador, @RequestParam Long idProducto, 
 			@RequestParam String comentario, @RequestParam Long puntuacion) {
@@ -54,7 +54,7 @@ public class ComentarioController {
 		Producto producto = productoRepositoryDAO.findById(idProducto).get();  
 		producto.setCalificacion(Math.round(res));
 		productoRepositoryDAO.save(producto);
-		return "Comentario agregado.";
+		return "{\"success\": \"Producto Agregado\"}";
 	}
 
 	@CrossOrigin

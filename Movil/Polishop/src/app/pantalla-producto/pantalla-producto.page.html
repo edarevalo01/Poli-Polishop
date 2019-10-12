@@ -54,12 +54,12 @@
     </ion-item>
     <!---------------------Boton Comprar------------------->
     <div style="width: 100%; padding: 2% 3% 0% 3%">
-      <ion-button expand="block" *ngIf="userLogged" (click)='agregarCarrito()'>
-        <ion-icon slot="start" name="cart" ></ion-icon>
+      <ion-button expand="block" *ngIf="userLogged" (click)="agregarCarrito()">
+        <ion-icon slot="start" name="cart"></ion-icon>
         Agregar al carrito de compras
         <ion-ripple-effect></ion-ripple-effect>
       </ion-button>
-      <ion-button expand="block" *ngIf="!userLogged" (click)='login()'>
+      <ion-button expand="block" *ngIf="!userLogged" (click)="login()">
         ¡Inicia sesión para comprar!
       </ion-button>
     </div>
@@ -78,7 +78,9 @@
                 <img src="{{ comentario.imagenComprador }}" alt="{{ comentarios.nombreComprador }}" width="100%" />
               </ion-avatar>
               <ion-label>
-                <h2><b>{{ comentario.nombreComprador }}</b></h2>
+                <h2>
+                  <b>{{ comentario.nombreComprador }}</b>
+                </h2>
               </ion-label>
             </ion-item>
           </ion-card-title>
@@ -86,27 +88,27 @@
         <ion-card-content>
           {{ comentario.comentario }}
           <ion-item lines="none" class="comentarios">
-            <span slot="start" style="width: 87px;">
+            <span slot="start" style="width: 70px; font-size: 12px; color: #858585;">
               Calificación:
             </span>
             <p-rating [(ngModel)]="comentario.puntuacionProducto" [cancel]="false" class="rating-product"></p-rating>
-            <span slot="end">{{ comentario.fecha }}</span>
+            <span slot="end" style="font-size: 12px; color: #858585;">{{ comentario.fecha }}</span>
           </ion-item>
         </ion-card-content>
       </ion-card>
     </div>
     <!---------------------AddComentario--------------------->
-    <div style="margin-bottom: 5%;" *ngIf='userLogged'>
+    <div style="margin-bottom: 5%;" *ngIf="userLogged">
       <h4 style="margin-left: 5%;">Agregar comentario</h4>
       <ion-item-divider></ion-item-divider>
-      <ion-item lines='none' style="width: 94%; margin: auto; ">
-        <ion-textarea placeholder='Escribir comentario'></ion-textarea>
+      <ion-item lines="none" style="width: 94%; margin: auto; ">
+        <ion-textarea placeholder="Escribir comentario" [(ngModel)]="nuevoComentario"></ion-textarea>
       </ion-item>
-      <ion-item lines='none' style="width: 90%; margin: auto;">
+      <ion-item lines="none" style="width: 90%; margin: auto; font-size: 14px;">
         Calificar producto
-        <p-rating slot="end" [cancel]="false" class="rating-product"></p-rating>
+        <p-rating slot="end" [cancel]="false" [(ngModel)]="nuevaPuntuacion" class="rating-product"></p-rating>
       </ion-item>
-      <ion-button expand="block" style="width: 80%; margin: auto;">
+      <ion-button expand="block" style="width: 80%; margin: auto;" (click)="agregarComentario()" [disabled]="!nuevoComentario.length">
         Enviar comentario
       </ion-button>
     </div>
