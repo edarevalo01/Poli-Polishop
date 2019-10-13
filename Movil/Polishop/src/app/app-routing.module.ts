@@ -7,7 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   { path: 'pantalla-producto', loadChildren: './pantalla-producto/pantalla-producto.module#PantallaProductoPageModule' },
-  { path: 'pantalla-producto/:idProducto', loadChildren: './pantalla-producto/pantalla-producto.module#PantallaProductoPageModule' },  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' }
+  { path: 'pantalla-producto/:idProducto', loadChildren: './pantalla-producto/pantalla-producto.module#PantallaProductoPageModule' },  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+  { path: 'links', loadChildren: './links/links.module#LinksPageModule' }
 
   //{ path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' }
 ];

@@ -5,7 +5,7 @@ import { GeneralService } from "../Services/general.service";
 import { Comentario } from "../model/comentario";
 import { Comprador } from "../model/comprador";
 import { Storage } from "@ionic/storage";
-import { ToastController, ModalController } from "@ionic/angular";
+import { ToastController, ModalController, AlertController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
 
 @Component({
@@ -28,7 +28,8 @@ export class PantallaProductoPage implements OnInit {
     private activeRoute: ActivatedRoute,
     private storage: Storage,
     private toastController: ToastController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertController: AlertController
   ) {
     storage.get("user").then(val => {
       if (val !== null) {
@@ -131,6 +132,18 @@ export class PantallaProductoPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  async showInfoVendedor() {
+    //TODO: Información de vendedor
+    const alert = await this.alertController.create({
+      header: "Detalles vendedor",
+      message: "Toca pensar bien esto...",
+      buttons: ["OK"],
+      cssClass: "my-alert"
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {}

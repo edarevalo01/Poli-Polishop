@@ -4,6 +4,7 @@ import { ModalController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 import { GeneralService } from "../Services/general.service";
 import { Comprador } from "../model/comprador";
+import { LinksPage } from "../links/links.page";
 
 @Component({
   selector: "app-cuenta",
@@ -57,7 +58,7 @@ export class CuentaPage {
       });
 
       modal.onDidDismiss().then(data => {
-        if(data.data.user !== undefined){
+        if (data.data.user !== undefined) {
           this.usuario = data.data.user;
           this.userLogged = true;
           this.services.setCompradorLogin(this.usuario);
@@ -65,5 +66,16 @@ export class CuentaPage {
       });
       return await modal.present();
     }
+  }
+
+  async openLink(opcion: string) {
+    console.log(opcion);
+    const modal = await this.modalController.create({
+      component: LinksPage,
+      componentProps: {
+        opcionPage: opcion
+      }
+    });
+    return await modal.present();
   }
 }
