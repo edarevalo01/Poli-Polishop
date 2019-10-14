@@ -174,7 +174,6 @@ public class CompraController {
 			@RequestParam String telefonoUno, @RequestParam String telefonoDos) {
 		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, "comprando");
 		if(!optCompra.isPresent()) return "{\"status\": \"fail\", \"mensaje\": \"La compra no existe\"}";
-		
 		Compra compra = optCompra.get();
 		compra.setPais(pais);
 		compra.setDepartamento(departamento);
@@ -188,8 +187,6 @@ public class CompraController {
 		compra.setTelefonoDos(telefonoDos);
 		compra.setEstado("pendiente");
 		compraRepositoryDAO.save(compra);
-		
 		return "{\"status\": \"ok\", \"mensaje\": \"Compra realizada\"}";
 	}
-
 }

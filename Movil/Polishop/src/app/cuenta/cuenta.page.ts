@@ -69,7 +69,6 @@ export class CuentaPage {
   }
 
   async openLink(opcion: string) {
-    console.log(opcion);
     const modal = await this.modalController.create({
       component: LinksPage,
       componentProps: {

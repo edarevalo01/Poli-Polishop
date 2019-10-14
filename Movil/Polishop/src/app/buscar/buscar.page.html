@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="poli">
+    <ion-title>Polishop</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Volver</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="poli">
+    <ion-searchbar placeholder="Buscar producto" [(ngModel)]="searchTerm" (ionChange)="filterItemsFunct()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-item *ngFor="let producto of productos" (click)="goProduct(producto)">
+      <ion-thumbnail slot="start">
+        <img src="{{ producto.urlCarpetaImagenes }}/p1.png" />
+      </ion-thumbnail>
+      <ion-label>
+        <p>{{ producto.nombre }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

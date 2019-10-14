@@ -7,6 +7,7 @@ import { Comprador } from "../model/comprador";
 import { Storage } from "@ionic/storage";
 import { ToastController, ModalController, AlertController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
+import { BuscarPage } from "../buscar/buscar.page";
 
 @Component({
   selector: "app-pantalla-producto",
@@ -135,7 +136,6 @@ export class PantallaProductoPage implements OnInit {
   }
 
   async showInfoVendedor() {
-    //TODO: Información de vendedor
     const alert = await this.alertController.create({
       header: "Detalles vendedor",
       subHeader: this.producto.nombreVendedor,
@@ -147,8 +147,6 @@ export class PantallaProductoPage implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() {}
-
   getParams() {
     this.activeRoute.queryParams.subscribe(retorno => {
       let retid = retorno["idProd"];
@@ -156,6 +154,16 @@ export class PantallaProductoPage implements OnInit {
       this.cargarProducto(retid);
     });
   }
+
+  async openSearch() {
+    const modal = await this.modalController.create({
+      component: BuscarPage,
+      componentProps: {}
+    });
+    return await modal.present();
+  }
+
+  ngOnInit() {}
 
   slideOpts = {
     initialSlide: 0,

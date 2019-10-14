@@ -14,11 +14,12 @@ import { AppComponent } from "./app.component";
 import { ModalPage } from "./modal/modal.page";
 import { LinksPage } from "./links/links.page";
 import { CompraPage } from "./compra/compra.page";
+import { BuscarPage } from "./buscar/buscar.page";
 import { SafePipe } from "./pipes/safe.pipe";
 
 @NgModule({
-  declarations: [AppComponent, ModalPage, LinksPage, CompraPage, SafePipe],
-  entryComponents: [ModalPage, LinksPage, CompraPage],
+  declarations: [AppComponent, ModalPage, LinksPage, BuscarPage, CompraPage, SafePipe],
+  entryComponents: [ModalPage, LinksPage, CompraPage, BuscarPage],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot()],
   providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]

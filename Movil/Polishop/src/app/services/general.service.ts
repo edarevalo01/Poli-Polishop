@@ -79,7 +79,6 @@ export class GeneralService {
   }
 
   realizarCompra(compra: Compra): Observable<any> {
-    console.log(compra);
     const param = new HttpParams()
       .set("idComprador", compra.idComprador + "")
       .set("pais", "Colombia")
@@ -93,6 +92,11 @@ export class GeneralService {
       .set("telefonoUno", compra.telefonoUno)
       .set("telefonoDos", compra.telefonoDos);
     return this.http.get<any>(environment.urlRealizarCompra, { params: param });
+  }
+
+  buscarProducto(criterio: string): Observable<Producto[]> {
+    const param = new HttpParams().set("nombre", criterio);
+    return this.http.get<Producto[]>(environment.urlBusquedaProducto, { params: param });
   }
 
   //------------------------------------------------------------------------------------------------------------------------------------
