@@ -7,6 +7,7 @@ import { Comentario } from "../model/comentario";
 import { LoginUsuario } from "../model/login-usuario";
 import { Comprador } from "../model/comprador";
 import { ProductoCarrito } from "../model/producto-carrito";
+import { Compra } from "../model/compra";
 
 @Injectable({
   providedIn: "root"
@@ -75,6 +76,23 @@ export class GeneralService {
   eliminarProductoCarrito(idCarrito: number, idProducto: number) {
     const param = new HttpParams().set("idCarrito", idCarrito + "").set("idProducto", idProducto + "");
     return this.http.get(environment.urlEliminarProductoCarrito, { params: param });
+  }
+
+  realizarCompra(compra: Compra): Observable<any> {
+    console.log(compra);
+    const param = new HttpParams()
+      .set("idComprador", compra.idComprador + "")
+      .set("pais", "Colombia")
+      .set("departamento", "Bogota")
+      .set("ciudad", "Bogota")
+      .set("tipoDocumento", compra.tipoDocumento)
+      .set("numeroDocumento", compra.numeroDocumento)
+      .set("nombreDestinatario", compra.nombreDestinatario)
+      .set("direccionEnvio", compra.direccionEnvio)
+      .set("observaciones", compra.observaciones)
+      .set("telefonoUno", compra.telefonoUno)
+      .set("telefonoDos", compra.telefonoDos);
+    return this.http.get<any>(environment.urlRealizarCompra, { params: param });
   }
 
   //------------------------------------------------------------------------------------------------------------------------------------

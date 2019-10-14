@@ -8,7 +8,8 @@ const routes: Routes = [
   },
   { path: 'pantalla-producto', loadChildren: './pantalla-producto/pantalla-producto.module#PantallaProductoPageModule' },
   { path: 'pantalla-producto/:idProducto', loadChildren: './pantalla-producto/pantalla-producto.module#PantallaProductoPageModule' },  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
-  { path: 'links', loadChildren: './links/links.module#LinksPageModule' }
+  { path: 'links', loadChildren: './links/links.module#LinksPageModule' },
+  { path: 'compra', loadChildren: './compra/compra.module#CompraPageModule' }
 
   //{ path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' }
 ];

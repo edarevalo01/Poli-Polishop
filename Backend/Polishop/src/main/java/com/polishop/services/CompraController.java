@@ -34,7 +34,7 @@ public class CompraController {
 
 	@Autowired
 	private VendedorRepository vendedorRepositoryDAO;
-	
+
 	@Autowired
 	private ProductoRepository productoRepositoryDAO;
 
@@ -133,7 +133,7 @@ public class CompraController {
 		}
 		return productosCarrito;
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path="/getHistorial")
 	public Iterable<CompraNegocio> getHistorial(@RequestParam Long idVendedor){
@@ -163,6 +163,33 @@ public class CompraController {
 			}
 		}
 		return compras;
+	}
+
+	@CrossOrigin
+	@RequestMapping(path="/realizarCompra")
+	public String realizarCompra
+	(@RequestParam Long idComprador, @RequestParam String pais, @RequestParam String departamento,
+			@RequestParam String ciudad, @RequestParam String tipoDocumento, @RequestParam String numeroDocumento,
+			@RequestParam String nombreDestinatario, @RequestParam String direccionEnvio, @RequestParam String observaciones,
+			@RequestParam String telefonoUno, @RequestParam String telefonoDos) {
+		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, "comprando");
+		if(!optCompra.isPresent()) return "{\"status\": \"fail\", \"mensaje\": \"La compra no existe\"}";
+		
+		Compra compra = optCompra.get();
+		compra.setPais(pais);
+		compra.setDepartamento(departamento);
+		compra.setCiudad(ciudad);
+		compra.setTipoDocumento(tipoDocumento);
+		compra.setNumeroDocumento(numeroDocumento);
+		compra.setNombreDestinatario(nombreDestinatario);
+		compra.setDireccionEnvio(direccionEnvio);
+		compra.setObservaciones(observaciones);
+		compra.setTelefonoUno(telefonoUno);
+		compra.setTelefonoDos(telefonoDos);
+		compra.setEstado("pendiente");
+		compraRepositoryDAO.save(compra);
+		
+		return "{\"status\": \"ok\", \"mensaje\": \"Compra realizada\"}";
 	}
 
 }

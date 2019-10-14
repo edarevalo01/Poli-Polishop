@@ -5,6 +5,8 @@ import { ToastController, ModalController, AlertController } from "@ionic/angula
 import { Comprador } from "../model/comprador";
 import { ModalPage } from "../modal/modal.page";
 import { ProductoCarrito } from "../model/producto-carrito";
+import { Router } from "@angular/router";
+import { CompraPage } from "../compra/compra.page";
 
 @Component({
   selector: "app-carrito",
@@ -22,6 +24,7 @@ export class CarritoPage {
     private storage: Storage,
     private toastController: ToastController,
     private modalController: ModalController,
+    private router: Router,
     public alertController: AlertController
   ) {
     storage.get("user").then(val => {
@@ -123,6 +126,38 @@ export class CarritoPage {
       duration: 2000
     });
     toast.present();
+  }
+
+  goProduct(producto: ProductoCarrito) {
+    this.router.navigate(["/pantalla-producto/", producto.idProducto], {
+      queryParams: {
+        idProd: producto.idProducto,
+        nameProd: producto.nombreProducto
+      },
+      skipLocationChange: false
+    });
+  }
+
+  async realizarCompra() {
+    const modal = await this.modalController.create({
+      component: CompraPage,
+      componentProps: {
+        totalProductos: this.productosCarrito.length,
+        totalPrecio: this.precioTotal,
+        idComprador: this.usuario.id
+      }
+    });
+
+    modal.onDidDismiss().then(data => {
+      if (data.data.compra !== undefined) {
+        if (data.data.compra) {
+          //Se realiza la compra
+        } else {
+          //No se realiza compra
+        }
+      }
+    });
+    return await modal.present();
   }
 
   //FIXME: La solución para que cargue es probable que sea el observable, toca esperar
