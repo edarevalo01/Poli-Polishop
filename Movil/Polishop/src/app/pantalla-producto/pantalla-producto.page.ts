@@ -138,9 +138,10 @@ export class PantallaProductoPage implements OnInit {
     //TODO: Información de vendedor
     const alert = await this.alertController.create({
       header: "Detalles vendedor",
-      message: "Toca pensar bien esto...",
+      subHeader: this.producto.nombreVendedor,
+      message: this.producto.descripcionVendedor + "</br></br>Calificación: " + this.producto.calificacionVendedor + " estrellas.",
       buttons: ["OK"],
-      cssClass: "my-alert"
+      translucent: true
     });
 
     await alert.present();

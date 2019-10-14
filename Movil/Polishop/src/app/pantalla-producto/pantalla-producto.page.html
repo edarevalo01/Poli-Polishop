@@ -32,7 +32,7 @@
       <ion-label>
         Calificación:
       </ion-label>
-      <p-rating [(ngModel)]="producto.calificacion" [cancel]="false" class="rating-product"></p-rating>
+      <p-rating [(ngModel)]="producto.calificacion" readonly="true" [cancel]="false" class="rating-product"></p-rating>
     </ion-item>
     <ion-label>
       <p style="padding: 4% 5% 4% 5%; text-align: justify">
@@ -93,7 +93,7 @@
             <span slot="start" style="width: 70px; font-size: 12px; color: #858585;">
               Calificación:
             </span>
-            <p-rating [(ngModel)]="comentario.puntuacionProducto" [cancel]="false" class="rating-product"></p-rating>
+            <p-rating [(ngModel)]="comentario.puntuacionProducto" readonly="true" [cancel]="false" class="rating-product"></p-rating>
             <span slot="end" style="font-size: 12px; color: #858585;">{{ comentario.fecha }}</span>
           </ion-item>
         </ion-card-content>
