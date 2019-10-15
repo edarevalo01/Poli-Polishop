@@ -40,19 +40,20 @@
 
     <div style="margin-top: 8%; margin-bottom: 6%">
       <ion-item lines="none" detail class="ion-activatable">
-        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <ion-icon color="primary" name="gift" style="margin-right: 8%"></ion-icon>
         <span>Mis compras</span>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
 
       <ion-item lines="none" detail class="ion-activatable" (click)="openLink('smart')">
-        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <ion-icon color="primary" name="list" style="margin-right: 8%"></ion-icon>
         <span>Modificar información</span>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
 
       <ion-item lines="none" detail class="ion-activatable" (click)="iniciarSesion()">
-        <ion-icon color="primary" name="cart" style="margin-right: 8%"></ion-icon>
+        <ion-icon *ngIf="!userLogged" color="primary" name="log-in" style="margin-right: 8%"></ion-icon>
+        <ion-icon *ngIf="userLogged" color="primary" name="log-out" style="margin-right: 8%"></ion-icon>
         <span *ngIf="userLogged">Cerrar Sesión</span>
         <span *ngIf="!userLogged">Iniciar Sesión</span>
         <ion-ripple-effect></ion-ripple-effect>

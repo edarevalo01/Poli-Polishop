@@ -17,7 +17,8 @@
         <img src="{{ producto.urlCarpetaImagenes }}/p1.png" />
       </ion-thumbnail>
       <ion-label>
-        <p>{{ producto.nombre }}</p>
+        <h3>{{ producto.nombre }}</h3>
+        <p>${{ producto.precio }} - {{ producto.nombreVendedor }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

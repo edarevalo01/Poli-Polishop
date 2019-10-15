@@ -14,7 +14,6 @@ export class CompraPage implements OnInit {
   @Input() idComprador: number;
   public compraRealizada: boolean = false;
   public compra: Compra;
-  public ola: string = "";
 
   constructor(
     private service: GeneralService,
@@ -27,26 +26,36 @@ export class CompraPage implements OnInit {
   }
 
   async realizarCompra() {
-    const alert = await this.alertController.create({
-      header: "Realizar compra",
-      message: "¿Está seguro que desea realizar la compra?",
-      buttons: [
-        {
-          text: "No",
-          role: "cancel",
-          cssClass: "secondary",
-          handler: blah => {}
-        },
-        {
-          text: "Si",
-          handler: () => {
-            this.realizarCompraService();
+    if (
+      !this.compra.tipoDocumento ||
+      !this.compra.numeroDocumento ||
+      !this.compra.nombreDestinatario ||
+      !this.compra.direccionEnvio ||
+      !this.compra.telefonoUno
+    ) {
+      this.presentToast("Por favor verifique los datos.");
+    } else {
+      const alert = await this.alertController.create({
+        header: "Realizar compra",
+        message: "¿Está seguro que desea realizar la compra?",
+        buttons: [
+          {
+            text: "No",
+            role: "cancel",
+            cssClass: "secondary",
+            handler: blah => {}
+          },
+          {
+            text: "Si",
+            handler: () => {
+              this.realizarCompraService();
+            }
           }
-        }
-      ],
-      translucent: true
-    });
-    await alert.present();
+        ],
+        translucent: true
+      });
+      await alert.present();
+    }
   }
 
   realizarCompraService() {

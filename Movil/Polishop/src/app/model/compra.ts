@@ -7,7 +7,12 @@ export class Compra {
   public numeroDocumento: string;
   public nombreDestinatario: string;
   public direccionEnvio: string;
-  public observaciones: string = "";
+  public observaciones: string;
   public telefonoUno: string;
-  public telefonoDos: string = "";
+  public telefonoDos: string;
+
+  constructor() {
+    this.observaciones = "";
+    this.telefonoDos = "";
+  }
 }

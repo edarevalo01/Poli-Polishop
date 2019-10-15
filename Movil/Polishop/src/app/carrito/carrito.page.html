@@ -24,20 +24,20 @@
     </ion-item-divider>
     <div *ngIf="productosCarrito.length">
       <div *ngFor="let producto of productosCarrito">
-        <ion-item-sliding class="ion-activatable" (click)="goProduct(producto)">
+        <ion-item-sliding class="ion-activatable">
           <ion-item lines="none" class="producto">
-            <ion-note slot="start">
+            <ion-note slot="start" (click)="goProduct(producto)">
               <ion-avatar style="width: 50px; height: 50px;">
                 <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="ImagenProducto" width="100%" />
               </ion-avatar>
             </ion-note>
 
             <ion-label>
-              <h2>{{ producto.nombreProducto }}</h2>
-              <h3>
+              <h2 (click)="goProduct(producto)">{{ producto.nombreProducto }}</h2>
+              <h3 (click)="goProduct(producto)">
                 <b>${{ producto.valor }}</b> c/u
               </h3>
-              <p>{{ producto.nombreVendedor }}</p>
+              <p (click)="goProduct(producto)">{{ producto.nombreVendedor }}</p>
 
               <ion-chip class="btns-add-cart" (click)="sumProducto(-1, producto)">
                 <b>-</b>
