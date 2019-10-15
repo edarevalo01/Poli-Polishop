@@ -9,11 +9,11 @@ export class ObservablePolishop {
   private observers: IObserverPolishop[];
 
   // Flags
-  public settedUsuario: boolean;
-  public settedProductosCarrito: boolean;
-  public settedProductosPoli: boolean;
-  public settedProductosComu: boolean;
-  public settedAllProductos: boolean;
+  public settedUsuario: boolean = false;
+  public settedProductosCarrito: boolean = false;
+  public settedProductosPoli: boolean = false;
+  public settedProductosComu: boolean = false;
+  public settedAllProductos: boolean = false;
 
   // Data
   public usuario: Comprador;
@@ -34,14 +34,10 @@ export class ObservablePolishop {
   }
 
   public refrescarPeticiones() {
-    this.settedUsuario = false;
-    this.settedProductosCarrito = false;
     this.settedProductosPoli = false;
     this.settedProductosComu = false;
     this.settedAllProductos = false;
 
-    this.usuario = new Comprador();
-    this.productosCarrito = [];
     this.productosPoli = [];
     this.productosComu = [];
     this.allProductos = [];
@@ -79,6 +75,10 @@ export class ObservablePolishop {
     });
   }
 
+  public getUsuarioFirstTime() {
+    this.getUsuario();
+  }
+
   private getUsuario() {
     var idUsuario = this.service.getIdUsuario();
     if (!this.settedUsuario) {
@@ -90,6 +90,7 @@ export class ObservablePolishop {
         error => {},
         () => {
           this.informarObservers();
+          this.getProductosCarrito();
         }
       );
     } else {

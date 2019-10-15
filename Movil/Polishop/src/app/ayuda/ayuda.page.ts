@@ -12,7 +12,7 @@ import { ObservablePolishop, IObserverPolishop } from "../model/observable-polis
 })
 export class AyudaPage implements OnInit, IObserverPolishop {
   public userLogged: boolean = false;
-  //public usuario: Comprador = new Comprador();
+  public usuario: Comprador = new Comprador();
   private observablePolishop: ObservablePolishop;
   private settedUsuario: boolean = false;
 
@@ -30,31 +30,11 @@ export class AyudaPage implements OnInit, IObserverPolishop {
   }
 
   refrescarDatos() {
-    console.log("entra");
-    this.storage.get("user").then(val => {
-      if (val !== null) {
-        //Verifica si existe un id de usuario si no lo settea
-        if (this.service.getIdUsuario() === "") {
-          this.service.setIdUsuario(val);
-          console.log("aca tambien????");
-          if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
-            console.log("aca tambien");
-            this.settedUsuario = true;
-            this.nombreUsuario = this.observablePolishop.usuario.nombres.split(" ")[0];
-          }
-        } // Si si existe simplemente lo anuncia
-        else {
-          console.log("Y aca?");
-          console.log(this.observablePolishop.settedUsuario && !this.settedUsuario);
-          console.log(this.settedUsuario);
-          if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
-            console.log("Y aca??????");
-            this.settedUsuario = true;
-            this.nombreUsuario = this.observablePolishop.usuario.nombres.split(" ")[0];
-          }
-        }
-      }
-    });
+    if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+      this.usuario = this.observablePolishop.usuario;
+      this.settedUsuario = true;
+      this.nombreUsuario = this.usuario.nombres.split(" ")[0];
+    }
   }
 
   enviarAyuda() {

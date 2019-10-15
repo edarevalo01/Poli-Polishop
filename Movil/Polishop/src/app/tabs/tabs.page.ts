@@ -10,29 +10,19 @@ import { ObservablePolishop, IObserverPolishop } from "../model/observable-polis
   templateUrl: "tabs.page.html",
   styleUrls: ["tabs.page.scss"]
 })
-export class TabsPage implements IObserverPolishop {
+export class TabsPage {
   private observablePolishop: ObservablePolishop;
-  private settedUsuario: boolean = false;
 
   constructor(private service: GeneralService, private modalController: ModalController, private storage: Storage) {
     this.observablePolishop = ObservablePolishop.getInstance(service);
-    this.observablePolishop.addObserver(this);
-  }
-
-  refrescarDatos() {
     this.storage.get("user").then(val => {
       if (val !== null) {
-        //Verifica si existe un id de usuario si no lo settea
+        console.log("entra?");
         if (this.service.getIdUsuario() === "") {
           this.service.setIdUsuario(val);
-          if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
-            this.settedUsuario = true;
-          }
-        } // Si si existe simplemente lo anuncia
-        else {
-          if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
-            this.settedUsuario = true;
-          }
+          this.observablePolishop.getUsuarioFirstTime();
+        } else {
+          this.observablePolishop.getUsuarioFirstTime();
         }
       }
     });

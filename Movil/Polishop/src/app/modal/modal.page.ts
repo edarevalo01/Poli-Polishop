@@ -12,7 +12,7 @@ import { IObserverPolishop, ObservablePolishop } from "../model/observable-polis
   templateUrl: "./modal.page.html",
   styleUrls: ["./modal.page.scss"]
 })
-export class ModalPage implements OnInit, IObserverPolishop {
+export class ModalPage implements OnInit {
   public correoLogin: string;
   public contrasenaLogin: string;
   public loginUsuario: LoginUsuario;
@@ -29,7 +29,6 @@ export class ModalPage implements OnInit, IObserverPolishop {
     private storage: Storage
   ) {
     this.observablePolishop = ObservablePolishop.getInstance(service);
-    this.observablePolishop.addObserver(this);
   }
 
   refrescarDatos() {
@@ -68,9 +67,8 @@ export class ModalPage implements OnInit, IObserverPolishop {
         this.storage.set("nameLogin", this.usuarioComprador.nombres.split(" ")[0]);
         //this.service.setCompradorLogin(this.usuarioComprador);
         this.service.setIdUsuario(this.usuarioComprador.id + "");
+        this.observablePolishop.getUsuarioFirstTime();
 
-        this.observablePolishop = ObservablePolishop.getInstance(this.service);
-        this.observablePolishop.addObserver(this);
         this.cerrarModal();
       }
     );
