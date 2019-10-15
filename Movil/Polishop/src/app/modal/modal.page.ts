@@ -5,25 +5,38 @@ import { ToastController } from "@ionic/angular";
 import { GeneralService } from "../Services/general.service";
 import { LoginUsuario } from "../model/login-usuario";
 import { Comprador } from "../model/comprador";
+import { IObserverPolishop, ObservablePolishop } from "../model/observable-polishop";
 
 @Component({
   selector: "app-modal",
   templateUrl: "./modal.page.html",
   styleUrls: ["./modal.page.scss"]
 })
-export class ModalPage implements OnInit {
+export class ModalPage implements OnInit, IObserverPolishop {
   public correoLogin: string;
   public contrasenaLogin: string;
   public loginUsuario: LoginUsuario;
   public usuarioComprador: Comprador;
   public passHide: boolean = true;
 
+  private observablePolishop: ObservablePolishop;
+  private settedUsuario: boolean = false;
+
   constructor(
     private service: GeneralService,
     private modalCtrl: ModalController,
     private toastController: ToastController,
     private storage: Storage
-  ) {}
+  ) {
+    this.observablePolishop = ObservablePolishop.getInstance(service);
+    this.observablePolishop.addObserver(this);
+  }
+
+  refrescarDatos() {
+    if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+      this.settedUsuario = true;
+    }
+  }
 
   login() {
     this.service.loginUsuario(this.correoLogin).subscribe(
@@ -53,7 +66,11 @@ export class ModalPage implements OnInit {
         this.presentToast("Inicio de sesión exitoso.");
         this.storage.set("user", this.usuarioComprador.id + "");
         this.storage.set("nameLogin", this.usuarioComprador.nombres.split(" ")[0]);
-        this.service.setCompradorLogin(this.usuarioComprador);
+        //this.service.setCompradorLogin(this.usuarioComprador);
+        this.service.setIdUsuario(this.usuarioComprador.id + "");
+
+        this.observablePolishop = ObservablePolishop.getInstance(this.service);
+        this.observablePolishop.addObserver(this);
         this.cerrarModal();
       }
     );

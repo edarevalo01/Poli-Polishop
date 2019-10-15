@@ -14,6 +14,7 @@ import { Compra } from "../model/compra";
 })
 export class GeneralService {
   private usuario: Comprador = null;
+  private idUsuario: string = "";
 
   constructor(private http: HttpClient) {}
 
@@ -107,5 +108,13 @@ export class GeneralService {
 
   getCompradorLogin(): Comprador {
     return this.usuario;
+  }
+
+  setIdUsuario(idUsuario: string) {
+    this.idUsuario = idUsuario;
+  }
+
+  getIdUsuario(): string {
+    return this.idUsuario;
   }
 }

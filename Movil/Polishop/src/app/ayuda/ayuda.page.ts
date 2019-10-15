@@ -3,15 +3,19 @@ import { GeneralService } from "../Services/general.service";
 import { Comprador } from "../model/comprador";
 import { Storage } from "@ionic/storage";
 import { ToastController } from "@ionic/angular";
+import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
 
 @Component({
   selector: "app-ayuda",
   templateUrl: "./ayuda.page.html",
   styleUrls: ["./ayuda.page.scss"]
 })
-export class AyudaPage implements OnInit {
+export class AyudaPage implements OnInit, IObserverPolishop {
   public userLogged: boolean = false;
-  public usuario: Comprador = new Comprador();
+  //public usuario: Comprador = new Comprador();
+  private observablePolishop: ObservablePolishop;
+  private settedUsuario: boolean = false;
+
   public nombreUsuario: string = "";
   public ayuda: boolean = true;
   public tyc: boolean = false;
@@ -21,30 +25,36 @@ export class AyudaPage implements OnInit {
   public mensaje: string = "";
 
   constructor(private service: GeneralService, private toastController: ToastController, private storage: Storage) {
-    storage.get("user").then(val => {
+    this.observablePolishop = ObservablePolishop.getInstance(service);
+    this.observablePolishop.addObserver(this);
+  }
+
+  refrescarDatos() {
+    console.log("entra");
+    this.storage.get("user").then(val => {
       if (val !== null) {
-        if (this.service.getCompradorLogin() === null) {
-          this.getInfoCompradorById(val);
-        } else {
-          this.usuario = this.service.getCompradorLogin();
-          this.userLogged = true;
-          this.nombreUsuario = this.usuario.nombres.split(" ")[0];
+        //Verifica si existe un id de usuario si no lo settea
+        if (this.service.getIdUsuario() === "") {
+          this.service.setIdUsuario(val);
+          console.log("aca tambien????");
+          if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+            console.log("aca tambien");
+            this.settedUsuario = true;
+            this.nombreUsuario = this.observablePolishop.usuario.nombres.split(" ")[0];
+          }
+        } // Si si existe simplemente lo anuncia
+        else {
+          console.log("Y aca?");
+          console.log(this.observablePolishop.settedUsuario && !this.settedUsuario);
+          console.log(this.settedUsuario);
+          if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+            console.log("Y aca??????");
+            this.settedUsuario = true;
+            this.nombreUsuario = this.observablePolishop.usuario.nombres.split(" ")[0];
+          }
         }
       }
     });
-  }
-
-  getInfoCompradorById(id: number) {
-    this.service.getInfoCompradorById(id).subscribe(
-      infoCompradorObs => {
-        this.usuario = infoCompradorObs;
-      },
-      error => {},
-      () => {
-        this.userLogged = true;
-        this.nombreUsuario = this.usuario.nombres.split(" ")[0];
-      }
-    );
   }
 
   enviarAyuda() {
