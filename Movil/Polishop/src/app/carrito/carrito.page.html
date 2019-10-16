@@ -7,10 +7,10 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!userLogged" style=" width: 100%; height: 100%;">
+  <div *ngIf="!settedCarrito" style=" width: 100%; height: 100%;">
     <img src="assets/system/carrito.png" alt="No hay usuario logueado" class="img-carrito" />
   </div>
-  <div *ngIf="userLogged">
+  <div *ngIf="settedCarrito">
     <ion-item class="item-titulos">
       <ion-label>
         <h2>Carrito de compras</h2>
@@ -18,12 +18,14 @@
     </ion-item>
     <ion-item-divider lines="full" class="item-titulos-precio" sticky>
       <ion-label>
-        <h3>Total:({{ productosCarrito.length }} Productos): ${{ precioTotal }}</h3>
+        <h3>Total:({{ observablePolishop.productosCarrito.length }} Productos): ${{ observablePolishop.precioTotal }}</h3>
       </ion-label>
-      <ion-button slot="end" size="small" class="comprar" *ngIf="productosCarrito.length" (click)="realizarCompra()">Comprar</ion-button>
+      <ion-button slot="end" size="small" class="comprar" *ngIf="observablePolishop.productosCarrito.length" (click)="realizarCompra()"
+        >Comprar</ion-button
+      >
     </ion-item-divider>
-    <div *ngIf="productosCarrito.length">
-      <div *ngFor="let producto of productosCarrito">
+    <div *ngIf="observablePolishop.productosCarrito.length">
+      <div *ngFor="let producto of observablePolishop.productosCarrito">
         <ion-item-sliding class="ion-activatable">
           <ion-item lines="none" class="producto">
             <ion-note slot="start" (click)="goProduct(producto)">
@@ -68,7 +70,7 @@
         <ion-item-divider></ion-item-divider>
       </div>
     </div>
-    <div *ngIf="!productosCarrito.length" style=" width: 100%; height: 100%;">
+    <div *ngIf="!observablePolishop.productosCarrito.length" style=" width: 100%; height: 100%;">
       <img src="assets/system/carrito.png" alt="No hay usuario logueado" class="img-carrito" />
     </div>
   </div>

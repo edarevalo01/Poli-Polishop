@@ -5,39 +5,30 @@ import { Storage } from "@ionic/storage";
 import { GeneralService } from "../Services/general.service";
 import { Comprador } from "../model/comprador";
 import { LinksPage } from "../links/links.page";
+import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
 
 @Component({
   selector: "app-cuenta",
   templateUrl: "cuenta.page.html",
   styleUrls: ["cuenta.page.scss"]
 })
-export class CuentaPage {
+export class CuentaPage implements IObserverPolishop {
+  private observablePolishop: ObservablePolishop;
+  private settedUsuario: boolean = false;
   public userLogged: boolean = false;
   public usuario: Comprador = new Comprador();
 
   constructor(private services: GeneralService, private modalController: ModalController, private storage: Storage) {
-    storage.get("user").then(val => {
-      if (val !== null) {
-        if (this.services.getCompradorLogin() === null) {
-          this.getInfoCompradorById(val);
-        } else {
-          this.usuario = this.services.getCompradorLogin();
-          this.userLogged = true;
-        }
-      }
-    });
+    this.observablePolishop = ObservablePolishop.getInstance(services);
+    this.observablePolishop.addObserver(this);
   }
 
-  getInfoCompradorById(id: number) {
-    this.services.getInfoCompradorById(id).subscribe(
-      infoCompradorObs => {
-        this.usuario = infoCompradorObs;
-      },
-      error => {},
-      () => {
-        this.userLogged = true;
-      }
-    );
+  refrescarDatos() {
+    if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+      this.usuario = this.observablePolishop.usuario;
+      this.userLogged = true;
+      this.settedUsuario = true;
+    }
   }
 
   imagenDefecto() {
@@ -47,10 +38,13 @@ export class CuentaPage {
   async iniciarSesion() {
     if (this.userLogged) {
       this.userLogged = false;
+      this.settedUsuario = false;
       this.storage.clear();
       this.usuario = new Comprador();
       this.services.setCompradorLogin(null);
+      this.services.setIdUsuario("");
       this.imagenDefecto();
+      this.observablePolishop.deleteSesionUsuario();
     } else {
       const modal = await this.modalController.create({
         component: ModalPage,

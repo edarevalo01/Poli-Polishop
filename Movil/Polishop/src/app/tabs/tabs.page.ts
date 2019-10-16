@@ -17,7 +17,6 @@ export class TabsPage {
     this.observablePolishop = ObservablePolishop.getInstance(service);
     this.storage.get("user").then(val => {
       if (val !== null) {
-        console.log("entra?");
         if (this.service.getIdUsuario() === "") {
           this.service.setIdUsuario(val);
           this.observablePolishop.getUsuarioFirstTime();

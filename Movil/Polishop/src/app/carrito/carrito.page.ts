@@ -7,17 +7,19 @@ import { ModalPage } from "../modal/modal.page";
 import { ProductoCarrito } from "../model/producto-carrito";
 import { Router } from "@angular/router";
 import { CompraPage } from "../compra/compra.page";
+import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
+import { Producto } from "../model/producto";
 
 @Component({
   selector: "app-carrito",
   templateUrl: "carrito.page.html",
   styleUrls: ["carrito.page.scss"]
 })
-export class CarritoPage {
-  public userLogged: boolean = false;
+export class CarritoPage implements IObserverPolishop {
+  private observablePolishop: ObservablePolishop;
+  private settedUsuario: boolean = false;
+  private settedCarrito: boolean = false;
   public usuario: Comprador = new Comprador();
-  public productosCarrito: ProductoCarrito[] = [];
-  public precioTotal: number = 0;
 
   constructor(
     private service: GeneralService,
@@ -27,39 +29,30 @@ export class CarritoPage {
     private router: Router,
     public alertController: AlertController
   ) {
-    storage.get("user").then(val => {
-      if (val !== null) {
-        if (this.service.getCompradorLogin() === null) {
-          this.getInfoCompradorById(val);
-        } else {
-          this.usuario = this.service.getCompradorLogin();
-          this.userLogged = true;
-          this.getProductosCarrito();
-        }
-      }
-    });
+    this.observablePolishop = ObservablePolishop.getInstance(service);
+    this.observablePolishop.addObserver(this);
   }
 
-  getProductosCarrito() {
-    this.precioTotal = 0;
-    this.service.getProductosCarrito(this.usuario.id).subscribe(
-      productosObs => {
-        this.productosCarrito = productosObs;
-      },
-      error => {},
-      () => {
-        this.productosCarrito.forEach(producto => {
-          this.precioTotal += parseInt(producto.valor) * producto.cantidad;
-        });
-      }
-    );
+  refrescarDatos() {
+    if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+      this.usuario = this.observablePolishop.usuario;
+      this.settedUsuario = true;
+    } else if (!this.observablePolishop.settedUsuario && this.settedUsuario) {
+      this.settedUsuario = false;
+    }
+
+    if (this.observablePolishop.settedProductosCarrito && !this.settedCarrito) {
+      this.settedCarrito = true;
+    } else if (!this.observablePolishop.settedProductosCarrito && this.settedCarrito) {
+      this.settedCarrito = false;
+    }
   }
 
   sumProducto(cantidad: number, producto: ProductoCarrito) {
     var cantAct = producto.cantidad;
     if (cantAct + cantidad <= 0) return;
     else {
-      this.productosCarrito.forEach(prodFor => {
+      this.observablePolishop.productosCarrito.forEach(prodFor => {
         if (producto.idProducto === prodFor.idProducto) {
           prodFor.cantidad += cantidad;
           this.service.saveCarritoConProducto(prodFor.idProducto, this.usuario.id, cantidad).subscribe(
@@ -67,8 +60,8 @@ export class CarritoPage {
             error => {},
             () => {
               this.presentToast("Producto agregado.");
-              if (cantidad < 0) this.precioTotal -= parseInt(prodFor.valor);
-              else if (cantidad > 0) this.precioTotal += parseInt(prodFor.valor);
+              if (cantidad < 0) this.observablePolishop.precioTotal -= parseInt(prodFor.valor);
+              else if (cantidad > 0) this.observablePolishop.precioTotal += parseInt(prodFor.valor);
             }
           );
         }
@@ -96,7 +89,15 @@ export class CarritoPage {
               () => {
                 //this.precioTotal -= parseInt(producto.valor) * producto.cantidad;
                 this.presentToast("Producto eliminado del carrito.");
-                this.getProductosCarrito();
+                var copyProductos = this.observablePolishop.productosCarrito;
+                this.observablePolishop.productosCarrito = [];
+                for (let i = 0; i < copyProductos.length; i++) {
+                  if (producto.idProducto === copyProductos[i].idProducto && producto.idCarrito === copyProductos[i].idCarrito) {
+                  } else {
+                    this.observablePolishop.productosCarrito.push(copyProductos[i]);
+                  }
+                }
+                this.observablePolishop.precioTotal -= parseInt(producto.valor) * producto.cantidad;
               }
             );
           }
@@ -105,19 +106,6 @@ export class CarritoPage {
       translucent: true
     });
     await alert.present();
-  }
-
-  getInfoCompradorById(id: number) {
-    this.service.getInfoCompradorById(id).subscribe(
-      infoCompradorObs => {
-        this.usuario = infoCompradorObs;
-      },
-      error => {},
-      () => {
-        this.userLogged = true;
-        this.getProductosCarrito();
-      }
-    );
   }
 
   async presentToast(mensaje: string) {
@@ -142,8 +130,8 @@ export class CarritoPage {
     const modal = await this.modalController.create({
       component: CompraPage,
       componentProps: {
-        totalProductos: this.productosCarrito.length,
-        totalPrecio: this.precioTotal,
+        totalProductos: this.observablePolishop.productosCarrito.length,
+        totalPrecio: this.observablePolishop.precioTotal,
         idComprador: this.usuario.id
       }
     });
@@ -151,27 +139,10 @@ export class CarritoPage {
     modal.onDidDismiss().then(data => {
       if (data.data.compra !== undefined) {
         if (data.data.compra) {
-          //Se realiza la compra
-        } else {
-          //No se realiza compra
+          this.observablePolishop.productosCarrito = [];
+          this.observablePolishop.productosCarrito = [];
+          this.observablePolishop.precioTotal = 0;
         }
-      }
-    });
-    return await modal.present();
-  }
-
-  //FIXME: La solución para que cargue es probable que sea el observable, toca esperar
-  async login() {
-    const modal = await this.modalController.create({
-      component: ModalPage,
-      componentProps: {}
-    });
-
-    modal.onDidDismiss().then(data => {
-      if (data.data.user !== undefined) {
-        this.usuario = data.data.user;
-        this.userLogged = true;
-        this.service.setCompradorLogin(this.usuario);
       }
     });
     return await modal.present();

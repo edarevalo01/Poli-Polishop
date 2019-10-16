@@ -7,6 +7,7 @@ import { Storage } from "@ionic/storage";
 export class ObservablePolishop {
   static instance: ObservablePolishop;
   private observers: IObserverPolishop[];
+  public precioTotal: number = 0;
 
   // Flags
   public settedUsuario: boolean = false;
@@ -75,6 +76,15 @@ export class ObservablePolishop {
     });
   }
 
+  public deleteSesionUsuario() {
+    this.usuario = new Comprador();
+    this.productosCarrito = [];
+    this.settedProductosCarrito = false;
+    this.settedUsuario = false;
+    this.precioTotal = 0;
+    this.informarObservers();
+  }
+
   public getUsuarioFirstTime() {
     this.getUsuario();
   }
@@ -109,6 +119,9 @@ export class ObservablePolishop {
         error => {},
         () => {
           this.informarObservers();
+          this.productosCarrito.forEach(producto => {
+            this.precioTotal += parseInt(producto.valor) * producto.cantidad;
+          });
         }
       );
     } else {

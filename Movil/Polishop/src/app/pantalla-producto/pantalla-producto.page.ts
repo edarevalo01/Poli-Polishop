@@ -8,13 +8,16 @@ import { Storage } from "@ionic/storage";
 import { ToastController, ModalController, AlertController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
 import { BuscarPage } from "../buscar/buscar.page";
+import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
 
 @Component({
   selector: "app-pantalla-producto",
   templateUrl: "./pantalla-producto.page.html",
   styleUrls: ["./pantalla-producto.page.scss"]
 })
-export class PantallaProductoPage implements OnInit {
+export class PantallaProductoPage implements OnInit, IObserverPolishop {
+  private observablePolishop: ObservablePolishop;
+  private settedUsuario: boolean = false;
   public producto: Producto = new Producto();
   public imgs = ["p1.png", "p2.png", "p3.png", "p4.png", "p5.png"];
   public cargado: boolean = false;
@@ -32,17 +35,17 @@ export class PantallaProductoPage implements OnInit {
     private modalController: ModalController,
     private alertController: AlertController
   ) {
-    storage.get("user").then(val => {
-      if (val !== null) {
-        if (this.service.getCompradorLogin() === null) {
-          this.getInfoCompradorById(val);
-        } else {
-          this.usuario = this.service.getCompradorLogin();
-          this.userLogged = true;
-        }
-      }
-    });
+    this.observablePolishop = ObservablePolishop.getInstance(service);
+    this.observablePolishop.addObserver(this);
     this.getParams();
+  }
+
+  refrescarDatos() {
+    if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+      this.usuario = this.observablePolishop.usuario;
+      this.settedUsuario = true;
+      this.userLogged = true;
+    }
   }
 
   cargarProducto(productoId: string) {
@@ -68,18 +71,6 @@ export class PantallaProductoPage implements OnInit {
     );
   }
 
-  getInfoCompradorById(id: number) {
-    this.service.getInfoCompradorById(id).subscribe(
-      infoCompradorObs => {
-        this.usuario = infoCompradorObs;
-      },
-      error => {},
-      () => {
-        this.userLogged = true;
-      }
-    );
-  }
-
   async login() {
     const modal = await this.modalController.create({
       component: ModalPage,
@@ -91,6 +82,7 @@ export class PantallaProductoPage implements OnInit {
         this.usuario = data.data.user;
         this.userLogged = true;
         this.service.setCompradorLogin(this.usuario);
+        this.service.setIdUsuario(this.usuario.id + "");
       }
     });
     return await modal.present();
@@ -101,7 +93,18 @@ export class PantallaProductoPage implements OnInit {
       agregado => {},
       error => {},
       () => {
+        // FIXME: Hay que verificar que el producto este agregado al carrito o no
         this.presentToast("Producto agregado satisfactoriamente.");
+        this.observablePolishop.productosCarrito.push({
+          idProducto: this.producto.id,
+          nombreProducto: this.producto.nombre,
+          nombreVendedor: this.producto.nombre,
+          valor: this.producto.precio,
+          cantidad: 1,
+          urlCarpetaImagenes: this.producto.urlCarpetaImagenes,
+          idCarrito: 0,
+          idCompra: 0
+        });
       }
     );
   }

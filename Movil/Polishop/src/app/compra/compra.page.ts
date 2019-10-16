@@ -65,6 +65,7 @@ export class CompraPage implements OnInit {
         if (respuesta.status === "fail") this.presentToast("Ha ocurrido un error al realizar la compra.");
         else {
           this.presentToast("¡Felicidades! Compra realizada.");
+          this.compraRealizada = true;
           this.compra = new Compra();
           this.cerrarModal();
         }

@@ -12,9 +12,9 @@ import { ObservablePolishop, IObserverPolishop } from "../model/observable-polis
 })
 export class AyudaPage implements OnInit, IObserverPolishop {
   public userLogged: boolean = false;
-  public usuario: Comprador = new Comprador();
   private observablePolishop: ObservablePolishop;
   private settedUsuario: boolean = false;
+  public usuario: Comprador = new Comprador();
 
   public nombreUsuario: string = "";
   public ayuda: boolean = true;
@@ -33,7 +33,10 @@ export class AyudaPage implements OnInit, IObserverPolishop {
     if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
       this.usuario = this.observablePolishop.usuario;
       this.settedUsuario = true;
-      this.nombreUsuario = this.usuario.nombres.split(" ")[0];
+      this.nombreUsuario = " " + this.usuario.nombres.split(" ")[0];
+    } else if (!this.observablePolishop.settedUsuario && this.settedUsuario) {
+      this.settedUsuario = false;
+      this.nombreUsuario = "";
     }
   }
 
