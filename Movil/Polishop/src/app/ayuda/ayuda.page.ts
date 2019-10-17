@@ -19,6 +19,8 @@ export class AyudaPage implements OnInit, IObserverPolishop {
   public nombreUsuario: string = "";
   public ayuda: boolean = true;
   public tyc: boolean = false;
+  public showEaster: boolean = false;
+  public countEaster: number = 0;
 
   public nombre: string = "";
   public correo: string = "";
@@ -45,6 +47,18 @@ export class AyudaPage implements OnInit, IObserverPolishop {
     this.correo = "";
     this.mensaje = "";
     this.presentToast("En poco tiempo estaremos en contacto contigo.");
+  }
+
+  easterEgg() {
+    if (this.countEaster < 10) {
+      this.countEaster++;
+    } else {
+      this.countEaster = 0;
+      this.showEaster = true;
+      setTimeout(() => {
+        this.showEaster = false;
+      }, 12000);
+    }
   }
 
   async presentToast(mensaje: string) {
