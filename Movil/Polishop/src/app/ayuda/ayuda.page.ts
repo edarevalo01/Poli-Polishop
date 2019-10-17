@@ -57,7 +57,7 @@ export class AyudaPage implements OnInit, IObserverPolishop {
       this.showEaster = true;
       setTimeout(() => {
         this.showEaster = false;
-      }, 12000);
+      }, 2000);
     }
   }
 
