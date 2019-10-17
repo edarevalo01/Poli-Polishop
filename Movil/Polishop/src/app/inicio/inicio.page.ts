@@ -3,39 +3,30 @@ import { GeneralService } from "../Services/general.service";
 import { Producto } from "../model/producto";
 import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
+import { ObservablePolishop, IObserverPolishop } from '../model/observable-polishop';
 
 @Component({
   selector: "app-inicio",
   templateUrl: "inicio.page.html",
   styleUrls: ["inicio.page.scss"]
 })
-export class InicioPage {
-  public productosPoli: Producto[] = [];
-  public productosComu: Producto[] = [];
+export class InicioPage implements IObserverPolishop{
+  private observablePolishop: ObservablePolishop;
+  private settedProductosPoli: boolean = false;
+  private settedProductosComu: boolean = false;
 
   constructor(private service: GeneralService, private router: Router, private storage: Storage) {
-    this.getProductosPoli();
-    this.getProductosComunidad();
+    this.observablePolishop = ObservablePolishop.getInstance(service);
+    this.observablePolishop.addObserver(this);
   }
 
-  getProductosPoli() {
-    this.service.getProductosByDependencia("Poli").subscribe(
-      poliObs => {
-        this.productosPoli = poliObs;
-      },
-      error => {},
-      () => {}
-    );
-  }
-
-  getProductosComunidad() {
-    this.service.getProductosByDependencia("Comunidad").subscribe(
-      comunidadObs => {
-        this.productosComu = comunidadObs;
-      },
-      error => {},
-      () => {}
-    );
+  refrescarDatos() {
+    if(this.observablePolishop.productosPoli && !this.settedProductosPoli){
+      this.settedProductosPoli = true;
+    }
+    if(this.observablePolishop.productosComu && !this.settedProductosComu){
+      this.settedProductosComu = true;
+    }
   }
 
   goProduct(producto: Producto) {

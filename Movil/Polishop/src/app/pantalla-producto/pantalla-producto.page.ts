@@ -95,16 +95,7 @@ export class PantallaProductoPage implements OnInit, IObserverPolishop {
       () => {
         // FIXME: Hay que verificar que el producto este agregado al carrito o no
         this.presentToast("Producto agregado satisfactoriamente.");
-        this.observablePolishop.productosCarrito.push({
-          idProducto: this.producto.id,
-          nombreProducto: this.producto.nombre,
-          nombreVendedor: this.producto.nombre,
-          valor: this.producto.precio,
-          cantidad: 1,
-          urlCarpetaImagenes: this.producto.urlCarpetaImagenes,
-          idCarrito: 0,
-          idCompra: 0
-        });
+        this.observablePolishop.addProductoACarrito(this.producto);
       }
     );
   }

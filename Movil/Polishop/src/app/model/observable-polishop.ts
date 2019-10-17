@@ -109,6 +109,7 @@ export class ObservablePolishop {
   }
 
   private getProductosCarrito() {
+    this.precioTotal = 0;
     var idUsuario = this.service.getIdUsuario();
     if (!this.settedProductosCarrito) {
       this.service.getProductosCarrito(+idUsuario).subscribe(
@@ -178,6 +179,11 @@ export class ObservablePolishop {
     } else {
       this.informarObservers();
     }
+  }
+
+  public addProductoACarrito(producto: Producto) {
+    this.settedProductosCarrito = false;
+    this.getProductosCarrito();
   }
 }
 
