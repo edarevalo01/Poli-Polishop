@@ -25,11 +25,11 @@
       >
     </ion-item-divider>
     <div *ngIf="observablePolishop.productosCarrito.length">
-      <div *ngFor="let producto of observablePolishop.productosCarrito">
+      <div *ngFor="let producto of observablePolishop.productosCarrito" class="card-item-producto">
         <ion-item-sliding class="ion-activatable">
           <ion-item lines="none" class="producto">
-            <ion-note slot="start" (click)="goProduct(producto)">
-              <ion-avatar style="width: 50px; height: 50px;">
+            <ion-note slot="start" >
+              <ion-avatar class='img-animation'>
                 <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="ImagenProducto" width="100%" />
               </ion-avatar>
             </ion-note>
@@ -42,7 +42,7 @@
               <p (click)="goProduct(producto)">{{ producto.nombreVendedor }}</p>
 
               <ion-chip class="btns-add-cart" (click)="sumProducto(-1, producto)">
-                <b>-</b>
+                <b style="font-size: 18px;">-</b>
               </ion-chip>
 
               <ion-chip outline="true" class="btns-add-cart-number">

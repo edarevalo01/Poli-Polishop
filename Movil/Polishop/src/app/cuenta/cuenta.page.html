@@ -24,7 +24,7 @@
     <div style="margin-top: 13%; margin-bottom: 5%">
       <ion-item lines="none" class="ion-text-center" style="margin-top: 70px">
         <ion-label *ngIf="userLogged">
-          <h1 style="margin-bottom: 5%">{{ usuario.nombres }} {{ usuario.apellidos }}</h1>
+          <h1 style="margin-bottom: 5%; text-overflow: ellipsis; ">{{ usuario.nombres }} {{ usuario.apellidos }}</h1>
           <p>Username: {{ usuario.username }}</p>
           <p>{{ usuario.correo }}</p>
           <p>{{ usuario.ciudad }}</p>
