@@ -18,7 +18,7 @@
       </ion-thumbnail>
       <ion-label>
         <h3>{{ producto.nombre }}</h3>
-        <p>${{ producto.precio }} - {{ producto.nombreVendedor }}</p>
+        <p>{{ +producto.precio | currency: "USD":"symbol":"1.0-0" }} - {{ producto.nombreVendedor }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

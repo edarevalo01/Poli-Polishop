@@ -157,6 +157,18 @@ export class PantallaProductoPage implements OnInit, IObserverPolishop {
     return await modal.present();
   }
 
+  doRefresh(event) {
+    this.service.getProductoComentarios(this.producto.id).subscribe(
+      comentariosObs => {
+        this.comentarios = comentariosObs;
+      },
+      error => {},
+      () => {
+        event.target.complete();
+      }
+    );
+  }
+
   ngOnInit() {}
 
   slideOpts = {

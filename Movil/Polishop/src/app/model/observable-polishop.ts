@@ -47,6 +47,12 @@ export class ObservablePolishop {
     this.getAllProductos();
   }
 
+  public refrescarCarrito() {
+    this.settedProductosCarrito = false;
+    this.productosCarrito = [];
+    this.getProductosCarrito();
+  }
+
   /**
    * Obtener instancia unica (Singleton).
    * @param service

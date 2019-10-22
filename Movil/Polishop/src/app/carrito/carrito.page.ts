@@ -147,4 +147,11 @@ export class CarritoPage implements IObserverPolishop {
     });
     return await modal.present();
   }
+
+  doRefresh(event) {
+    this.observablePolishop.refrescarCarrito();
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+  }
 }

@@ -18,6 +18,15 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Arrastrar para refrescar"
+      refreshingSpinner="circles"
+      refreshingText="Cargando..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="cargado">
     <!---------------------Imagenes Producto--------------------->
     <ion-slides scrollbar="true" [options]="slideOpts">
@@ -29,7 +38,7 @@
     <ion-item lines="none">
       <h3 style="padding: 0% 3% 0% 3%; color: #003057; font-weight: bold">{{ producto.nombre }}</h3>
     </ion-item>
-    <h4 style="padding-left: 7%">Precio: ${{ producto.precio }}</h4>
+    <h4 style="padding-left: 7%">Precio: {{ +producto.precio | currency: "USD":"symbol":"1.0-0" }}</h4>
     <p style="padding-left: 7%; color: #9c9c9c; font-size: 12px">Fecha de publicación: {{ producto.fechaPublicacion }}</p>
     <ion-item style="padding: 0% 5% 0% 1%">
       <ion-label>

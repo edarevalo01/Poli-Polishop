@@ -7,6 +7,15 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Arrastrar para refrescar"
+      refreshingSpinner="circles"
+      refreshingText="Cargando..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="!settedCarrito" style=" width: 100%; height: 100%;">
     <img src="assets/system/carrito.png" alt="No hay usuario logueado" class="img-carrito" />
   </div>
@@ -18,7 +27,10 @@
     </ion-item>
     <ion-item-divider lines="full" class="item-titulos-precio" sticky>
       <ion-label>
-        <h3>Total:({{ observablePolishop.productosCarrito.length }} Productos): ${{ observablePolishop.precioTotal }}</h3>
+        <h3>
+          Total:({{ observablePolishop.productosCarrito.length }} Productos):
+          {{ observablePolishop.precioTotal | currency: "USD":"symbol":"1.0-0" }}
+        </h3>
       </ion-label>
       <ion-button slot="end" size="small" class="comprar" *ngIf="observablePolishop.productosCarrito.length" (click)="realizarCompra()"
         >Comprar</ion-button
@@ -28,8 +40,8 @@
       <div *ngFor="let producto of observablePolishop.productosCarrito" class="card-item-producto">
         <ion-item-sliding class="ion-activatable">
           <ion-item lines="none" class="producto">
-            <ion-note slot="start" >
-              <ion-avatar class='img-animation'>
+            <ion-note slot="start">
+              <ion-avatar class="img-animation">
                 <img src="{{ producto.urlCarpetaImagenes }}/p1.png" alt="ImagenProducto" width="100%" />
               </ion-avatar>
             </ion-note>
@@ -37,7 +49,7 @@
             <ion-label>
               <h2 (click)="goProduct(producto)">{{ producto.nombreProducto }}</h2>
               <h3 (click)="goProduct(producto)">
-                <b>${{ producto.valor }}</b> c/u
+                <b>{{ +producto.valor | currency: "USD":"symbol":"1.0-0" }}</b> c/u
               </h3>
               <p (click)="goProduct(producto)">{{ producto.nombreVendedor }}</p>
 
