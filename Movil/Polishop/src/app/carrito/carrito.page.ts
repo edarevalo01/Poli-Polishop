@@ -16,9 +16,9 @@ import { Producto } from "../model/producto";
   styleUrls: ["carrito.page.scss"]
 })
 export class CarritoPage implements IObserverPolishop {
-  private observablePolishop: ObservablePolishop;
-  private settedUsuario: boolean = false;
-  private settedCarrito: boolean = false;
+  public observablePolishop: ObservablePolishop;
+  public settedUsuario: boolean = false;
+  public settedCarrito: boolean = false;
   public usuario: Comprador = new Comprador();
 
   constructor(

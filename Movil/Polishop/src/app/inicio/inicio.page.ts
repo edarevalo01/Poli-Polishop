@@ -3,17 +3,17 @@ import { GeneralService } from "../Services/general.service";
 import { Producto } from "../model/producto";
 import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
-import { ObservablePolishop, IObserverPolishop } from '../model/observable-polishop';
+import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
 
 @Component({
   selector: "app-inicio",
   templateUrl: "inicio.page.html",
   styleUrls: ["inicio.page.scss"]
 })
-export class InicioPage implements IObserverPolishop{
-  private observablePolishop: ObservablePolishop;
-  private settedProductosPoli: boolean = false;
-  private settedProductosComu: boolean = false;
+export class InicioPage implements IObserverPolishop {
+  public observablePolishop: ObservablePolishop;
+  public settedProductosPoli: boolean = false;
+  public settedProductosComu: boolean = false;
 
   constructor(private service: GeneralService, private router: Router, private storage: Storage) {
     this.observablePolishop = ObservablePolishop.getInstance(service);
@@ -21,10 +21,10 @@ export class InicioPage implements IObserverPolishop{
   }
 
   refrescarDatos() {
-    if(this.observablePolishop.productosPoli && !this.settedProductosPoli){
+    if (this.observablePolishop.productosPoli && !this.settedProductosPoli) {
       this.settedProductosPoli = true;
     }
-    if(this.observablePolishop.productosComu && !this.settedProductosComu){
+    if (this.observablePolishop.productosComu && !this.settedProductosComu) {
       this.settedProductosComu = true;
     }
   }

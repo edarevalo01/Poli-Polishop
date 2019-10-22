@@ -11,16 +11,27 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ModalPage } from "./modal/modal.page";
-import { LinksPage } from "./links/links.page";
-import { CompraPage } from "./compra/compra.page";
-import { BuscarPage } from "./buscar/buscar.page";
-import { SafePipe } from "./pipes/safe.pipe";
+
+import { ModalPageModule } from "./modal/modal.module";
+import { LinksPageModule } from "./links/links.module";
+import { CompraPageModule } from "./compra/compra.module";
+import { BuscarPageModule } from "./buscar/buscar.module";
 
 @NgModule({
-  declarations: [AppComponent, ModalPage, LinksPage, BuscarPage, CompraPage, SafePipe],
-  entryComponents: [ModalPage, LinksPage, CompraPage, BuscarPage],
-  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot()],
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    FormsModule,
+    IonicStorageModule.forRoot(),
+    ModalPageModule,
+    LinksPageModule,
+    CompraPageModule,
+    BuscarPageModule
+  ],
   providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
 })

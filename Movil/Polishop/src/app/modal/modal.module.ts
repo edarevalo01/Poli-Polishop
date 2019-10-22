@@ -1,29 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { ModalPage } from './modal.page';
+import { ModalPage } from "./modal.page";
 
-import { InputTextModule } from 'primeng/inputtext';
+import { InputTextModule } from "primeng/inputtext";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: ModalPage
   }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes),
-    InputTextModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule.forChild(routes), InputTextModule],
   declarations: [ModalPage]
 })
 export class ModalPageModule {}
