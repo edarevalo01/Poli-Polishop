@@ -19,6 +19,14 @@
   --ion-color-poli-shade: #00233f;
   --ion-color-poli-tint: #026dc5;
 
+  /** polidos **/
+  --ion-color-polidos: #0d3353;
+  --ion-color-polidos-rgb: 56, 128, 255;
+  --ion-color-polidos-contrast: #ffffff;
+  --ion-color-polidos-contrast-rgb: 255, 255, 255;
+  --ion-color-polidos-shade: #0d3353;
+  --ion-color-polidos-tint: #0d3353;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -99,6 +107,15 @@
   --ion-color-contrast-rgb: var(--ion-color-poli-contrast-rgb) !important;
   --ion-color-shade: var(--ion-color-poli-shade) !important;
   --ion-color-tint: var(--ion-color-poli-tint) !important;
+}
+
+.ion-color-polidos {
+  --ion-color-base: var(--ion-color-polidos) !important;
+  --ion-color-base-rgb: var(--ion-color-polidos-rgb) !important;
+  --ion-color-contrast: var(--ion-color-polidos-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-polidos-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-polidos-shade) !important;
+  --ion-color-tint: var(--ion-color-polidos-tint) !important;
 }
 
 .ion-color-transparent {

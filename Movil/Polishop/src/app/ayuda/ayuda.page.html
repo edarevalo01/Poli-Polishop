@@ -7,14 +7,11 @@
 </ion-header>
 
 <ion-content>
-  <img 
-  src="assets/system/easteregg.png" 
-  *ngIf='showEaster' 
-  class='easter-egg'
-  alt="easteregg" />
+  <img src="assets/system/logoPoli.png" alt="logoPoli" width="100%" />
+  <img src="assets/system/easteregg.png" *ngIf="showEaster" class="easter-egg" alt="easteregg" />
 
   <ion-item lines="full">
-    <h2 style="padding: 0% 2%">Hola{{ nombreUsuario }}. ¿En qué podemos ayudarte?</h2>
+    <h2 style="padding: 0% 1%">Hola{{ nombreUsuario }}. ¿En qué podemos ayudarte?</h2>
   </ion-item>
 
   <ion-button size="large" expand="full" (click)="ayuda = !ayuda; tyc = !tyc">
@@ -372,7 +369,7 @@
 </ion-content>
 
 <ion-footer>
-  <div style="text-align: center; font-size: 12px; color: #9c9c9c;" (click)='easterEgg()'>
+  <div style="text-align: center; font-size: 12px; color: #9c9c9c;" (click)="easterEgg()">
     <span>Institución Universitaria Politécnico Grancolombiano Bogotá D.C.</span><br />
     <span>Línea información programas académicos y admisiones (571) 744 07 40.</span><br />
     <span>Línea de Atención Nacional: 018000 180 779</span><br />

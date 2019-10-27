@@ -1,61 +1,71 @@
 <!-------------------------------------------------HEADER UNO---------------------------------------------------->
-<div class='header_uno'>
-  <div class='img_logo_container'>
-    <img src="assets/system/LogoHeader.png" alt="logo_header" width="180px" (click)='goToInicio()'>
+<div class="header_uno">
+  <div class="img_logo_container">
+    <img src="assets/system/LogoHeader.png" alt="logo_header" width="230px" (click)="goToInicio()" />
   </div>
-  <div class='input_buscar'>
-    <input matInput placeholder="Buscar" type="text" id="in-buscar" [(ngModel)]='searchProduct' (keydown.enter)='onKeydown($event)'>
+  <div class="input_buscar">
+    <input matInput placeholder="Buscar" type="text" id="in-buscar" [(ngModel)]="searchProduct" (keydown.enter)="onKeydown($event)" />
   </div>
-  <div class='button_buscar'>
-    <button mat-button id='btn-buscar' (click)='btnSearch()'>
+  <div class="button_buscar">
+    <button mat-button id="btn-buscar" (click)="btnSearch()">
       <mat-icon aria-label="Example icon-button with a heart icon">search</mat-icon>
     </button>
   </div>
-  <div class='button_ingresar'>
-    <button mat-button class="btn btn-outline-primary" id='btn-ingresar' data-toggle="modal" data-target="#loginSection">
+  <div class="button_ingresar">
+    <button mat-button class="btn btn-outline-primary" id="btn-ingresar" data-toggle="modal" data-target="#loginSection">
       <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
-      <b>{{loginText}}</b> 
+      <b>{{ loginText }}</b>
     </button>
   </div>
-  <div class='button_carrito' *ngIf='carritoHabilitado()'>
-    <button type="button" class="btn btn-outline-primary" id='icon-btn' routerLink='shopping-cart' (click)='goShoppingCart()'>
-      <mat-icon aria-label="Example icon-button with a heart icon" class="iconn">shopping_cart</mat-icon>    
+  <div class="button_carrito" *ngIf="carritoHabilitado()">
+    <button type="button" class="btn btn-outline-primary" id="icon-btn" routerLink="shopping-cart" (click)="goShoppingCart()">
+      <mat-icon aria-label="Example icon-button with a heart icon" class="iconn">shopping_cart</mat-icon>
     </button>
   </div>
 </div>
 <!-------------------------------------------------HEADER DOS---------------------------------------------------->
-<div class='header_dos'>
-  <div class='lista_categorias'>
-    <button type="button" class="btn btn-outline-primary" [matMenuTriggerFor]="menu1" id='lis-categorias' aria-label="LISTA CATEGORÍAS"><b>LISTA CATEGORÍAS</b></button>
+<div class="header_dos">
+  <div class="lista_categorias">
+    <button type="button" class="btn btn-outline-primary" [matMenuTriggerFor]="menu1" id="lis-categorias" aria-label="LISTA CATEGORÍAS">
+      <b>LISTA CATEGORÍAS</b>
+    </button>
     <mat-menu #menu1="matMenu" class="dropdownn">
-      <div id='categorias_parent' class="row notification-row">
-        <mat-nav-list id='categorias_children'>
+      <div id="categorias_parent" class="row notification-row">
+        <mat-nav-list id="categorias_children">
           <div id="categorias-container">
-            <p id='tituloCategorias'><b>CATEGORÍAS</b></p>
-            <a mat-list-item *ngFor="let categoria of categorias" (click)='searchCategoria(categoria)' id='categorias'>
-              <mat-icon aria-hidden="false" aria-label="RowIcon" id='iconCategoria'>arrow_forward_ios</mat-icon>
-              <span id='nameCategoria'>{{categoria.nombre}}</span>
+            <p id="tituloCategorias"><b>CATEGORÍAS</b></p>
+            <a mat-list-item *ngFor="let categoria of categorias" (click)="searchCategoria(categoria)" id="categorias">
+              <mat-icon aria-hidden="false" aria-label="RowIcon" id="iconCategoria">arrow_forward_ios</mat-icon>
+              <span id="nameCategoria">{{ categoria.nombre }}</span>
             </a>
           </div>
         </mat-nav-list>
       </div>
     </mat-menu>
   </div>
-  <div class='vender'>
-    <button type="button" class="btn btn-outline-primary" id='men-vender' routerLink="/p-vender"><b>VENDER</b></button>
+  <div class="vender">
+    <button type="button" class="btn btn-outline-primary" id="men-vender" routerLink="/p-vender"><b>VENDER</b></button>
   </div>
-  <div class='ayuda'>
-    <button type="button" class="btn btn-outline-primary" id='men-ayuda' routerLink="/help-polishop"><b>AYUDA</b></button>
+  <div class="ayuda">
+    <button type="button" class="btn btn-outline-primary" id="men-ayuda" routerLink="/help-polishop"><b>AYUDA</b></button>
   </div>
 </div>
 <!--------------------------------------------BODY--------------------------------------------------------->
 <router-outlet></router-outlet>
 <!--------------------------------------------FOOTER--------------------------------------------------------->
-<div class='footer'>
+<div class="footer">
   <div class="msjFooter"><span>©Polishop 2019 Institución Universitaria Politécnico Grancolombiano</span></div>
 </div>
 <!--------------------------------------------LOGIN---------------------------------------------------------->
-<div class="modal fade" id="loginSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf='!logueado && !vendedor'>
+<div
+  class="modal fade"
+  id="loginSection"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  *ngIf="!logueado && !vendedor"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -66,52 +76,77 @@
       </div>
       <div class="modal-body" id="modalBody">
         <mat-form-field class="matLogin">
-          <input matInput placeholder='Correo' [formControl]='correo' required [(ngModel)]='email'>
-          <mat-error *ngIf='correo.invalid'>{{getErrorMessage()}}</mat-error>
+          <input matInput placeholder="Correo" [formControl]="correo" required [(ngModel)]="email" />
+          <mat-error *ngIf="correo.invalid">{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field class="matLogin">
-          <input matInput placeholder='Contraseña' [type]="hide? 'password':'text'" required [(ngModel)]='password' (keydown.enter)='loginComprador()'>
-          <mat-icon matSuffix (click)='hide=!hide'>{{hide? 'visibility_off':'visibility'}}</mat-icon>
+          <input
+            matInput
+            placeholder="Contraseña"
+            [type]="hide ? 'password' : 'text'"
+            required
+            [(ngModel)]="password"
+            (keydown.enter)="loginComprador()"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </mat-form-field>
-        <br>
+        <br />
         <a href="https://cpo.poligran.edu.co" target="_blank">¿Olvidó su nombre de usuario o contraseña?</a>
-        <br><br>
+        <br /><br />
       </div>
       <div class="modal-footer">
-        <p id='invalidaContra' [ngStyle]="{color: hintColor}">{{errorLogin}}</p>
+        <p id="invalidaContra" [ngStyle]="{ color: hintColor }">{{ errorLogin }}</p>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)='loginComprador()'>Ingresar</button>
+        <button type="button" class="btn btn-primary" (click)="loginComprador()">Ingresar</button>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="loginSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf='logueado  && !vendedor'>
+<div
+  class="modal fade"
+  id="loginSection"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  *ngIf="logueado && !vendedor"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-        <div class="modal-header">
-          <h5 id="tituloLogueado">¡Bienvenido! {{comprador.nombres}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+      <div class="modal-header">
+        <h5 id="tituloLogueado">¡Bienvenido! {{ comprador.nombres }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="contentLogueado">
+        <img src="{{ comprador.urlFoto }}" alt="FotoComprador" width="85px" id="imagenLogueado" />
+        <div class="textLogueado">
+          <p>
+            {{ comprador.nombres }} {{ comprador.apellidos }}
+            <br />
+            {{ comprador.correo }}
+          </p>
         </div>
-        <div class="modal-body" id="contentLogueado">
-          <img src="{{comprador.urlFoto}}" alt="FotoComprador" width="85px" id="imagenLogueado">
-          <div class="textLogueado">
-            <p>
-              {{comprador.nombres}} {{comprador.apellidos}} 
-              <br>
-              {{comprador.correo}}
-            </p>
-          </div>
-          <a mat-raised-button id="modificarInfoLogueado" class="btn btn-secondary" href="https://cpo.poligran.edu.co" target="_blank">Modificar información</a>
-          <button id="cerrarSesionLogueado" mat-button class="btn btn-primary" (click)='logoutComprador()'>Cerrar sesión</button>
-        </div>
+        <a mat-raised-button id="modificarInfoLogueado" class="btn btn-secondary" href="https://cpo.poligran.edu.co" target="_blank"
+          >Modificar información</a
+        >
+        <button id="cerrarSesionLogueado" mat-button class="btn btn-primary" (click)="logoutComprador()">Cerrar sesión</button>
+      </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="loginSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf='vendedor'>
+<div
+  class="modal fade"
+  id="loginSection"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  *ngIf="vendedor"
+>
   <div class="modal-dialog" role="document">
-    <div class="modal-content"> 
+    <div class="modal-content">
       <div class="modal-header">
         <h5>Cerrar sesión</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -119,9 +154,12 @@
         </button>
       </div>
       <div class="modal-body" id="contentLogueado">
-        <a mat-raised-button id="modificarInfoLogueado" class="btn btn-secondary" href="https://cpo.poligran.edu.co" target="_blank">Modificar información</a>
-        <button id="cerrarSesionLogueado" mat-button class="btn btn-primary" (click)='logoutComprador()'>Cerrar sesión</button>
+        <a mat-raised-button id="modificarInfoLogueado" class="btn btn-secondary" href="https://cpo.poligran.edu.co" target="_blank"
+          >Modificar información</a
+        >
+        <button id="cerrarSesionLogueado" mat-button class="btn btn-primary" (click)="logoutComprador()">Cerrar sesión</button>
       </div>
     </div>
-  </div>>
+  </div>
+  >
 </div>

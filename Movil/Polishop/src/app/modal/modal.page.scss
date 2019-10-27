@@ -1,19 +1,19 @@
 .background-login {
   width: 100%;
-  height: 25%;
-  background-image: url("/../assets/system/backgroundLogin.jpg");
-  background-size: contain;
+  height: 30%;
+  background-image: url("/../assets/system/backgroundLogin.png");
+  background-size: cover;
 }
 
-.input-login{
+.input-login {
   width: 80%;
   margin: auto;
   margin-top: 5%;
 }
 
-.btn-login-ingresar{
+.btn-login-ingresar {
   width: 60%;
-  margin: 5% 0% 0% 20%
+  margin: 5% 0% 0% 20%;
 }
 
 .olvido-login {
