@@ -24,7 +24,7 @@
         <span class="letrasAzules">{{ +producto.valor | currency: "USD":"symbol":"1.0-0" }}</span>
       </div>
       <div class="ui-g-2" id="cantidad">
-        <input class="form-control" [(ngModel)]="producto.cantidad" id="input" disabled />
+        <button pButton class="ui-button-secondary" [label]="producto.cantidad" id="input"></button>
         <p-button icon="pi pi-minus" id="inputbtn" (click)="sumProducto(-1, producto)"></p-button>
         <p-button icon="pi pi-plus" id="inputbtn" (click)="sumProducto(1, producto)"></p-button>
       </div>
@@ -43,7 +43,7 @@
       </div>
       <div class="ui-g-5">
         <br />
-        <button id="buttonRealizarCompra" mat-button>
+        <button id="buttonRealizarCompra" mat-button (click)="formCompra()">
           Comprar productos
         </button>
       </div>
@@ -51,4 +51,68 @@
   </div>
 </div>
 
-<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog></p-confirmDialog>
+
+<p-dialog
+  header="Formulario de compra"
+  [(visible)]="displayFormCompra"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '400px', minWidth: '200px' }"
+  [minY]="70"
+  [maximizable]="true"
+  [baseZIndex]="10000"
+>
+  <div style="width: 94%; margin: 1% 3% 1% 3%;">
+    <p-dropdown
+      [options]="documentos"
+      [(ngModel)]="documentSelected"
+      placeholder="Tipo de documento"
+      optionLabel="name"
+      [showClear]="true"
+      class="inputs"
+      [style]="{ width: '90%' }"
+    ></p-dropdown>
+
+    <span class="ui-float-label inputs">
+      <input id="float-input" [(ngModel)]="compra.numeroDocumento" type="text" style="width: 100%;" pInputText />
+      <label for="float-input">Número de documento</label>
+    </span>
+
+    <span class="ui-float-label inputs">
+      <input id="float-input" [(ngModel)]="compra.nombreDestinatario" type="text" style="width: 100%;" pInputText />
+      <label for="float-input">Nombre de destinatario</label>
+    </span>
+
+    <span class="ui-float-label inputs">
+      <input id="float-input" [(ngModel)]="compra.direccionEnvio" type="text" style="width: 100%;" pInputText />
+      <label for="float-input">Dirección de envío</label>
+    </span>
+
+    <span class="ui-float-label inputs">
+      <input id="float-input" [(ngModel)]="compra.observaciones" type="text" style="width: 100%;" pInputText />
+      <label for="float-input">Observaciones (Casa / Apto / Conjunto)</label>
+    </span>
+
+    <span class="ui-float-label inputs">
+      <input id="float-input" [(ngModel)]="compra.telefonoUno" type="text" style="width: 100%;" pInputText />
+      <label for="float-input">Teléfono Uno</label>
+    </span>
+
+    <span class="ui-float-label inputs">
+      <input id="float-input" [(ngModel)]="compra.telefonoDos" type="text" style="width: 100%;" pInputText />
+      <label for="float-input">Teléfono Dos</label>
+    </span>
+
+    <span class="ui-float-label inputs">
+      <p style="font-size: 14px; color: #acacac;">
+        Al hacer click en 'Realizar Compra', confirma haber leído y aceptado los <a href="#/help-polishop">términos y condiciones.</a>
+      </p>
+    </span>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="realizarCompra()" label="Realizar compra"></button>
+  </p-footer>
+</p-dialog>
+
+<p-toast [style]="{ marginTop: '80px' }" position="top-center" baseZIndex="9999999"></p-toast>

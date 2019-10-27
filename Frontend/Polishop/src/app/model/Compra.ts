@@ -1,20 +1,18 @@
-export class Compra{
-  id: number;
-  numeroPedido: string;
-  idComprador: number;
-  pais: string;
-  departamento: string;	
-  ciudad: string;
-  tipoDocumento: string;	
-  numeroDocumento: string;	
-  nombreDestinatario: string;
-  direccionEnvio: string;
-  observaciones: string;
-  telefonoUno: string;
-  telefonoDos: string;	
-  fechaCreacion: string;
-  fechaEstimadaEntrega: string;
-  metodoPago: string;
-  estado: string;
-  idCarrito: number;
+export class Compra {
+  public idComprador: number;
+  public pais: string;
+  public departamento: string;
+  public ciudad: string;
+  public tipoDocumento: string;
+  public numeroDocumento: string;
+  public nombreDestinatario: string;
+  public direccionEnvio: string;
+  public observaciones: string;
+  public telefonoUno: string;
+  public telefonoDos: string;
+
+  constructor() {
+    this.observaciones = "";
+    this.telefonoDos = "";
+  }
 }

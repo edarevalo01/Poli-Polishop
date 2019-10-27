@@ -6,21 +6,351 @@
   <div class="form">
     <div class="example-container formulario">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Nombre completo" value="" [(ngModel)]='nombre'>
+        <input matInput placeholder="Nombre completo" value="" [(ngModel)]="nombre" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Corroe Electrónico" value="" [(ngModel)]='correo'>
+        <input matInput placeholder="Corroe Electrónico" value="" [(ngModel)]="correo" />
       </mat-form-field>
-      
+
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Mensaje" [(ngModel)]='mensaje'></textarea>
+        <textarea matInput placeholder="Mensaje" [(ngModel)]="mensaje"></textarea>
       </mat-form-field>
 
-      <button mat-button class="btnenviar" (click)='enviar()'>Enviar</button>
+      <button mat-button class="btnenviar" (click)="enviar()">Enviar</button>
 
-      <br>
-      <p *ngIf='mostrar'>Nos pondremos en contacto contigo para brindarte toda la información necesaria.</p>
+      <br />
+      <p *ngIf="mostrar">Nos pondremos en contacto contigo para brindarte toda la información necesaria.</p>
+    </div>
+  </div>
+  <div class="termCond" (click)="showTerminos = !showTerminos" style="cursor: pointer;">
+    Ver términos y condiciones
+  </div>
+  <div *ngIf="showTerminos" style="margin: 0% 10% 0% 10%;">
+    <h2>Terminos y condiciones temporales</h2>
+    <div class="std">
+      <p style="text-align:justify;margin:1em 0">
+        Este documento describe los Términos y Condiciones Generales y las Políticas de Privacidad aplicables al acceso y uso de los
+        servicios ofrecidos por <strong>Hipertexto Ltda.,</strong> propietaria de
+        <span style="text-decoration:none;font-weight:bold;color:#245677">editorial.poligran.edu.co</span>
+        dentro del sitio
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        , u otros dominios (urls) relacionados (en adelante “<a
+          href="editorial.poligran.edu.co"
+          target="_blank"
+          style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >” o el "sitio") en donde estos Términos y Condiciones Generales se encuentren. Cualquier persona que desee acceder, suscribirse o
+        usar el sitio o los servicios podrá hacerlo sujetándose a los Términos y Condiciones Generales, y a todas las demás políticas y
+        principios que rigen
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        y que son incorporados al presente directamente o por referencia, o que son explicados o detallados en otras secciones del sitio. En
+        consecuencia, todas las visitas y todos los contratos y las transacciones que se realicen en este sitio, así como sus efectos
+        jurídicos, quedarán regidos por estas reglas y sometidos a la legislación aplicable en Colombia.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Los términos y las condiciones de este instrumento se aplicarán y se entenderán como parte de todos los actos y contratos que se
+        ejecuten o celebren mediante los sistemas de oferta y comercialización comprendidos en este sitio entre los usuarios e
+        <strong>Hipertexto Ltda.</strong> (En adelante
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        o “la empresa”, indistintamente), y por cualquiera de las otras sociedades o empresas que sean filiales o coligadas con ella, y que
+        hagan uso de este sitio, a las cuales se las denominará en adelante también en forma indistinta como "las empresas", o bien "la
+        empresa oferente", el "proveedor" o la "empresa proveedora", según convenga al sentido del texto.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        En caso de que las empresas hubieran fijado sus propios términos y condiciones para los actos y contratos que realicen en este
+        sitio, ellas aparecerán en esta página señalada con un enlace o indicada como parte de la promoción de sus ofertas y promociones y
+        prevalecerán sobre estas.<strong>
+          Cualquier persona que no acepte estos Términos y Condiciones Generales, los cuales tienen un carácter obligatorio y vinculante,
+          deberá abstenerse de utilizar el sitio o los servicios.</strong
+        >
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        El usuario debe leer, entender y aceptar todas las condiciones establecidas en los Términos y Condiciones Generales y en las
+        Políticas de Privacidad de
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        así como en los demás documentos incorporados a los mismos por referencia, previo a su registro como usuario de
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        a la adquisición de productos o a la entrega de cualquier dato con cualquier fin.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Si el usuario hiciera uso del sitio de
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        ello implicará la aceptación plena de las condiciones establecidas en los Términos y Condiciones Generales y en las Políticas de
+        <strong>Politécnico Grancolombiano.</strong> Por dicha utilización del sitio o de sus servicios, el usuario se obligará a cumplir
+        expresamente con las mismas, no pudiendo alegar el desconocimiento de tales Términos y Condiciones Generales y Política de
+        Privacidad.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Capacidad legal</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Los servicios solo están disponibles para personas que tengan capacidad legal para contratar. No podrán utilizar los servicios las
+        personas que no tengan esa capacidad ni los menores de edad. Los actos que estos realicen en este sitio serán responsabilidad de sus
+        padres, tutores, encargados o curadores y, por tanto, se considerarán realizados por estos en ejercicio de la representación legal
+        con la que cuentan. Quien registre un usuario como empresa, deberá tener capacidad para contratar a nombre de tal entidad y de
+        obligar a la misma en los términos de este acuerdo.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Registro y uso del sitio</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Es obligatorio completar el formulario de registro en todos sus campos con datos válidos para convertirse en usuario de
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >, acceder a las promociones y adquirir los productos o servicios ofrecidos en este sitio. El futuro usuario deberá completar el
+        formulario de registro con su información personal de manera exacta, precisa y verdadera ("datos personales") y asume el compromiso
+        de actualizar los datos personales conforme resulte necesario.
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        podrá utilizar diversos medios para identificar a sus usuarios, pero
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        no se responsabiliza por la certeza de los datos personales provistos por ellos. Los usuarios garantizan y responden, en cualquier
+        caso, de la exactitud, veracidad, vigencia y autenticidad de los datos personales ingresados.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Cada miembro solo podrá ser titular de una (1) cuenta en
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        no pudiendo acceder a más de una (1) cuenta con distintas direcciones de correo electrónico ni falseando, modificando o alterando
+        sus datos personales de cualquier manera posible. Si se verificara o sospechara un uso fraudulento, malintencionado, contrario a
+        estos términos y condiciones o contrarios a la buena fe,
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        tendrá el derecho inapelable de quitar los créditos, dar de baja las cuentas y hasta de perseguir judicialmente a los infractores.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        <a href="editorial.poligran.edu.co" target="_blank" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >
+        se reserva el derecho de solicitar algún comprobante o dato adicional a efectos de corroborar los datos personales, así como de
+        suspender temporal o definitivamente a aquellos usuarios cuyos datos no hayan podido ser confirmados. En estos casos de
+        inhabilitación, la <strong>Politécnico Grancolombiano</strong> podrá dar de baja la compra efectuada, sin que ello genere derecho
+        alguno a resarcimiento, pago o indemnización.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        El usuario, una vez registrado, dispondrá de su dirección de email y de una contraseña que le permitirá el acceso personalizado,
+        confidencial y seguro. El usuario tendrá la posibilidad de cambiar la contraseña de acceso, para lo cual deberá sujetarse al
+        procedimiento establecido en el sitio respectivo. El usuario asume totalmente la responsabilidad por el mantenimiento de la
+        confidencialidad de la contraseña registrada en este sitio web, la cual le permite efectuar compras, solicitar servicios y obtener
+        información. Dicha contraseña es de uso personal y su entrega a terceros, no involucra responsabilidad de la
+        <strong>Politécnico Grancolombiano</strong> ni de las empresas en caso de utilización indebida, negligente o incorrecta.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        El usuario será responsable por todas las operaciones efectuadas en su cuenta, pues el acceso a la misma está restringido al uso de
+        la contraseña, la cual es de su conocimiento exclusivo. El usuario se compromete a notificar a la
+        <strong>Politécnico Grancolombiano</strong> en forma inmediata, por medio idóneo y fehaciente, cualquier uso no autorizado de su
+        cuenta o contraseña, así como el ingreso por terceros no autorizados a la misma. Se aclara que está prohibida la venta, la cesión,
+        el préstamo o la transferencia de la contraseña y la cuenta bajo ningún título.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        La <strong>Politécnico Grancolombiano</strong> se reserva el derecho de rechazar cualquier solicitud de registro o de cancelar un
+        registro previamente aceptado, sin que esté obligada a comunicar o exponer las razones de su decisión y sin que ello genere algún
+        derecho a indemnización o resarcimiento.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Privacidad de la información</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Para utilizar los servicios ofrecidos por la <strong>Politécnico Grancolombiano</strong> y sus sitios relacionados, los usuarios
+        deberán facilitar determinados datos de carácter personal. Su información personal se procesa manteniendo altos estándares de
+        seguridad y protección, tanto física como tecnológica.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Modificaciones del acuerdo</h4>
+      <p style="text-align:justify;margin:1em 0">
+        La <strong>Politécnico Grancolombiano</strong> podrá modificar los Términos y Condiciones Generales en cualquier momento haciendo
+        públicos en el sitio los términos modificados. Todos los términos modificados entrarán en vigor a los diez (10) días de su
+        publicación. Dentro de los cinco (5) días siguientes a la publicación de las modificaciones introducidas, el usuario deberá
+        comunicar por e-mail (<a href="mailto:contenidos@hipertexto.com.co" style="text-decoration:none;font-weight:bold;color:#245677"
+          >contenidos@hipertexto.com.co</a
+        >) si no acepta las mismas; en ese caso, quedará disuelto el vínculo contractual y será inhabilitado como usuario. Vencido este
+        plazo, se considerará que el usuario acepta los nuevos términos y el contrato continuará vinculando a ambas partes.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Procedimiento para hacer uso de este sitio de internet</h4>
+      <p style="text-align:justify;margin:1em 0">
+        En los contratos ofrecidos por medio de este sitio, la empresa oferente informará, de manera inequívoca y fácilmente accesible, los
+        pasos que deberán seguirse para celebrarlos e informará, cuando corresponda, si el documento electrónico en el que se formalice el
+        contrato será archivado y si este será accesible al usuario. El solo hecho de seguir los pasos que para tales efectos se indiquen en
+        este sitio para efectuar una compra, equivale a aceptar que efectivamente la empresa oferente ha dado cumplimiento a las condiciones
+        contenidas en este apartado. La empresa indicará, además, su dirección de correo electrónico y los medios técnicos a disposición del
+        usuario para identificar y corregir errores en el envío o en sus datos.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Medios de pago que se podrán utilizar en este sitio</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Los productos y servicios ofrecidos en este sitio, salvo que se señale una forma diferente para casos particulares u ofertas de
+        determinados bienes o servicios, solo pueden ser pagados con los medios que en cada caso específicamente se indiquen. El uso de
+        tarjetas de crédito se sujetará a lo establecido en estos Términos y Condiciones Generales y en relación con su emisor, y a lo
+        pactado en los respectivos Contratos de Apertura y Reglamento de Uso. En caso de contradicción, predominará lo expresado en ese
+        último instrumento. A mayor abundamiento, tratándose de tarjetas bancarias aceptadas en este sitio, los aspectos relativos a ésta,
+        tales como la fecha de emisión; caducidad, cupo, bloqueos, etc., se regirán por el respectivo Contrato de Apertura y Reglamento de
+        Uso, de tal forma que las empresas no tendrán responsabilidad en cualquiera de los aspectos señalados. El sitio podrá indicar
+        determinadas condiciones de compra según el medio de pago que se utilice por el usuario.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Formación del consentimiento en los contratos celebrados a través de este sitio</h4>
+      <p style="text-align:justify;margin:1em 0">
+        A través de este sitio web las empresas realizarán ofertas de productos y servicios, que podrán ser admitidas a través de la
+        aceptación, por vía electrónica, y utilizando los mecanismos que el mismo sitio ofrece para ello. Toda aceptación de oferta quedará
+        sujeta a la condición suspensiva de que la empresa oferente valide la transacción. En consecuencia, para toda operación que se
+        efectúe en este sitio, la confirmación, validación o verificación por parte de la empresa oferente, será requisito para la formación
+        del consentimiento. Para validar la transacción, la empresa oferente deberá verificar: a) que dispone, en el momento de la
+        aceptación de oferta, de las especies en stock; b) que valida y acepta el medio de pago ofrecido por el usuario; c) que los datos
+        registrados por el usuario en el sitio coinciden con los proporcionados al efectuar su aceptación de oferta; y d) que el pago es
+        acreditado por el usuario.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Para informar al usuario acerca de esta validación, la empresa oferente deberá enviar una confirmación escrita a la misma dirección
+        electrónica que haya registrado el usuario aceptante de la oferta, por cualquier medio de comunicación que garantice el debido y
+        oportuno conocimiento del usuario o mediante el envío efectivo del producto. El consentimiento se entenderá formado desde el momento
+        en que se envía esta confirmación escrita al usuario y en el lugar en que fue expedida. La oferta efectuada por el usuario es
+        irrevocable salvo en circunstancias excepcionales, tales como que la <strong>Politécnico Grancolombiano</strong> cambie
+        sustancialmente la descripción del artículo después de realizada alguna oferta, o que exista un claro error tipográfico.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Plazo de validez de la oferta y del precio</h4>
+      <p style="text-align:justify;margin:1em 0">
+        El plazo de validez de la oferta es aquel que coincide con la fecha de vigencia indicada en la promoción o en virtud del agotamiento
+        de las cantidades de productos disponibles para esa promoción debidamente informados al usuario, o mientras la oferta se mantenga
+        disponible, el menor de estos plazos.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Los precios de los productos y servicios disponibles en el sitio, mientras aparezcan en él, solo tendrán vigencia y aplicación en
+        este y no serán aplicables a otros canales de venta utilizados por las empresas, tales como tiendas físicas, venta telefónica, otros
+        sitios de venta por vía electrónica, catálogos u otros. Las empresas podrán modificar cualquier información contenida en este sitio,
+        incluyendo las relacionadas con mercaderías, servicios, precios, existencias y condiciones, en cualquier momento y sin previo aviso,
+        hasta el momento de recibir una aceptación de compra.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Promociones</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Las promociones que se ofrezcan en este sitio web no son necesariamente las mismas que ofrezcan otros canales de venta utilizados
+        por las empresas, tales como tiendas físicas, venta telefónica, catálogos u otros, a menos de que se señale expresamente en este
+        sitio o en la publicidad que realicen las empresas para cada promoción. En casos en los que el sitio contenga promociones que
+        consistan en la entrega gratuita o rebajada de un producto por la compra de otro, entonces el despacho del bien que se entregue
+        gratuitamente o a precio rebajado, se hará en el mismo lugar en el cual se despacha el producto comprado.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Despacho de los productos</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Los productos adquiridos a través del sitio se sujetarán a las condiciones de despacho y entrega disponibles en el sitio. La
+        información del lugar de envío es de exclusiva responsabilidad del usuario. Los plazos elegidos para el despacho y la entrega se
+        cuentan desde que la empresa oferente haya validado la orden de compra y el medio de pago utilizado, y se consideran días hábiles
+        para el cumplimiento de dicho plazo*:
+      </p>
+      <ul>
+        <li><strong>Libro impreso:</strong> tres (3) días hábiles</li>
+      </ul>
+      <p style="text-align:justify;margin:1em 0">
+        Los pedidos físicos serán despachados de los depósitos de <strong>Hipertexto Ltda.</strong> Hasta días hábiles después de finalizada
+        la venta (los envíos tienen un tiempo estimados de tres (3) a siete (7) días hábiles). La
+        <strong>Politécnico Grancolombiano</strong> comunicará por correo electrónico a los compradores los datos para que pueda realizar el
+        seguimiento del estado del envío por internet.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Los envíos que efectúa la <strong>Politécnico Grancolombiano</strong> se hacen por correo certificado y en todos los casos los
+        productos físicos se entregan en la dirección indicada por el usuario en su proceso de compra. Si las condiciones lo permiten, puede
+        ser factible que el pedido sea entregado por la empresa <i>courier</i> contratada por <strong>Hipertexto Ltda.</strong> A un
+        tercero, debidamente ubicado en el punto de entrada. En cualquier caso, se mantendrá constancia de la entrega del producto. En caso
+        de que por alguna razón no se pueda entregar el pedido al usuario, el envío será reintegrado a
+        <strong>Hipertexto Ltda.,</strong> debiendo el usuario ponerse en contacto con nuestras oficinas para coordinar una nueva entrega,
+        cuyo costo estará exclusivamente a cargo del usuario.
+      </p>
+      <p style="text-align:justify;margin:1em 0">
+        Para compras hechas desde Colombia hacia otros países es necesario tener en cuenta que cada país tiene su propia legislación
+        tributaria para compras hechas a través de internet y que, en algunos casos, las compras se convierten en una importación
+        dependiendo del peso y del valor del producto. Es el comprador quien debe pagar estos impuestos si los hubiere y, en ningún caso
+        <strong>Hipertexto Ltda.</strong> (A través de su portal
+        <a href="mailto:contenidos@hipertexto.com.co" style="text-decoration:none;font-weight:bold;color:#245677"
+          >editorial.poligran.edu.co</a
+        >) tiene el compromiso de hacerlo. Estos impuestos son cobrados normalmente por la compañía trasportadora al momento de hacer la
+        entrega pues es quien hace el trámite de aduana generalmente. Si tiene dudas al respecto, le pedimos consultar con el organismo
+        regulador en su país.
+      </p>
+      <p style="text-align:justify;margin:1em 0;font-size:.9em;color:#245677">
+        * Para conocer los plazos de descarga de los productos descargables, consulte
+        <a
+          href="http://editorial.poligran.edu.co/index.php/todo-sobre-ebook-poli"
+          style="text-decoration:none;font-weight:bold;color:#245677"
+          >Todo sobre e-book.</a
+        >
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Derecho de retracto</h4>
+      <p style="text-align:justify;margin:1em 0">
+        El usuario tiene derecho a retracto de la operación comercial (por adquisición de productos o prestación de servicios) durante un
+        plazo de cinco (5) días hábiles, en el caso de los productos físicos,<span style="color:#245677"
+          >y un plazo de tres (3) días hábiles, en el caso de los productos descargables,</span
+        >
+        contados a partir de la fecha en que se entregue el producto. Esta facultad no puede ser dispensada ni renunciada. El usuario
+        comunicará fehacientemente dicha revocación al proveedor y pondrá el producto a su disposición. Para ejercer el derecho de retracto,
+        el usuario deberá poner el producto a disposición del vendedor sin haberlo usado y manteniéndolo en el mismo estado en que lo
+        recibió. En ese momento, la <strong>Politécnico Grancolombiano</strong> devolverá al usuario el precio total pagado. Pasado ese
+        plazo, la empresa proveedora podrá buscar la mejor solución posible en pos de la satisfacción del usuario, sin que esto sea
+        obligatorio para ella. El usuario deberá asumir el costo del envío del producto devuelto y el costo del envío del producto recibido
+        por el cambio.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Procedimiento de cambios y devoluciones</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Los productos comprados en la <strong>Politécnico Grancolombiano</strong> pueden ser devueltos y rembolsados dentro del plazo de
+        cinco (5) días hábiles contados desde la fecha en que se recibieron. Para que se pueda realizar el reembolso o cambio el usuario
+        debe:
+      </p>
+      <ol style="list-style-type:upper-latin;font-weight:bold">
+        <li>
+          <span style="font-weight:normal"
+            >Entregar el producto en las mismas condiciones en las que se le entregó y con el embalaje original.</span
+          >
+        </li>
+        <li><span style="font-weight:normal">Presentar la factura de la compra.</span></li>
+        <li><span style="font-weight:normal">Asumir el costo del envío.</span></li>
+      </ol>
+      <p style="text-align:justify;margin:1em 0">
+        <strong>Hipertexto Ltda.</strong> Realizará la devolución del dinero, en caso de que correspondiere, mediante el mismo medio de pago
+        que fue utilizado por el usuario para realizar la compra. La aplicación de la devolución de dinero se procesará a más tardar dentro
+        de los quince (15) días siguientes a la fecha del recibo de la mercancía y dependerá de la tarjeta de crédito y del banco emisor de
+        la misma. Si el cliente comete algún error en el proceso de compra, deberá asumir los costos bancarios correspondientes a la
+        devolución del dinero.
+      </p>
+
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Proceso de garantía</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Cuando un producto comprado en la <strong>Politécnico Grancolombiano</strong> tenga algún defecto de fabricación, el usuario podrá
+        solicitar un nuevo producto idéntico o la restitución total del pago realizado por dicho producto. El plazo de la garantía es de
+        cinco (5) días hábiles, en el caso de los productos físicos,
+        <span style="color:#245677">y de tres (3) días hábiles, en el caso de los productos descargables.</span> El plazo de la garantía
+        empieza a correr desde la fecha de recepción de producto por parte del usuario. Para hacer efectiva la garantía, el usuario debe
+        comunicarse con nuestra línea de atención, ya sea por vía telefónica o por medio de correo electrónico, para que le den las
+        instrucciones para gestionar la garantía ante el productor del bien correspondiente.
+      </p>
+      <p style="text-align:justify;margin:1em 0;font-size:.9em;color:#245677">
+        * Para poder disfrutar la garantía de los productos descargables el cliente debe haber realizado la descarga del producto siguiendo
+        los pasos especificados el instructivo.
+      </p>
+      <h4 style="font-weight:bold;margin:2em 0 0 0">Términos de ley</h4>
+      <p style="text-align:justify;margin:1em 0">
+        Este acuerdo será gobernado e interpretado de acuerdo con las leyes de Colombia, sin dar efecto a cualquier principio de conflictos
+        de ley. Si alguna disposición de este acuerdo es ilegal, o presenta un vacío, o por cualquier razón resulta inaplicable, la misma
+        deberá ser interpretada centro del marco del acuerdo y en cualquier caso no afectará la validez y la aplicabilidad de las
+        provisiones restantes.
+      </p>
     </div>
   </div>
 </div>

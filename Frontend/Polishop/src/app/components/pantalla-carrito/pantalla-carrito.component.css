@@ -1,36 +1,37 @@
-#completeListaProductos{
+#completeListaProductos {
   margin: 4%;
 }
 
-#bodyProductos{
+#bodyProductos {
   margin: 1% 3% 1% 3%;
 }
 
-.titulosEncabezado{
+.titulosEncabezado {
   color: rgb(160, 160, 160);
 }
 
-.letrasAzules{
-  color: #0F385A;
+.letrasAzules {
+  color: #0f385a;
   font-weight: bold;
   font-size: 17px;
 }
 
-.letrasClaras{
+.letrasClaras {
   color: rgb(129, 150, 167);
 }
 
-#input{
+#input {
   width: 25%;
-  float: left;
-}
-
-#inputbtn{
   float: left;
   margin: 2.5px 0px 0px 5px;
 }
 
-#eliminar{
+#inputbtn {
+  float: left;
+  margin: 2.5px 0px 0px 5px;
+}
+
+#eliminar {
   color: red;
   background: white;
   border: 1px solid white;
@@ -38,26 +39,30 @@
   width: 70%;
 }
 
-#precios{
+#precios {
   margin: 1% 0% 1% 7%;
-  color: #0F385A;
+  color: #0f385a;
 }
 
-.precio{
+.precio {
   font-size: 25px;
 }
 
-#preciototal{
+#preciototal {
   color: red;
   margin-left: 7px;
 }
 
-#buttonRealizarCompra{
-  background-color: #3FA8D9;
+#buttonRealizarCompra {
+  background-color: #3fa8d9;
   color: white;
   float: right;
   margin: 1% 30% 0% 0%;
   width: 60%;
   font-size: 20px;
+}
 
+.inputs {
+  width: 90%;
+  margin: 7% 5% 1% 5%;
 }

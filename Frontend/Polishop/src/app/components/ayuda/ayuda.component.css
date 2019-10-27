@@ -7,32 +7,38 @@
   width: 100%;
 }
 
-.principal{
+.principal {
   width: 100%;
   margin: 0%;
   background-color: white;
 }
 
-.titform{
+.titform {
   width: 50%;
   margin: 5% 30% 0% 30%;
-  color: #0F385A;
+  color: #0f385a;
 }
 
-.form{
+.termCond {
   width: 50%;
-  margin: 1% 30% 4% 27%;
-  padding: 3% 5% 2% 5%;
-  background-color: rgb(218, 218, 218)
+  margin: 0% 30% 4% 28%;
+  color: #0f385a;
 }
 
-.formulario{
+.form {
+  width: 50%;
+  margin: 1% 30% 0% 27%;
+  padding: 3% 5% 2% 5%;
+  background-color: rgb(218, 218, 218);
+}
+
+.formulario {
   width: 80%;
   margin: auto;
 }
 
-.btnenviar{
-  background-color: #3FA8D9;
+.btnenviar {
+  background-color: #3fa8d9;
   width: 70%;
   color: white;
 }
