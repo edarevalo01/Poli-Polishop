@@ -1,214 +1,253 @@
 /*-------------------------------------------------HEADER UNO----------------------------------------------------*/
-.header_uno{
-    width: 100%;
-    height: 135px;
-    background-color: #0F385A;
+.header_uno {
+  width: 100%;
+  height: 135px;
+  background-color: #0f385a;
 }
-.img_logo_container{
-    width: 14.8%;
-    height: 80px;
-    background-color: #0F385A;
-    float: left;
-    margin-top: 27.5px;
-    margin-right: 3.4%;
-    margin-left: 6%;
+.img_logo_container {
+  width: 14.8%;
+  height: 80px;
+  background-color: #0f385a;
+  float: left;
+  margin-top: 27.5px;
+  margin-right: 3.4%;
+  margin-left: 6%;
 }
-.input_buscar{
-    width: 32.5%;
-    height: 39px;
-    float: left;
-    margin-top: 48px;
-    margin-right: 0.07%;
-    margin-left: 5.6%;
+.input_buscar {
+  width: 32.5%;
+  height: 39px;
+  float: left;
+  margin-top: 48px;
+  margin-right: 0.07%;
+  margin-left: 5.6%;
 }
-#in-buscar{
-    width: 100%;
-    height: 100%;
-    border: 0px solid transparent;
-    font-size: 17px;
-    padding-left: 5%;
-    padding-right: 2%;
-    background-color: white;
+#in-buscar {
+  width: 100%;
+  height: 100%;
+  border: 0px solid transparent;
+  font-size: 17px;
+  padding-left: 5%;
+  padding-right: 2%;
+  background-color: white;
 }
-.button_buscar{
-    width: 64px;
-    height: 39px;
-    background-color: white;
-    float: left;
-    margin-top: 47px;
-    margin-right: 2x.7%;
+.button_buscar {
+  width: 64px;
+  height: 39px;
+  background-color: white;
+  float: left;
+  margin-top: 47px;
+  margin-right: 2x.7%;
 }
-#btn-buscar{
-    width: 60px;
-    height: 100%;
-    padding: 0px;
-    color: #7C7C7C;
+#btn-buscar {
+  width: 60px;
+  height: 100%;
+  padding: 0px;
+  color: #7c7c7c;
 }
-.button_ingresar{
-    width: 11%;
-    height: 41px;
-    background-color: #0F385A;
-    float: left;
-    margin-top: 47px;
-    margin-left: 2.7%;
-    margin-right: 0.74%;
+.button_ingresar {
+  width: 11%;
+  height: 41px;
+  background-color: #0f385a;
+  float: left;
+  margin-top: 47px;
+  margin-left: 2.7%;
+  margin-right: 0.74%;
 }
-#btn-ingresar{
-    width: 100%;
-    height: 100%;
-    font-family: Arial;
-    font-size: 17px;
-    color: white;
-    border-radius: 0px;
+#btn-ingresar {
+  width: 100%;
+  height: 100%;
+  font-family: Arial;
+  font-size: 17px;
+  color: white;
+  border-radius: 0px;
 }
-.button_carrito{
-    width: 7.4%;
-    height: 60px;
-    background-color: #0F385A;
-    float: left;
-    margin-top: 41px;
-    margin-left: 1.11%;
+.button_carrito {
+  width: 7.4%;
+  height: 60px;
+  background-color: #0f385a;
+  float: left;
+  margin-top: 41px;
+  margin-left: 1.11%;
 }
-.iconn{
-    width: 100%;
-    height: 100%;
-    color: white;
-    font-size: 10px;
-    font-size: 40px;
-    margin: auto;
+.iconn {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 10px;
+  font-size: 40px;
+  margin: auto;
 }
-#icon-btn{
-    color: white;
-    border: 0px solid transparent;
-    outline: none;
-    border-radius: 0px;
+#icon-btn {
+  color: white;
+  border: 0px solid transparent;
+  outline: none;
+  border-radius: 0px;
 }
 
 /*-------------------------------------------------HEADER DOS----------------------------------------------------*/
 
-.header_dos{
-    width: 100%;
-    height: 50px;
-    background-color: #0F385A;
-    margin: auto;
+.header_dos {
+  width: 100%;
+  height: 50px;
+  background-color: #0f385a;
+  margin: auto;
 }
-.lista_categorias{
-    width: 17%;
-    height: 100%;
-    background-color: #0F385A;
-    float: left;
-    margin-left: 23.9%;
-    font-family: arial;
-    color: white;
+.lista_categorias {
+  width: 17%;
+  height: 100%;
+  background-color: #0f385a;
+  float: left;
+  margin-left: 23.9%;
+  font-family: arial;
+  color: white;
 }
-.vender{
-    width: 17%;
-    height: 100%;
-    background-color: #0F385A;
-    float: left;
-    margin-right: 0.22%;
-    margin-left: 0.22%; 
-    font-family: arial;
-    color: white;
+.vender {
+  width: 17%;
+  height: 100%;
+  background-color: #0f385a;
+  float: left;
+  margin-right: 0.22%;
+  margin-left: 0.22%;
+  font-family: arial;
+  color: white;
 }
-.ayuda{
-    width: 17%;
-    height: 100%;
-    background-color: #0F385A;
-    float: left;
-    font-family: arial;
-    color: white;
+.ayuda {
+  width: 17%;
+  height: 100%;
+  background-color: #0f385a;
+  float: left;
+  font-family: arial;
+  color: white;
 }
-#lis-categorias, #men-vender, #men-ayuda{
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    color: white;
-    border: 0px solid transparent;
-    outline: none;
-    border-radius: 0px;
+#lis-categorias,
+#men-vender,
+#men-ayuda {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  color: white;
+  border: 0px solid transparent;
+  outline: none;
+  border-radius: 0px;
 }
-.lista_categorias :hover, .vender :hover, .ayuda :hover,
-.button_ingresar :hover, .button_carrito :hover { /*Color de botones cuando pasa el mouse*/
-    background-color: #3FA8D9;
+.lista_categorias :hover,
+.vender :hover,
+.ayuda :hover,
+.button_ingresar :hover,
+.button_carrito :hover {
+  /*Color de botones cuando pasa el mouse*/
+  background-color: #3fa8d9;
 }
+
+.btn:active,
+.btn:focus,
+.btn:focus:active {
+  background-image: none !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
 .cdk-overlay-pane {
-    width: 100%!important;
+  width: 100% !important;
 }
-.mat-menu-panel.dropdownn{
-    max-width:none;
-    width: 31.8%; 
-    margin: auto;
+
+.ui-overlaypanel-content {
+  max-width: none;
+  width: 400px !important;
+  margin: auto;
 }
-#tituloCategorias{
-    color: #0F385A;
-    font-size: 18px;
-    padding: 2.5% 0% 0% 5%;
+#tituloCategorias {
+  color: #0f385a;
+  font-size: 18px;
+  padding: 2.5% 0% 0% 5%;
 }
-#categorias_parent{
-    width: 98.52%;
-    height: 400px;
-    margin: 0% 0.74% 5% 0.74%;
+#categorias_parent {
+  width: 98.52%;
+  height: 400px;
+  margin: 0% 0.74% 5% 0.74%;
+  overflow: scroll;
 }
-#categorias_children{
-    width: 100%
+#categorias_children {
+  width: 100%;
 }
-#categorias-container{
-    width: 96%;
-    margin: 0% 0% 5% 3%;
+#categorias-container {
+  width: 96%;
+  margin: 0% 0% 5% 3%;
 }
-#categorias{
-    width: 100%;
-    margin: 0.5% 0% 0.5% 0%;
+#categorias {
+  width: 100%;
+  margin: 0.5% 0% 0.5% 0%;
 }
-#iconCategoria{
-    color: #3FA8D9;
-    font-size: 25px;
-    border-right: 20px;
-    padding: 0% 10% 0% 0%;
+#iconCategoria {
+  color: #3fa8d9;
+  font-size: 25px;
+  border-right: 20px;
+  padding: 0% 10% 0% 0%;
 }
 
 /*-------------------------------------------------FOOTER----------------------------------------------------*/
 
-.footer{
-    background-color: #0F385A;
-    height: 50px;
+.footer {
+  background-color: #0f385a;
+  height: 50px;
 }
-.msjFooter{
-    padding: 1%;
-    color: white;
-    align-items: center;
-    text-align: center;
+.msjFooter {
+  padding: 1%;
+  color: white;
+  align-items: center;
+  text-align: center;
 }
 
 /*-------------------------------------------------LOGIN-----------------------------------------------------*/
 
-#modalBody{
-    width: 80%;
-    margin: auto;
+#modalBody {
+  width: 80%;
+  margin: auto;
 }
-.matLogin{
-    width: 100%;
+.matLogin {
+  width: 100%;
 }
-#tituloLogueado{
-    margin-left: 4%;
-    margin-top: 1%;
-    color: rgb(11, 35, 54);
+#tituloLogueado {
+  margin-left: 4%;
+  margin-top: 1%;
+  color: rgb(11, 35, 54);
 }
-#contentLogueado{
-    width: 100%;
+#contentLogueado {
+  width: 100%;
 }
-#imagenLogueado{
-    margin-left: calc(50% - 40px);
-    margin-top: 3%;
-    margin-bottom: 3%;
+#imagenLogueado {
+  margin-left: calc(50% - 40px);
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
-.textLogueado{
-    text-align: center;
-    margin: 0.5% 0% 7% 0%;
+.textLogueado {
+  text-align: center;
+  margin: 0.5% 0% 7% 0%;
 }
-#cerrarSesionLogueado, #modificarInfoLogueado{
-    width: 60%;
-    margin-bottom: 2%;
-    margin-left: 20%;
+#cerrarSesionLogueado,
+#modificarInfoLogueado {
+  width: 60%;
+  margin-bottom: 2%;
+  margin-left: 20%;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

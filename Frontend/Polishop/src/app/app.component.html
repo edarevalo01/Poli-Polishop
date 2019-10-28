@@ -1,7 +1,7 @@
 <!-------------------------------------------------HEADER UNO---------------------------------------------------->
 <div class="header_uno">
   <div class="img_logo_container">
-    <img src="assets/system/LogoHeader.png" alt="logo_header" width="230px" (click)="goToInicio()" />
+    <img src="assets/system/LogoHeader.png" alt="logo_header" width="230px" (click)="goToInicio()" style="cursor: pointer;" />
   </div>
   <div class="input_buscar">
     <input matInput placeholder="Buscar" type="text" id="in-buscar" [(ngModel)]="searchProduct" (keydown.enter)="onKeydown($event)" />
@@ -26,22 +26,9 @@
 <!-------------------------------------------------HEADER DOS---------------------------------------------------->
 <div class="header_dos">
   <div class="lista_categorias">
-    <button type="button" class="btn btn-outline-primary" [matMenuTriggerFor]="menu1" id="lis-categorias" aria-label="LISTA CATEGORÍAS">
+    <button type="button" class="btn btn-outline-primary" id="lis-categorias" aria-label="LISTA CATEGORÍAS" (mouseover)="op1.show($event)">
       <b>LISTA CATEGORÍAS</b>
     </button>
-    <mat-menu #menu1="matMenu" class="dropdownn">
-      <div id="categorias_parent" class="row notification-row">
-        <mat-nav-list id="categorias_children">
-          <div id="categorias-container">
-            <p id="tituloCategorias"><b>CATEGORÍAS</b></p>
-            <a mat-list-item *ngFor="let categoria of categorias" (click)="searchCategoria(categoria)" id="categorias">
-              <mat-icon aria-hidden="false" aria-label="RowIcon" id="iconCategoria">arrow_forward_ios</mat-icon>
-              <span id="nameCategoria">{{ categoria.nombre }}</span>
-            </a>
-          </div>
-        </mat-nav-list>
-      </div>
-    </mat-menu>
   </div>
   <div class="vender">
     <button type="button" class="btn btn-outline-primary" id="men-vender" routerLink="/p-vender"><b>VENDER</b></button>
@@ -51,7 +38,9 @@
   </div>
 </div>
 <!--------------------------------------------BODY--------------------------------------------------------->
-<router-outlet></router-outlet>
+<div (mouseout)="op1.hide()">
+  <router-outlet></router-outlet>
+</div>
 <!--------------------------------------------FOOTER--------------------------------------------------------->
 <div class="footer">
   <div class="msjFooter"><span>©Polishop 2019 Institución Universitaria Politécnico Grancolombiano</span></div>
@@ -163,3 +152,17 @@
   </div>
   >
 </div>
+
+<p-overlayPanel #op1 class="dropdownn">
+  <div id="categorias_parent" class="row notification-row">
+    <mat-nav-list id="categorias_children">
+      <div id="categorias-container">
+        <p id="tituloCategorias"><b>CATEGORÍAS</b></p>
+        <a mat-list-item *ngFor="let categoria of categorias" (click)="searchCategoria(categoria)" id="categorias">
+          <mat-icon aria-hidden="false" aria-label="RowIcon" id="iconCategoria">arrow_forward_ios</mat-icon>
+          <span id="nameCategoria">{{ categoria.nombre }}</span>
+        </a>
+      </div>
+    </mat-nav-list>
+  </div>
+</p-overlayPanel>

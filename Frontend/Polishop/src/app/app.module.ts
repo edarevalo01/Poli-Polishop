@@ -39,6 +39,7 @@ import { FileUploadModule } from "primeng/fileupload";
 import { ListboxModule } from "primeng/listbox";
 import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
+import { OverlayPanelModule } from "primeng/overlaypanel";
 
 import { PantallaProductoComponent } from "./components/pantalla-producto/pantalla-producto.component";
 import { PantallaInicioComponent } from "./components/pantalla-inicio/pantalla-inicio.component";
@@ -104,7 +105,8 @@ import { HistorialComprasComponent } from "./components/historial-compras/histor
     MatDialogModule,
     OverlayModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    OverlayPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]
