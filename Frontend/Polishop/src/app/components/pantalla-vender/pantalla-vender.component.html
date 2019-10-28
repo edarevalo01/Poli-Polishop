@@ -11,7 +11,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div id="mat_panel_body_uno">
-          <img src="assets/system/porquevender.jpg" alt="porque_vender" id="whysell">
+          <img src="assets/system/porquevender.jpg" alt="porque_vender" id="whysell" />
         </div>
       </mat-expansion-panel>
 
@@ -25,30 +25,32 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div id="mat_panel_body_dos">
-          <div class="form-login" *ngIf='!logueado'> <!--LOGIN-->
-              <div class="input-container">
-                <mat-form-field class="matLogin">
-                  <input matInput placeholder = 'Correo' [formControl] = 'correo' required [(ngModel)] = 'email'><!--[(ngModel)] = 'email'-->
-                  <mat-error *ngIf = 'correo.invalid'>{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-                <mat-form-field class="matLogin">
-                  <input matInput placeholder='Contraseña' [type]="!hide? 'password' : 'text'" required [(ngModel)] = 'password'>
-                  <mat-icon matSuffix (click)='hide = !hide'>{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </mat-form-field>
-                <br><br>
-                <p>¿Olvidó su nombre de usuario o contraseña?</p>
-              </div><br>
-              <p id='invalidaContra' [ngStyle]="{color: hintColor}">{{errorLogin}}</p>
-              <div id="buttonLoginVendedor">
-                <button mat-button id="buttonLoginV" (click)='loginVendedor()'>Iniciar sesión</button>
-              </div>
+          <div class="form-login" *ngIf="!logueado">
+            <!--LOGIN-->
+            <div class="input-container">
+              <mat-form-field class="matLogin">
+                <input matInput placeholder="Correo" [formControl]="correo" required [(ngModel)]="email" /><!--[(ngModel)] = 'email'-->
+                <mat-error *ngIf="correo.invalid">{{ getErrorMessage() }}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="matLogin">
+                <input matInput placeholder="Contraseña" [type]="!hide ? 'password' : 'text'" required [(ngModel)]="password" />
+                <mat-icon matSuffix (click)="hide = !hide">{{ !hide ? "visibility_off" : "visibility" }}</mat-icon>
+              </mat-form-field>
+              <br /><br />
+              <p>¿Olvidó su nombre de usuario o contraseña?</p>
+            </div>
+            <br />
+            <p id="invalidaContra" [ngStyle]="{ color: hintColor }">{{ errorLogin }}</p>
+            <div id="buttonLoginVendedor">
+              <button mat-button id="buttonLoginV" (click)="loginVendedor()">Iniciar sesión</button>
+            </div>
           </div>
-          <div class="form-login" *ngIf='logueado'> 
-            <button mat-button (click)='logoutVendedor()'>Logout</button>
+          <div class="form-login" *ngIf="logueado">
+            <button mat-button (click)="logoutVendedor()">Logout</button>
           </div>
         </div>
       </mat-expansion-panel>
-      
+
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -58,48 +60,62 @@
             Registrate como vendedor.
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div id="mat_panel_body_tres"><!--/////////////7-->
+        <div id="mat_panel_body_tres">
           <div id="mat_panel_body_tres">
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Nombre legal' required [(ngModel)] = 'vendedorRegistro.nombres'>
-              <mat-hint><p matTooltip="{{legalName}}" matTooltipPosition="right" id="nombreLegalQ">¿Qué es un nombre legal?*</p></mat-hint>
+              <input matInput placeholder="Nombre legal" required [(ngModel)]="vendedorRegistro.nombres" />
+              <mat-hint
+                ><p matTooltip="{{ legalName }}" matTooltipPosition="right" id="nombreLegalQ">¿Qué es un nombre legal?*</p></mat-hint
+              >
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Apellidos(opcional)' [(ngModel)] = 'vendedorRegistro.apellidos' type="text">
+              <input matInput placeholder="Apellidos(opcional)" [(ngModel)]="vendedorRegistro.apellidos" type="text" />
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder='Correo Institucional' [formControl]='correo' required [(ngModel)]='vendedorRegistro.correo'>
-              <mat-error *ngIf='correo.invalid'>{{getErrorMessage()}}</mat-error>
+              <input matInput placeholder="Correo Institucional" [formControl]="correo" required [(ngModel)]="vendedorRegistro.correo" />
+              <mat-error *ngIf="correo.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Contraseña' [type]="!hide1? 'password':'text'" required [(ngModel)] = 'vendedorRegistro.contrasena'>
-              <mat-icon matSuffix (click)='hide1=!hide1'>{{hide1? 'visibility_off':'visibility'}}</mat-icon>
+              <input
+                matInput
+                placeholder="Contraseña"
+                [type]="!hide1 ? 'password' : 'text'"
+                required
+                [(ngModel)]="vendedorRegistro.contrasena"
+              />
+              <mat-icon matSuffix (click)="hide1 = !hide1">{{ hide1 ? "visibility_off" : "visibility" }}</mat-icon>
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <textarea matInput placeholder = 'Información adicional (descripción)' required [(ngModel)] = 'vendedorRegistro.descripcion'></textarea>
+              <textarea
+                matInput
+                placeholder="Información adicional (descripción)"
+                required
+                [(ngModel)]="vendedorRegistro.descripcion"
+              ></textarea>
             </mat-form-field>
             <mat-form-field class="matLogin">
-              <input matInput placeholder = 'Número celular' [(ngModel)] = 'vendedorRegistro.celular' type="number">
-            </mat-form-field><br>
-            <div id='uploadPhoto'>
-              <p id='fotodeperfil'>Foto de perfil</p>
-              <p-fileUpload 
-                mode="advanced" 
-                name="profileUploadSeller" 
+              <input matInput placeholder="Número celular" [(ngModel)]="vendedorRegistro.celular" type="number" /> </mat-form-field
+            ><br />
+            <div id="uploadPhoto">
+              <p id="fotodeperfil">Foto de perfil</p>
+              <p-fileUpload
+                mode="advanced"
+                name="profileUploadSeller"
                 customUpload="true"
                 (onSelect)="selectFile($event)"
-                accept="image/*" 
+                accept="image/*"
                 [showUploadButton]="false"
-                maxFileSize="1000000">
+                maxFileSize="1000000"
+              >
                 <ng-template pTemplate="content">
                   <ul *ngIf="uploadedFiles.length">
-                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
                   </ul>
                 </ng-template>
               </p-fileUpload>
             </div>
-            <br>
-            <button mat-button (click)='registroVendedor()'>Registrar</button>
+            <br />
+            <button mat-button (click)="registroVendedor()">Registrar</button>
           </div>
         </div>
       </mat-expansion-panel>

@@ -1,12 +1,12 @@
-export class Comprador{
-    id: number;
-    nombres: string;
-    apellidos: string;
-    username: string;
-    correo: string;
-    contrasena: string;
-    pais: string;
-    ciudad: string;
-    urlFoto: string;
-    puntuacion: number;
+export class Comprador {
+  public id: number;
+  public nombres: string;
+  public apellidos: string;
+  public username: string;
+  public correo: string;
+  public contrasena: string;
+  public pais: string;
+  public ciudad: string;
+  public urlFoto: string;
+  public puntuacion: number;
 }

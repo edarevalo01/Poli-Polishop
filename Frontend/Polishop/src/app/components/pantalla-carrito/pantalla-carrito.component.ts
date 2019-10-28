@@ -38,11 +38,8 @@ export class PantallaCarritoComponent implements OnInit {
       productosObs => {
         this.productosCarrito = productosObs;
       },
-      error => {
-        console.error("ERROR al cargar PRODUCTOS - CARRITO: ", error);
-      },
+      error => {},
       () => {
-        console.log(this.productosCarrito);
         this.productosCarrito.forEach(element => {
           this.totalPrecio += +element.valor * +element.cantidad;
         });
@@ -59,9 +56,7 @@ export class PantallaCarritoComponent implements OnInit {
         this.compraService.eliminarProductoCarrito(producto.idCarrito, producto.idProducto);
         location.reload();
       },
-      reject: () => {
-        console.log("none");
-      }
+      reject: () => {}
     });
   }
 

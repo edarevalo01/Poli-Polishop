@@ -11,46 +11,57 @@
 mat-form-field {
   margin-right: 12px;
 }
-#whysell{
-    width: 100%;
+
+#whysell {
+  width: 100%;
 }
-#completeVender{
-    width: 100%;
-    background-color: #EEEEEE
+
+#completeVender {
+  width: 100%;
+  background-color: #eeeeee;
 }
-#accordionVender{
-    width: 50%;
-    margin: auto;
-    padding: 4% 0% 3% 0%;
+
+#accordionVender {
+  width: 50%;
+  margin: auto;
+  padding: 4% 0% 3% 0%;
 }
-.form-login{
-    width: 100%;
+
+.form-login {
+  width: 100%;
 }
-.input-container{
-    width: 60%;
-    margin: auto;
-    margin: 3% 20% 0% 20%;
+
+.input-container {
+  width: 60%;
+  margin: auto;
+  margin: 3% 20% 0% 20%;
 }
-.full-width{
-    width: 100%;
+
+.full-width {
+  width: 100%;
 }
-.matLogin{
-    margin: 2% 15% 2% 15%;
-    width: 70%;
+
+.matLogin {
+  margin: 2% 15% 2% 15%;
+  width: 70%;
 }
-#buttonLoginVendedor{
-    width: 100%;
+
+#buttonLoginVendedor {
+  width: 100%;
 }
-#buttonLoginV{
-    width: 20%;
-    margin: 0% 40% 0% 40%;
-    background-color: #3FA8D9;
-    color: white;
+
+#buttonLoginV {
+  width: 20%;
+  margin: 0% 40% 0% 40%;
+  background-color: #3fa8d9;
+  color: white;
 }
-#fotodeperfil{
-    color: rgb(136, 135, 135);
-    margin-left: 1.5%;
+
+#fotodeperfil {
+  color: rgb(136, 135, 135);
+  margin-left: 1.5%;
 }
-#uploadPhoto{
-    margin: 2% 12% 0% 14%;
+
+#uploadPhoto {
+  margin: 2% 12% 0% 14%;
 }

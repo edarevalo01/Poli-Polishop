@@ -11,14 +11,14 @@ import { Router } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class PantallaInicioComponent implements OnInit {
-  title = "Polishop";
-  productos: Array<Producto>;
-  productosPoli: Array<Producto>;
-  productosComu: Array<Producto>;
+  public title = "Polishop";
+  public productos: Array<Producto>;
+  public productosPoli: Array<Producto>;
+  public productosComu: Array<Producto>;
 
-  matrizPrincipalesPoli: Producto[][];
-  matrizPrincipalesComu: Producto[][];
-  productoTemp: Producto;
+  public matrizPrincipalesPoli: Producto[][];
+  public matrizPrincipalesComu: Producto[][];
+  public productoTemp: Producto;
 
   constructor(private productoService: ProductoService, private productoTemporal: ProductoTemporalService, private router: Router) {
     this.matrizPrincipalesPoli = [];
@@ -33,11 +33,8 @@ export class PantallaInicioComponent implements OnInit {
       misProductosObs => {
         this.productosPoli = misProductosObs;
       },
-      error => {
-        console.error("Error: ", error);
-      },
+      error => {},
       () => {
-        console.log("Productos Poli cargados satisfactoriamente.");
         this.cargarProdPeqPoli();
       }
     );
@@ -48,11 +45,8 @@ export class PantallaInicioComponent implements OnInit {
       misProductosObs => {
         this.productosComu = misProductosObs;
       },
-      error => {
-        console.error("Error: ", error);
-      },
+      error => {},
       () => {
-        console.log("Productos Comunidad cargados satisfactoriamente.");
         this.cargarProdPeqComu();
       }
     );
@@ -63,12 +57,8 @@ export class PantallaInicioComponent implements OnInit {
       misProductosObs => {
         this.productos = misProductosObs;
       },
-      error => {
-        console.log("Error: ", error);
-      },
-      () => {
-        console.log("Productos cargados satisfactoriamente.");
-      }
+      error => {},
+      () => {}
     );
   }
 
@@ -108,10 +98,6 @@ export class PantallaInicioComponent implements OnInit {
       skipLocationChange: false
     });
     this.delay(2);
-  }
-
-  doSomething() {
-    console.log("did something");
   }
 
   ngOnInit() {}

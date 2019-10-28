@@ -1,4 +1,4 @@
-export class LoginUsuario{
-    correo: string;
-    contrasena: string;
+export class LoginUsuario {
+  public correo: string;
+  public contrasena: string;
 }

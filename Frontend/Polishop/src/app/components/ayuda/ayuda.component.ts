@@ -16,10 +16,17 @@ export class AyudaComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * En este método se implementa el servicio de correo que
+   * envía la petición a los administradores de la aplicación.
+   */
   enviar() {
     this.correo = "";
     this.nombre = "";
     this.mensaje = "";
     this.mostrar = true;
+    setTimeout(() => {
+      this.mostrar = false;
+    }, 5000);
   }
 }

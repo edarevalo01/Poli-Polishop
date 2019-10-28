@@ -1,5 +1,5 @@
-export class ImagenesCarrusel{
-    nombre: string;
-    value: string;   
-    ruta: string; 
+export class ImagenesCarrusel {
+  public nombre: string;
+  public value: string;
+  public ruta: string;
 }

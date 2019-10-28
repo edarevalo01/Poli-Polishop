@@ -1,15 +1,15 @@
-export class Producto{
-    id: number;	
-    nombre: string;	 
-    descripcion: string;	
-    precio: string;	
-    calificacion: number;	
-    fechaPublicacion: string;	
-    urlCarpetaImagenes: string;	
-    nombreVendedor: string;	
-    descripcionVendedor: string;
-    imagenVendedor: string;
-    calificacionVendedor: number;	
-    dependencia: string;	
-    idPropietario : number;
+export class Producto {
+  public id: number;
+  public nombre: string;
+  public descripcion: string;
+  public precio: string;
+  public calificacion: number;
+  public fechaPublicacion: string;
+  public urlCarpetaImagenes: string;
+  public nombreVendedor: string;
+  public descripcionVendedor: string;
+  public imagenVendedor: string;
+  public calificacionVendedor: number;
+  public dependencia: string;
+  public idPropietario: number;
 }

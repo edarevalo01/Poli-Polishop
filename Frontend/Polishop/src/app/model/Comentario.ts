@@ -1,9 +1,9 @@
-export class Comentario{
-    id: number;
-    nombreComprador: string;
-    nombreProducto: string;
-    comentario: string;
-    fecha: string;
-    imagenComprador: string;
-    puntuacionProducto: number;
+export class Comentario {
+  public id: number;
+  public nombreComprador: string;
+  public nombreProducto: string;
+  public comentario: string;
+  public fecha: string;
+  public imagenComprador: string;
+  public puntuacionProducto: number;
 }

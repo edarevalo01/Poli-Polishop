@@ -2,11 +2,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
+/** Necesario Angular */
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { OverlayModule } from "@angular/cdk/overlay";
 
+/** Componentes Angular */
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material";
 import { MatCheckboxModule } from "@angular/material";
@@ -25,6 +27,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatStepperModule } from "@angular/material/stepper";
 
+/** Componentes PrimeNG */
 import { ToastModule } from "primeng/toast";
 import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
@@ -41,6 +44,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { OverlayPanelModule } from "primeng/overlaypanel";
 
+/** Componentes Angular creados */
 import { PantallaProductoComponent } from "./components/pantalla-producto/pantalla-producto.component";
 import { PantallaInicioComponent } from "./components/pantalla-inicio/pantalla-inicio.component";
 import { MatDividerModule } from "@angular/material/divider";

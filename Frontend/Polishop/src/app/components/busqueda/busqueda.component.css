@@ -1,40 +1,42 @@
-#complete{
- margin: 2% 5% 5% 5%;
+#complete {
+  margin: 2% 5% 5% 5%;
 }
-#cantidadResultados{
+
+#cantidadResultados {
   margin: 0% 0% 2% 3%;
-  color:  rgb(130, 130, 130);
+  color: rgb(130, 130, 130);
   font-size: 18px;
 }
 
-#tituloCategorias{
+#tituloCategorias {
   font-size: 20px;
 }
 
-.letrasAzules{
-  color: #0F385A;
+.letrasAzules {
+  color: #0f385a;
   font-weight: bold;
   font-size: 15px;
 }
 
-#listCat{
+#listCat {
   font-size: 18px;
   font-weight: bold;
-  color: red
+  color: red;
 }
 
-#botonVer{
+#botonVer {
   width: 100%;
 }
-#bodyProductos{
+
+#bodyProductos {
   margin-left: 2%;
 }
 
-.titulosEncabezado{
+.titulosEncabezado {
   color: rgb(160, 160, 160);
 }
 
-.mat-divider-vertical{
-  border: solid  3px;
-  color: rgba(209, 209, 209, 0.596)
+.mat-divider-vertical {
+  border: solid 3px;
+  color: rgba(209, 209, 209, 0.596);
 }

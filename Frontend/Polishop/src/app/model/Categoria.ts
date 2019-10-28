@@ -1,5 +1,5 @@
-export class Categoria{
-    id: number;
-    nombre: string;
-    descripcion: string;
+export class Categoria {
+  public id: number;
+  public nombre: string;
+  public descripcion: string;
 }

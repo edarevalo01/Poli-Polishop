@@ -1,10 +1,10 @@
 export class ProductoCarrito {
-  idProducto: number;
-  nombreProducto: string;
-  nombreVendedor: string;
-  valor: string;
-  cantidad: number;
-  urlCarpetaImagenes: string;
-  idCarrito: number;
-  idCompra: number;
+  public idProducto: number;
+  public nombreProducto: string;
+  public nombreVendedor: string;
+  public valor: string;
+  public cantidad: number;
+  public urlCarpetaImagenes: string;
+  public idCarrito: number;
+  public idCompra: number;
 }

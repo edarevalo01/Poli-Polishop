@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+
   //Productos
   urlGetProductoById: "http://localhost:8080/getProductoById",
   urlGetAllProductos: "http://localhost:8080/getAllProductos",

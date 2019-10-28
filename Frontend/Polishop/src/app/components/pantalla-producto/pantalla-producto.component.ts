@@ -10,15 +10,15 @@ import { Comentario } from "src/app/model/Comentario";
   styleUrls: ["./pantalla-producto.component.css"]
 })
 export class PantallaProductoComponent implements OnInit {
-  imgCalificacionProducto: string;
-  imgCalificacionVendedor: string;
-  productoTmp: Producto;
-  comentarios: Array<Comentario>;
+  public imgCalificacionProducto: string;
+  public imgCalificacionVendedor: string;
+  public productoTmp: Producto;
+  public comentarios: Array<Comentario>;
 
-  calificacionComentario: number = 5;
-  comentario: string = "";
+  public calificacionComentario: number = 5;
+  public comentario: string = "";
 
-  imgs: string[];
+  public imgs: string[];
 
   constructor(private productoService: ProductoService, private activeRoute: ActivatedRoute) {
     scrollTo(0, 0);
@@ -35,16 +35,12 @@ export class PantallaProductoComponent implements OnInit {
       miProductoObs => {
         this.productoTmp = miProductoObs;
       },
-      error => {
-        console.log("ERROR: ", error);
-      },
+      error => {},
       () => {
-        console.log("Producto cargado satisfactoriamente.");
         this.cargarComentarios();
         this.setImgCalificacionProducto(this.productoTmp.calificacion);
         this.setImgCalificacionVendedor(this.productoTmp.calificacionVendedor);
         var filess = (this.productoTmp.nombre + "guid" + this.productoTmp.nombreVendedor).replace(/[^A-Z0-9]/gi, "").toLowerCase();
-        console.log(filess);
         this.imgs = ["p1.png", "p2.png", "p3.png", "p4.png", "p5.png"];
       }
     );
@@ -55,16 +51,11 @@ export class PantallaProductoComponent implements OnInit {
       comentariosObs => {
         this.comentarios = comentariosObs;
       },
-      error => {
-        console.error("Error al cargar comentarios", error);
-      },
-      () => {
-        console.log("Comentarios cargados satisfactoriamente.");
-      }
+      error => {},
+      () => {}
     );
   }
 
-  //Es más breve, que reciba dos parametros, el numero y la imagen que va a reemplazar y así queda un sólo método
   setImgCalificacionProducto(calificacionProducto: number) {
     switch (calificacionProducto) {
       case 0:
@@ -153,7 +144,6 @@ export class PantallaProductoComponent implements OnInit {
   }
 
   addComentario() {
-    //El id del comprador esta quemado.
     if (this.comentario == "") return;
     this.productoService.addComentarioProducto(
       +sessionStorage.getItem("user"),

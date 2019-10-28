@@ -1,4 +1,4 @@
-export class Estado{
-  nombre: string;
-  valor: string;
+export class Estado {
+  public nombre: string;
+  public valor: string;
 }

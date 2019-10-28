@@ -1,16 +1,20 @@
-#totalVendedor{
+#totalVendedor {
   margin: 4% 10% 4% 10%;
 }
-#crearProducto{
+
+#crearProducto {
   margin: 2% 10% 4% 10%;
 }
-#formCrearProducto{
+
+#formCrearProducto {
   margin: 2% 15% 0% 15%;
 }
-#reiniciarTodo{
-  margin-left: 5%
+
+#reiniciarTodo {
+  margin-left: 5%;
 }
-#btnContinuarCrear{
+
+#btnContinuarCrear {
   color: white;
   width: 35%;
 }

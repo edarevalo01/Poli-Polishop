@@ -1,13 +1,15 @@
 <div class="complete_producto">
   <div class="imagen_producto">
-    <img src="{{mySelectedProducto.urlCarpetaImagenes}}/p1.png" alt="imagenes" id="imagen">
+    <img src="{{ mySelectedProducto.urlCarpetaImagenes }}/p1.png" alt="imagenes" id="imagen" />
   </div>
   <div class="descripcion_producto">
     <div id="nombreProducto">
-      <p id="nombre"><b>{{mySelectedProducto.nombre.substr(0, 32)}}</b></p>
+      <p id="nombre">
+        <b>{{ mySelectedProducto.nombre.substr(0, 32) }}</b>
+      </p>
     </div>
     <div id="descripcionProducto">
-      <p id="descripcion">{{mySelectedProducto.descripcion.substr(0, 337)}}...</p>
+      <p id="descripcion">{{ mySelectedProducto.descripcion.substr(0, 337) }}...</p>
     </div>
   </div>
 </div>
