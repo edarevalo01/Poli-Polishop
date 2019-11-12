@@ -26,7 +26,7 @@
 <!-------------------------------------------------HEADER DOS---------------------------------------------------->
 <div class="header_dos">
   <div class="lista_categorias">
-    <button type="button" class="btn btn-outline-primary" id="lis-categorias" aria-label="LISTA CATEGORÍAS" (mouseover)="op1.show($event)">
+    <button type="button" class="btn btn-outline-primary" id="lis-categorias" aria-label="LISTA CATEGORÍAS" (click)="op1.show($event)">
       <b>LISTA CATEGORÍAS</b>
     </button>
   </div>
@@ -38,7 +38,7 @@
   </div>
 </div>
 <!--------------------------------------------BODY--------------------------------------------------------->
-<div (mouseout)="op1.hide()">
+<div (click)="op1.hide()">
   <router-outlet></router-outlet>
 </div>
 <!--------------------------------------------FOOTER--------------------------------------------------------->

@@ -26,7 +26,6 @@ export class AppComponent {
   public password: string;
 
   public comprador: Comprador = null;
-
   public searchProduct: string;
 
   public logueado: boolean = false;

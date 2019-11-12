@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewChecked } from "@angular/core";
 import { CompraService } from "src/app/services/compra.service";
 import { ProductoCarrito } from "src/app/model/ProductoCarrito";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ProductoService } from "src/app/services/producto.service";
 import { Router } from "@angular/router";
 import { Compra } from "src/app/model/Compra";
+declare let paypal: any;
 
 @Component({
   selector: "app-pantalla-carrito",
@@ -12,13 +13,38 @@ import { Compra } from "src/app/model/Compra";
   styleUrls: ["./pantalla-carrito.component.css"],
   providers: [ConfirmationService, MessageService]
 })
-export class PantallaCarritoComponent implements OnInit {
+export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
   public productosCarrito: ProductoCarrito[] = [];
-  public displayFormCompra: boolean = false;
+  public displayFormCompra: boolean = true;
   public totalPrecio: number = 0;
   public documentos: any[];
   public documentSelected: any = { name: "", value: "" };
   public compra: Compra = new Compra();
+
+  public finalAmount: number = 1000;
+  public addScript: boolean = false;
+
+  paypalConfig = {
+    env: "sandbox",
+    client: {
+      sandbox: "AQe-XawE2eyKVVwRojpH8IvzJ7ReX7OAlXcedrfLaNIx5aAH4Tgs4MSevhrBcfyI5s9gSLas0vqnTkbt",
+      production: "<your-production-key here>"
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [{ amount: { total: this.finalAmount, currency: "USD" } }]
+        }
+      });
+    },
+    onAuthorize: (data, actions) => {
+      return actions.payment.execute().then(payment => {
+        console.log("Pago hecho xdxd");
+        console.log(payment);
+      });
+    }
+  };
 
   constructor(
     private compraService: CompraService,
@@ -122,6 +148,25 @@ export class PantallaCarritoComponent implements OnInit {
         this.messageService.add({ severity: "warn", summary: "Ha ocurrido un error", detail: "Intente nuevamente" });
       }
     );
+  }
+
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scriptTagElement = document.createElement("script");
+      scriptTagElement.src = "https://www.paypalobjects.com/api/checkout.js";
+      scriptTagElement.onload = resolve;
+      document.body.appendChild(scriptTagElement);
+    });
+  }
+
+  ngAfterViewChecked(): void {
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, "#paypal-button");
+        this.displayFormCompra = false;
+      });
+    }
   }
 
   ngOnInit() {
