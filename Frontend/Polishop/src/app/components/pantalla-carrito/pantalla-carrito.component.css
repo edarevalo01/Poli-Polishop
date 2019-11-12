@@ -53,9 +53,8 @@
   margin-left: 7px;
 }
 
-#buttonRealizarCompra {
-  background-color: #3fa8d9;
-  color: white;
+.buttonRealizarCompra {
+  color: #181818;
   float: right;
   margin: 1% 30% 0% 0%;
   width: 60%;

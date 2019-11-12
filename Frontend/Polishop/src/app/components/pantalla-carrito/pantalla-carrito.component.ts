@@ -15,7 +15,7 @@ declare let paypal: any;
 })
 export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
   public productosCarrito: ProductoCarrito[] = [];
-  public displayFormCompra: boolean = true;
+  public displayFormCompra: boolean = false;
   public totalPrecio: number = 0;
   public documentos: any[];
   public documentSelected: any = { name: "", value: "" };
@@ -27,20 +27,28 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
   paypalConfig = {
     env: "sandbox",
     client: {
-      sandbox: "AQe-XawE2eyKVVwRojpH8IvzJ7ReX7OAlXcedrfLaNIx5aAH4Tgs4MSevhrBcfyI5s9gSLas0vqnTkbt",
+      sandbox:
+        "AQe-XawE2eyKVVwRojpH8IvzJ7ReX7OAlXcedrfLaNIx5aAH4Tgs4MSevhrBcfyI5s9gSLas0vqnTkbt",
       production: "<your-production-key here>"
     },
     commit: true,
     payment: (data, actions) => {
       return actions.payment.create({
         payment: {
-          transactions: [{ amount: { total: this.finalAmount, currency: "USD" } }]
+          transactions: [
+            { amount: { total: this.finalAmount, currency: "USD" } }
+          ]
         }
       });
     },
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then(payment => {
-        console.log("Pago hecho xdxd");
+        this.messageService.add({
+          severity: "success",
+          summary: "Compra realizada satisfactoriamente",
+          detail: "Por favor ingresa los datos de envío"
+        });
+        this.displayFormCompra = true;
         console.log(payment);
       });
     }
@@ -60,17 +68,19 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
   }
 
   getProductosCarrito() {
-    this.compraService.getProductosCarrito(+sessionStorage.getItem("user")).subscribe(
-      productosObs => {
-        this.productosCarrito = productosObs;
-      },
-      error => {},
-      () => {
-        this.productosCarrito.forEach(element => {
-          this.totalPrecio += +element.valor * +element.cantidad;
-        });
-      }
-    );
+    this.compraService
+      .getProductosCarrito(+sessionStorage.getItem("user"))
+      .subscribe(
+        productosObs => {
+          this.productosCarrito = productosObs;
+        },
+        error => {},
+        () => {
+          this.productosCarrito.forEach(element => {
+            this.totalPrecio += +element.valor * +element.cantidad;
+          });
+        }
+      );
   }
 
   confirm(producto: ProductoCarrito) {
@@ -79,7 +89,10 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
       header: "Eliminar producto del carrito de compras",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.compraService.eliminarProductoCarrito(producto.idCarrito, producto.idProducto);
+        this.compraService.eliminarProductoCarrito(
+          producto.idCarrito,
+          producto.idProducto
+        );
         location.reload();
       },
       reject: () => {}
@@ -94,7 +107,11 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
       this.productosCarrito.forEach(element => {
         if (producto.idProducto === element.idProducto) {
           element.cantidad += cant;
-          this.productoService.saveCarritoConProducto(element.idProducto, +sessionStorage.getItem("user"), cant);
+          this.productoService.saveCarritoConProducto(
+            element.idProducto,
+            +sessionStorage.getItem("user"),
+            cant
+          );
         }
         this.totalPrecio += +element.valor * +element.cantidad;
       });
@@ -114,9 +131,12 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
       !this.compra.direccionEnvio ||
       !this.compra.telefonoUno
     ) {
-      this.messageService.add({ severity: "warn", summary: "Ha ocurrido un error", detail: "Por favor verifique sus datos" });
+      this.messageService.add({
+        severity: "warn",
+        summary: "Ha ocurrido un error",
+        detail: "Por favor verifique sus datos"
+      });
     } else {
-      this.displayFormCompra = false;
       this.confirmationService.confirm({
         header: "Realizar compra",
         message: "¿Está seguro que desea realizar la compra?",
@@ -135,17 +155,26 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
           this.messageService.add({
             severity: "warn",
             summary: "Ha ocurrido un error",
-            detail: "Ha ocurrido un error al realizar la compra, intente nuevamente."
+            detail:
+              "Ha ocurrido un error al realizar la compra, intente nuevamente."
           });
         else {
-          this.messageService.add({ severity: "success", summary: "¡Felicidades!", detail: "Compra realizada" });
+          this.messageService.add({
+            severity: "success",
+            summary: "¡Felicidades!",
+            detail: "Compra realizada"
+          });
           this.compra = new Compra();
           this.productosCarrito = [];
           this.totalPrecio = 0;
         }
       },
       error => {
-        this.messageService.add({ severity: "warn", summary: "Ha ocurrido un error", detail: "Intente nuevamente" });
+        this.messageService.add({
+          severity: "warn",
+          summary: "Ha ocurrido un error",
+          detail: "Intente nuevamente"
+        });
       }
     );
   }

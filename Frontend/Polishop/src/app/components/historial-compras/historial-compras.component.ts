@@ -15,12 +15,25 @@ import { Estado } from "src/app/model/Estado";
   providers: [ConfirmationService]
 })
 export class HistorialComprasComponent implements OnInit {
-  public comprasList: CompraHist[];
+  public comprasList: CompraHist[] = [];
   public compraSel: CompraHist = new CompraHist();
   public display: boolean = false;
   public estados: Estado[] = [
+    { nombre: "Todos", valor: null },
     { nombre: this.compraSel.estadoCompra, valor: this.compraSel.estadoCompra },
     { nombre: "Comprando", valor: "comprando" },
+    { nombre: "Pendiente", valor: "pendiente" },
+    { nombre: "Enviado", valor: "enviado" },
+    { nombre: "Entregado", valor: "entregado" },
+    { nombre: "Cancelado", valor: "cancelado" }
+  ];
+  public cols: any[] = [
+    { field: "nombre", header: "Nombre" },
+    { field: "estado", header: "Estado" },
+    { field: "informacion", header: "Información" }
+  ];
+  public dropEstados: Estado[] = [
+    { nombre: "Todos", valor: null },
     { nombre: "Pendiente", valor: "pendiente" },
     { nombre: "Enviado", valor: "enviado" },
     { nombre: "Entregado", valor: "entregado" },
@@ -43,13 +56,20 @@ export class HistorialComprasComponent implements OnInit {
   }
 
   getComprasByVendedor() {
-    this.productoService.getHistorialProductos(+sessionStorage.getItem("seller")).subscribe(
-      comprasObs => {
-        this.comprasList = comprasObs;
-      },
-      error => {},
-      () => {}
-    );
+    this.productoService
+      .getHistorialProductos(+sessionStorage.getItem("seller"))
+      .subscribe(
+        comprasObs => {
+          this.comprasList = comprasObs;
+        },
+        error => {},
+        () => {}
+      );
+  }
+
+  filtro(algo, otro, igual) {
+    console.log(algo);
+    console.log(otro);
   }
 
   showDialog(compra: CompraHist) {

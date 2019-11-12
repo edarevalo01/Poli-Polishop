@@ -6,14 +6,20 @@
       </div>
       <div class="ui-g-2"><span class="titulosEncabezado">Valor c/u</span></div>
       <div class="ui-g-2"><span class="titulosEncabezado">Cantidad</span></div>
-      <div class="ui-g-2"><span class="titulosEncabezado">Eliminar del carrito</span></div>
+      <div class="ui-g-2">
+        <span class="titulosEncabezado">Eliminar del carrito</span>
+      </div>
     </div>
     <mat-divider></mat-divider>
   </div>
   <div id="bodyProductos" *ngFor="let producto of productosCarrito">
     <div class="ui-g">
       <div class="ui-g-1" id="imagen">
-        <img src="{{ producto.urlCarpetaImagenes }}/p1.png" width="100%" alt="imagen" />
+        <img
+          src="{{ producto.urlCarpetaImagenes }}/p1.png"
+          width="100%"
+          alt="imagen"
+        />
       </div>
       <div class="ui-g-5" id="nombreP">
         <span class="letrasAzules">{{ producto.nombreProducto }} </span>
@@ -21,15 +27,37 @@
         <span class="letrasClaras">{{ producto.nombreVendedor }}</span>
       </div>
       <div class="ui-g-2" id="valor">
-        <span class="letrasAzules">{{ +producto.valor | currency: "USD":"symbol":"1.0-0" }}</span>
+        <span class="letrasAzules">{{
+          +producto.valor | currency: "USD":"symbol":"1.0-0"
+        }}</span>
       </div>
       <div class="ui-g-2" id="cantidad">
-        <button pButton class="ui-button-secondary" [label]="producto.cantidad" id="input"></button>
-        <p-button icon="pi pi-minus" id="inputbtn" (click)="sumProducto(-1, producto)"></p-button>
-        <p-button icon="pi pi-plus" id="inputbtn" (click)="sumProducto(1, producto)"></p-button>
+        <button
+          pButton
+          class="ui-button-secondary"
+          [label]="producto.cantidad"
+          id="input"
+        ></button>
+        <p-button
+          icon="pi pi-minus"
+          id="inputbtn"
+          (click)="sumProducto(-1, producto)"
+        ></p-button>
+        <p-button
+          icon="pi pi-plus"
+          id="inputbtn"
+          (click)="sumProducto(1, producto)"
+        ></p-button>
       </div>
       <div class="ui-g-2">
-        <button pButton id="eliminar" type="button" icon="pi pi-trash" class="ui-button-raised" (click)="confirm(producto)"></button>
+        <button
+          pButton
+          id="eliminar"
+          type="button"
+          icon="pi pi-trash"
+          class="ui-button-raised"
+          (click)="confirm(producto)"
+        ></button>
       </div>
     </div>
     <mat-divider></mat-divider>
@@ -38,14 +66,20 @@
     <div class="ui-g">
       <div class="ui-g-7">
         <h3 id="precios">TOTAL</h3>
-        <span class="precio" id="precios">({{ productosCarrito.length }} Productos):</span
-        ><span class="precio" id="preciototal">{{ +totalPrecio | currency: "USD":"symbol":"1.0-0" }}</span>
+        <span class="precio" id="precios"
+          >({{ productosCarrito.length }} Productos):</span
+        ><span class="precio" id="preciototal">{{
+          +totalPrecio | currency: "USD":"symbol":"1.0-0"
+        }}</span>
       </div>
       <div class="ui-g-5">
         <br />
-        <button id="buttonRealizarCompra" mat-button (click)="formCompra()">
+        <div class="buttonRealizarCompra" id="paypal-button">
+          Comprar Productos
+        </div>
+        <!--button id="buttonRealizarCompra" mat-button (click)="formCompra()">
           Comprar productos
-        </button>
+        </button-->
       </div>
     </div>
   </div>
@@ -62,6 +96,8 @@
   [minY]="70"
   [maximizable]="true"
   [baseZIndex]="10000"
+  [closeOnEscape]="false"
+  [closable]="false"
 >
   <div style="width: 94%; margin: 1% 3% 1% 3%;">
     <p-dropdown
@@ -75,45 +111,91 @@
     ></p-dropdown>
 
     <span class="ui-float-label inputs">
-      <input id="float-input" [(ngModel)]="compra.numeroDocumento" type="text" style="width: 100%;" pInputText />
+      <input
+        id="float-input"
+        [(ngModel)]="compra.numeroDocumento"
+        type="text"
+        style="width: 100%;"
+        pInputText
+      />
       <label for="float-input">Número de documento</label>
     </span>
 
     <span class="ui-float-label inputs">
-      <input id="float-input" [(ngModel)]="compra.nombreDestinatario" type="text" style="width: 100%;" pInputText />
+      <input
+        id="float-input"
+        [(ngModel)]="compra.nombreDestinatario"
+        type="text"
+        style="width: 100%;"
+        pInputText
+      />
       <label for="float-input">Nombre de destinatario</label>
     </span>
 
     <span class="ui-float-label inputs">
-      <input id="float-input" [(ngModel)]="compra.direccionEnvio" type="text" style="width: 100%;" pInputText />
+      <input
+        id="float-input"
+        [(ngModel)]="compra.direccionEnvio"
+        type="text"
+        style="width: 100%;"
+        pInputText
+      />
       <label for="float-input">Dirección de envío</label>
     </span>
 
     <span class="ui-float-label inputs">
-      <input id="float-input" [(ngModel)]="compra.observaciones" type="text" style="width: 100%;" pInputText />
+      <input
+        id="float-input"
+        [(ngModel)]="compra.observaciones"
+        type="text"
+        style="width: 100%;"
+        pInputText
+      />
       <label for="float-input">Observaciones (Casa / Apto / Conjunto)</label>
     </span>
 
     <span class="ui-float-label inputs">
-      <input id="float-input" [(ngModel)]="compra.telefonoUno" type="text" style="width: 100%;" pInputText />
+      <input
+        id="float-input"
+        [(ngModel)]="compra.telefonoUno"
+        type="text"
+        style="width: 100%;"
+        pInputText
+      />
       <label for="float-input">Teléfono Uno</label>
     </span>
 
     <span class="ui-float-label inputs">
-      <input id="float-input" [(ngModel)]="compra.telefonoDos" type="text" style="width: 100%;" pInputText />
+      <input
+        id="float-input"
+        [(ngModel)]="compra.telefonoDos"
+        type="text"
+        style="width: 100%;"
+        pInputText
+      />
       <label for="float-input">Teléfono Dos</label>
     </span>
 
     <span class="ui-float-label inputs">
       <p style="font-size: 14px; color: #acacac;">
-        Al hacer click en 'Realizar Compra', confirma haber leído y aceptado los <a href="#/help-polishop">términos y condiciones.</a>
+        Al hacer click en 'Realizar Compra', confirma haber leído y aceptado los
+        <a href="#/help-polishop">términos y condiciones.</a>
       </p>
     </span>
   </div>
   <p-footer>
-    <div id="paypal-button"></div>
-    <!--button type="button" pButton icon="pi pi-check" (click)="realizarCompra()" label="Realizar compra"></button-->
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="realizarCompra()"
+      label="Realizar compra"
+    ></button>
   </p-footer>
 </p-dialog>
 
-<p-toast [style]="{ marginTop: '80px' }" position="top-center" baseZIndex="9999999"></p-toast>
+<p-toast
+  [style]="{ marginTop: '80px' }"
+  position="top-center"
+  baseZIndex="9999999"
+></p-toast>
