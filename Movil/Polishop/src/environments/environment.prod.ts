@@ -1,22 +1,22 @@
 export const environment = {
-  production: false,
+  production: true,
 
   /* Productos */
-  urlGetProductos: "http://localhost:8080/getAllProductos",
-  urlGetAllProductosByDependencia: "http://localhost:8080/getAllProductosByDependencia",
-  urlGetProductoById: "http://localhost:8080/getProductoById",
-  urlGetAllCategorias: "http://localhost:8080/getAllCategorias",
-  urlBusquedaProducto: "http://localhost:8080/busquedaProducto",
+  urlGetProductos: "http://192.168.54.6/Polishop/getAllProductos",
+  urlGetAllProductosByDependencia: "http://192.168.54.6/Polishop/getAllProductosByDependencia",
+  urlGetProductoById: "http://192.168.54.6/Polishop/getProductoById",
+  urlGetAllCategorias: "http://192.168.54.6/Polishop/getAllCategorias",
+  urlBusquedaProducto: "http://192.168.54.6/Polishop/busquedaProducto",
   /* Comentarios */
-  urlGetProductoComentarios: "http://localhost:8080/getComentarioByProducto",
-  urlAddComentarioProducto: "http://localhost:8080/addComentario",
+  urlGetProductoComentarios: "http://192.168.54.6/Polishop/getComentarioByProducto",
+  urlAddComentarioProducto: "http://192.168.54.6/Polishop/addComentario",
   /* Comprador */
-  urlLoginComprador: "http://localhost:8080/loginUsuario",
-  urlGetInfoComprador: "http://localhost:8080/getUsuarioByCorreo",
-  urlGetInfoCompradorById: "http://localhost:8080/getUsuarioById",
-  urlSaveCarritoConCompra: "http://localhost:8080/saveCarritoConCompra",
+  urlLoginComprador: "http://192.168.54.6/Polishop/loginUsuario",
+  urlGetInfoComprador: "http://192.168.54.6/Polishop/getUsuarioByCorreo",
+  urlGetInfoCompradorById: "http://192.168.54.6/Polishop/getUsuarioById",
+  urlSaveCarritoConCompra: "http://192.168.54.6/Polishop/saveCarritoConCompra",
   /* Compra */
-  urlGetProductosCarrito: "http://localhost:8080/getProductosCarrito",
-  urlEliminarProductoCarrito: "http://localhost:8080/eliminarProductoCarrito",
-  urlRealizarCompra: "http://localhost:8080/realizarCompra"
+  urlGetProductosCarrito: "http://192.168.54.6/Polishop/getProductosCarrito",
+  urlEliminarProductoCarrito: "http://192.168.54.6/Polishop/eliminarProductoCarrito",
+  urlRealizarCompra: "http://192.168.54.6/Polishop/realizarCompra"
 };
