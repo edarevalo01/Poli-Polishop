@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Compra } from "src/app/model/Compra";
 import { ProductoService } from "src/app/services/producto.service";
 import { Router } from "@angular/router";
 import { CompraHist } from "src/app/model/CompraHist";
@@ -67,11 +66,6 @@ export class HistorialComprasComponent implements OnInit {
       );
   }
 
-  filtro(algo, otro, igual) {
-    console.log(algo);
-    console.log(otro);
-  }
-
   showDialog(compra: CompraHist) {
     this.compraSel = compra;
     this.display = true;
@@ -107,6 +101,44 @@ export class HistorialComprasComponent implements OnInit {
         this.showchange = false;
         break;
     }
+  }
+
+  exportExcel() {
+    import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.getHistorialExcel());
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "resumen");
+    });
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    import("file-saver").then(FileSaver => {
+      let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+      let EXCEL_EXTENSION = '.xlsx';
+      const data: Blob = new Blob([buffer], {
+          type: EXCEL_TYPE
+      });
+      FileSaver.saveAs(data, fileName + '_historialCompras_' + new Date().getTime() + EXCEL_EXTENSION);
+    });
+  }
+
+  getHistorialExcel() {
+    let historial = [];
+    this.comprasList.map( compra => {
+      historial.push({
+        Nombre_Producto: compra.nombreProducto,
+        Estado_Compra: compra.estadoCompra,
+        Nombre_Comprador: compra.nombreComprador,
+        Documento_Comprador: compra.documentoComprador,
+        Nombre_Destinatario: compra.nombreDestinatario,
+        Ciudad: compra.ciudadComprador,
+        Direccion: compra.direccionComprador,
+        Telefono_uno: compra.telefono1,
+        Telefono_dos: compra.telefono2
+      });
+    })
+    return historial;
   }
 
   ngOnInit() {}

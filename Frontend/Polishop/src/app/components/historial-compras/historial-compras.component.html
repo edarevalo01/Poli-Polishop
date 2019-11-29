@@ -16,7 +16,7 @@
           icon="pi pi-file"
           iconPos="left"
           label="Resumen Excel"
-          (click)="dt.exportCSV()"
+          (click)="exportExcel()"
           style="margin-right: 0.5em;"
         ></button>
       </div>
@@ -25,12 +25,12 @@
       <tr>
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           {{ col.header }}
-          <p-dropdown
+          <!--p-dropdown
             *ngSwitchCase="'estado'"
             [options]="dropEstados"
             optionLabel="nombre"
             (onChange)="dt.filter($event.value, col.field, 'equals')"
-          ></p-dropdown>
+          ></p-dropdown-->
         </th>
       </tr>
     </ng-template>
