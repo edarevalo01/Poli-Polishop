@@ -1,57 +1,24 @@
-import { Component, AfterViewChecked } from "@angular/core";
+import { Component } from "@angular/core";
 import { GeneralService } from "../Services/general.service";
 import { Storage } from "@ionic/storage";
 import { ToastController, ModalController, AlertController } from "@ionic/angular";
 import { Comprador } from "../model/comprador";
-import { ModalPage } from "../modal/modal.page";
 import { ProductoCarrito } from "../model/producto-carrito";
 import { Router } from "@angular/router";
 import { CompraPage } from "../compra/compra.page";
 import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
-import { Producto } from "../model/producto";
-declare let paypal: any;
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 
 @Component({
   selector: "app-carrito",
   templateUrl: "carrito.page.html",
   styleUrls: ["carrito.page.scss"]
 })
-export class CarritoPage implements IObserverPolishop, AfterViewChecked {
+export class CarritoPage implements IObserverPolishop {
   public observablePolishop: ObservablePolishop;
   public settedUsuario: boolean = false;
   public settedCarrito: boolean = false;
   public usuario: Comprador = new Comprador();
-  public finalAmount: number = 1000;
-  public addScript: boolean = false;
-  paypalConfig = {
-    env: "sandbox",
-    client: {
-      sandbox:
-        "AQe-XawE2eyKVVwRojpH8IvzJ7ReX7OAlXcedrfLaNIx5aAH4Tgs4MSevhrBcfyI5s9gSLas0vqnTkbt",
-      production: "<your-production-key here>"
-    },
-    commit: true,
-    payment: (data, actions) => {
-      return actions.payment.create({
-        payment: {
-          transactions: [
-            { amount: { total: this.finalAmount, currency: "USD" } }
-          ]
-        }
-      });
-    },
-    onAuthorize: (data, actions) => {
-      return actions.payment.execute().then(payment => {
-        this.presentToast("Compra realizada satisfactoriamente. Por favor ingresa los datos de envío");
-        this.realizarCompra();
-      });
-    },
-    style: {
-      size: 'responsive',
-      color: 'blue',
-      shape: 'pill'
-     }
-  };
 
   constructor(
     private service: GeneralService,
@@ -59,7 +26,8 @@ export class CarritoPage implements IObserverPolishop, AfterViewChecked {
     private toastController: ToastController,
     private modalController: ModalController,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private payPal: PayPal
   ) {
     this.observablePolishop = ObservablePolishop.getInstance(service);
     this.observablePolishop.addObserver(this);
@@ -158,23 +126,23 @@ export class CarritoPage implements IObserverPolishop, AfterViewChecked {
     });
   }
 
-  addPaypalScript() {
-    this.addScript = true;
-    return new Promise((resolve, reject) => {
-      let scriptTagElement = document.createElement("script");
-      scriptTagElement.src = "https://www.paypalobjects.com/api/checkout.js";
-      scriptTagElement.onload = resolve;
-      document.body.appendChild(scriptTagElement);
-    });
-  }
-
-  ngAfterViewChecked(): void {
-    if (!this.addScript) {
-      this.addPaypalScript().then(() => {
-        paypal.Button.render(this.paypalConfig, "#paypal-button");
-        //this.displayFormCompra = false;
+  comprar() {
+    this.payPal.init({
+      PayPalEnvironmentProduction: 'YOUR_PRODUCTION_CLIENT_ID',
+      PayPalEnvironmentSandbox: 'AQe-XawE2eyKVVwRojpH8IvzJ7ReX7OAlXcedrfLaNIx5aAH4Tgs4MSevhrBcfyI5s9gSLas0vqnTkbt'
+    }).then(() => {
+      this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+      })).then(() => {
+        let payment = new PayPalPayment(String(this.observablePolishop.precioTotal), 'USD', 'Description', 'sale');
+        this.payPal.renderSinglePaymentUI(payment).then(() => {
+          this.presentToast("Compra realizada satisfactoriamente. Por favor ingresa los datos de envío");
+          this.realizarCompra();
+        }, () => {
+        });
+      }, () => {
       });
-    }
+    }, () => {
+    });
   }
 
   async realizarCompra() {

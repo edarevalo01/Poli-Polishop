@@ -16,6 +16,7 @@ import { ModalPageModule } from "./modal/modal.module";
 import { LinksPageModule } from "./links/links.module";
 import { CompraPageModule } from "./compra/compra.module";
 import { BuscarPageModule } from "./buscar/buscar.module";
+import { PayPal } from '@ionic-native/paypal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,7 @@ import { BuscarPageModule } from "./buscar/buscar.module";
     CompraPageModule,
     BuscarPageModule
   ],
-  providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [StatusBar, SplashScreen, PayPal, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
