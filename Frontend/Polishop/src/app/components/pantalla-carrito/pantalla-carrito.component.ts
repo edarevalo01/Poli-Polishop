@@ -49,7 +49,6 @@ export class PantallaCarritoComponent implements OnInit, AfterViewChecked {
           detail: "Por favor ingresa los datos de envío"
         });
         this.displayFormCompra = true;
-        console.log(payment);
       });
     }
   };

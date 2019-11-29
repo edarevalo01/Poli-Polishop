@@ -32,9 +32,10 @@
           {{ observablePolishop.precioTotal | currency: "USD":"symbol":"1.0-0" }}
         </h3>
       </ion-label>
-      <ion-button slot="end" size="small" class="comprar" *ngIf="observablePolishop.productosCarrito.length" (click)="realizarCompra()"
-        >Comprar</ion-button
-      >
+      <div class="buttonRealizarCompra" id="paypal-button" slot='end'></div>
+      <!--ion-button slot="end" size="small" class="comprar" *ngIf="observablePolishop.productosCarrito.length" (click)="realizarCompra()">
+        Comprar
+      </ion-button-->
     </ion-item-divider>
     <div *ngIf="observablePolishop.productosCarrito.length">
       <div *ngFor="let producto of observablePolishop.productosCarrito" class="card-item-producto">

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, AfterViewChecked } from "@angular/core";
 import { GeneralService } from "../Services/general.service";
 import { Storage } from "@ionic/storage";
 import { ToastController, ModalController, AlertController } from "@ionic/angular";
@@ -9,17 +9,49 @@ import { Router } from "@angular/router";
 import { CompraPage } from "../compra/compra.page";
 import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
 import { Producto } from "../model/producto";
+declare let paypal: any;
 
 @Component({
   selector: "app-carrito",
   templateUrl: "carrito.page.html",
   styleUrls: ["carrito.page.scss"]
 })
-export class CarritoPage implements IObserverPolishop {
+export class CarritoPage implements IObserverPolishop, AfterViewChecked {
   public observablePolishop: ObservablePolishop;
   public settedUsuario: boolean = false;
   public settedCarrito: boolean = false;
   public usuario: Comprador = new Comprador();
+  public finalAmount: number = 1000;
+  public addScript: boolean = false;
+  paypalConfig = {
+    env: "sandbox",
+    client: {
+      sandbox:
+        "AQe-XawE2eyKVVwRojpH8IvzJ7ReX7OAlXcedrfLaNIx5aAH4Tgs4MSevhrBcfyI5s9gSLas0vqnTkbt",
+      production: "<your-production-key here>"
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            { amount: { total: this.finalAmount, currency: "USD" } }
+          ]
+        }
+      });
+    },
+    onAuthorize: (data, actions) => {
+      return actions.payment.execute().then(payment => {
+        this.presentToast("Compra realizada satisfactoriamente. Por favor ingresa los datos de envío");
+        this.realizarCompra();
+      });
+    },
+    style: {
+      size: 'responsive',
+      color: 'blue',
+      shape: 'pill'
+     }
+  };
 
   constructor(
     private service: GeneralService,
@@ -124,6 +156,25 @@ export class CarritoPage implements IObserverPolishop {
       },
       skipLocationChange: false
     });
+  }
+
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scriptTagElement = document.createElement("script");
+      scriptTagElement.src = "https://www.paypalobjects.com/api/checkout.js";
+      scriptTagElement.onload = resolve;
+      document.body.appendChild(scriptTagElement);
+    });
+  }
+
+  ngAfterViewChecked(): void {
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, "#paypal-button");
+        //this.displayFormCompra = false;
+      });
+    }
   }
 
   async realizarCompra() {
