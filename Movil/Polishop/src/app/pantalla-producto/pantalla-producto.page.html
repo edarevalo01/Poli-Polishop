@@ -1,131 +1,145 @@
 <ion-header>
-  <ion-toolbar color="poli">
-    <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title slot="start">
-      Producto
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button href="tabs/carrito">
-        <ion-icon slot="icon-only" name="cart"></ion-icon>
-      </ion-button>
-      <ion-button (click)="openSearch()">
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+	<ion-toolbar color="poli">
+		<ion-buttons slot="start">
+			<ion-back-button text=""></ion-back-button>
+		</ion-buttons>
+		<ion-title slot="start">
+			Producto
+		</ion-title>
+		<ion-buttons slot="end">
+			<ion-button href="tabs/carrito">
+				<ion-icon slot="icon-only" name="cart"></ion-icon>
+			</ion-button>
+			<ion-button (click)="openSearch()">
+				<ion-icon slot="icon-only" name="search"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Arrastrar para refrescar"
-      refreshingSpinner="circles"
-      refreshingText="Cargando..."
-    >
-    </ion-refresher-content>
-  </ion-refresher>
-  <div *ngIf="cargado">
-    <!---------------------Imagenes Producto--------------------->
-    <ion-slides scrollbar="true" [options]="slideOpts">
-      <ion-slide *ngFor="let img of imgs">
-        <img src="{{ producto.urlCarpetaImagenes }}/{{ img }}" alt="{{ producto.nombre }}" width="100%" />
-      </ion-slide>
-    </ion-slides>
-    <!---------------------Nombre y descripción--------------------->
-    <ion-item lines="none">
-      <h3 style="padding: 0% 3% 0% 3%; color: #003057; font-weight: bold">{{ producto.nombre }}</h3>
-    </ion-item>
-    <h4 style="padding-left: 7%">Precio: {{ +producto.precio | currency: "USD":"symbol":"1.0-0" }}</h4>
-    <p style="padding-left: 7%; color: #9c9c9c; font-size: 12px">Fecha de publicación: {{ producto.fechaPublicacion }}</p>
-    <ion-item style="padding: 0% 5% 0% 1%">
-      <ion-label>
-        Calificación:
-      </ion-label>
-      <p-rating [(ngModel)]="producto.calificacion" readonly="true" [cancel]="false" class="rating-product"></p-rating>
-    </ion-item>
-    <ion-label>
-      <p style="padding: 4% 5% 4% 5%; text-align: justify">
-        {{ producto.descripcion }}
-      </p>
-    </ion-label>
-    <!---------------------Detalles vendedor--------------------->
-    <ion-item lines="none">
-      <ion-avatar slot="start">
-        <img src="{{ producto.imagenVendedor }}" alt="{{ producto.nombreVendedor }}" width="100%" />
-      </ion-avatar>
-      <ion-label>
-        {{ producto.nombreVendedor }}
-      </ion-label>
-      <ion-button slot="end" fill="clear" (click)="showInfoVendedor()">
-        Ver más
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-button>
-    </ion-item>
-    <!---------------------Boton Comprar------------------->
-    <ion-item-divider lines="none" sticky>
-      <div style="width: 100%; padding: 2% 3% 2% 3%">
-        <ion-button expand="block" *ngIf="userLogged" (click)="agregarCarrito()">
-          <ion-icon slot="start" name="cart"></ion-icon>
-          Agregar al carrito de compras
-          <ion-ripple-effect></ion-ripple-effect>
-        </ion-button>
-        <ion-button expand="block" *ngIf="!userLogged" (click)="login()">
-          ¡Inicia sesión para comprar!
-        </ion-button>
-      </div>
-    </ion-item-divider>
-    <!---------------------Comentarios--------------------->
-    <ion-item lines="full">
-      <ion-label style="margin-top: 2%;">
-        Comentarios:
-      </ion-label>
-    </ion-item>
-    <div *ngFor="let comentario of comentarios" style="margin-top: 2%">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>
-            <ion-item lines="none" class="comentarios">
-              <ion-avatar slot="start" style="width: 50px; height: 50px;">
-                <img src="{{ comentario.imagenComprador }}" alt="Imagen comprador" width="100%" />
-              </ion-avatar>
-              <ion-label>
-                <h2>
-                  <b>{{ comentario.nombreComprador }}</b>
-                </h2>
-              </ion-label>
-            </ion-item>
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          {{ comentario.comentario }}
-          <ion-item lines="none" class="comentarios">
-            <span slot="start" style="width: 70px; font-size: 12px; color: #858585;">
-              Calificación:
-            </span>
-            <p-rating [(ngModel)]="comentario.puntuacionProducto" readonly="true" [cancel]="false" class="rating-product"></p-rating>
-            <span slot="end" style="font-size: 12px; color: #858585;">{{ comentario.fecha }}</span>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    <!---------------------AddComentario--------------------->
-    <div style="margin-bottom: 5%;" *ngIf="userLogged">
-      <h4 style="margin-left: 5%;">Agregar comentario</h4>
-      <ion-item-divider></ion-item-divider>
-      <ion-item lines="none" style="width: 94%; margin: auto; ">
-        <ion-textarea placeholder="Escribir comentario" [(ngModel)]="nuevoComentario" style="margin-top: 5%;"></ion-textarea>
-      </ion-item>
-      <ion-item lines="none" style="width: 90%; margin: auto; font-size: 14px;">
-        Calificar producto
-        <p-rating slot="end" [cancel]="false" [(ngModel)]="nuevaPuntuacion" class="rating-product"></p-rating>
-      </ion-item>
-      <ion-button expand="block" style="width: 80%; margin: auto;" (click)="agregarComentario()" [disabled]="!nuevoComentario.length">
-        Enviar comentario
-      </ion-button>
-    </div>
-    <!---------------------Fin--------------------->
-  </div>
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+			pullingIcon="arrow-dropdown"
+			pullingText="Arrastrar para refrescar"
+			refreshingSpinner="circles"
+			refreshingText="Cargando..."
+		>
+		</ion-refresher-content>
+	</ion-refresher>
+	<div *ngIf="cargado">
+		<!---------------------Imagenes Producto--------------------->
+		<ion-slides scrollbar="true" [options]="slideOpts">
+			<ion-slide *ngFor="let img of imgs">
+				<img
+					src="http://192.168.54.6/polishop/{{ producto.urlCarpetaImagenes }}/{{ img }}"
+					alt="{{ producto.nombre }}"
+					width="100%"
+				/>
+			</ion-slide>
+		</ion-slides>
+		<!---------------------Nombre y descripción--------------------->
+		<ion-item lines="none">
+			<h3 style="padding: 0% 3% 0% 3%; color: #003057; font-weight: bold">{{ producto.nombre }}</h3>
+		</ion-item>
+		<h4 style="padding-left: 7%">Precio: {{ +producto.precio | currency: "USD":"symbol":"1.0-0" }}</h4>
+		<p style="padding-left: 7%; color: #9c9c9c; font-size: 12px">Fecha de publicación: {{ producto.fechaPublicacion }}</p>
+		<ion-item style="padding: 0% 5% 0% 1%">
+			<ion-label>
+				Calificación:
+			</ion-label>
+			<p-rating [(ngModel)]="producto.calificacion" readonly="true" [cancel]="false" class="rating-product"></p-rating>
+		</ion-item>
+		<ion-label>
+			<p style="padding: 4% 5% 4% 5%; text-align: justify">
+				{{ producto.descripcion }}
+			</p>
+		</ion-label>
+		<!---------------------Detalles vendedor--------------------->
+		<ion-item lines="none">
+			<ion-avatar slot="start">
+				<img src="http://192.168.54.6/polishop/{{ producto.imagenVendedor }}" alt="{{ producto.nombreVendedor }}" width="100%" />
+			</ion-avatar>
+			<ion-label>
+				{{ producto.nombreVendedor }}
+			</ion-label>
+			<ion-button slot="end" fill="clear" (click)="showInfoVendedor()">
+				Ver más
+				<ion-ripple-effect></ion-ripple-effect>
+			</ion-button>
+		</ion-item>
+		<!---------------------Boton Comprar------------------->
+		<ion-item-divider lines="none" sticky>
+			<div style="width: 100%; padding: 2% 3% 2% 3%">
+				<ion-button expand="block" *ngIf="userLogged" (click)="agregarCarrito()">
+					<ion-icon slot="start" name="cart"></ion-icon>
+					Agregar al carrito de compras
+					<ion-ripple-effect></ion-ripple-effect>
+				</ion-button>
+				<ion-button expand="block" *ngIf="!userLogged" (click)="login()">
+					¡Inicia sesión para comprar!
+				</ion-button>
+			</div>
+		</ion-item-divider>
+		<!---------------------Comentarios--------------------->
+		<ion-item lines="full">
+			<ion-label style="margin-top: 2%;">
+				Comentarios:
+			</ion-label>
+		</ion-item>
+		<div *ngFor="let comentario of comentarios" style="margin-top: 2%">
+			<ion-card>
+				<ion-card-header>
+					<ion-card-title>
+						<ion-item lines="none" class="comentarios">
+							<ion-avatar slot="start" style="width: 50px; height: 50px;">
+								<img src="http://192.168.54.6/polishop/{{ comentario.imagenComprador }}" alt="Imagen comprador" width="100%" />
+							</ion-avatar>
+							<ion-label>
+								<h2>
+									<b>{{ comentario.nombreComprador }}</b>
+								</h2>
+							</ion-label>
+						</ion-item>
+					</ion-card-title>
+				</ion-card-header>
+				<ion-card-content>
+					{{ comentario.comentario }}
+					<ion-item lines="none" class="comentarios">
+						<span slot="start" style="width: 70px; font-size: 12px; color: #858585;">
+							Calificación:
+						</span>
+						<p-rating
+							[(ngModel)]="comentario.puntuacionProducto"
+							readonly="true"
+							[cancel]="false"
+							class="rating-product"
+						></p-rating>
+						<span slot="end" style="font-size: 12px; color: #858585;">{{ comentario.fecha }}</span>
+					</ion-item>
+				</ion-card-content>
+			</ion-card>
+		</div>
+		<!---------------------AddComentario--------------------->
+		<div style="margin-bottom: 5%;" *ngIf="userLogged">
+			<h4 style="margin-left: 5%;">Agregar comentario</h4>
+			<ion-item-divider></ion-item-divider>
+			<ion-item lines="none" style="width: 94%; margin: auto; ">
+				<ion-textarea placeholder="Escribir comentario" [(ngModel)]="nuevoComentario" style="margin-top: 5%;"></ion-textarea>
+			</ion-item>
+			<ion-item lines="none" style="width: 90%; margin: auto; font-size: 14px;">
+				Calificar producto
+				<p-rating slot="end" [cancel]="false" [(ngModel)]="nuevaPuntuacion" class="rating-product"></p-rating>
+			</ion-item>
+			<ion-button
+				expand="block"
+				style="width: 80%; margin: auto;"
+				(click)="agregarComentario()"
+				[disabled]="!nuevoComentario.length"
+			>
+				Enviar comentario
+			</ion-button>
+		</div>
+		<!---------------------Fin--------------------->
+	</div>
 </ion-content>

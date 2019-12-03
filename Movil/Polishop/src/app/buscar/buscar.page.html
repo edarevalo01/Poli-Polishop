@@ -14,7 +14,7 @@
   <ion-list>
     <ion-item *ngFor="let producto of productos" (click)="goProduct(producto)">
       <ion-thumbnail slot="start">
-        <img src="{{ producto.urlCarpetaImagenes }}/p1.png" />
+        <img src="http://192.168.54.6/polishop/{{ producto.urlCarpetaImagenes }}/p1.png" />
       </ion-thumbnail>
       <ion-label>
         <h3>{{ producto.nombre }}</h3>
