@@ -1,5 +1,7 @@
 package com.polishop.negocio;
 
+import java.util.Date;
+
 public class CompraNegocio {
 	
 	private String nombreComprador;
@@ -19,6 +21,8 @@ public class CompraNegocio {
 	private String nombreProducto;
 	
 	private Long cantidad;
+	
+	private Date fechaCreacion;
 	
 	private String estadoCompra;
 
@@ -100,6 +104,14 @@ public class CompraNegocio {
 
 	public void setEstadoCompra(String estadoCompra) {
 		this.estadoCompra = estadoCompra;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 	
 }

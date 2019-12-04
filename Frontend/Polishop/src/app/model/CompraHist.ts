@@ -9,4 +9,5 @@ export class CompraHist {
   public nombreProducto: string;
   public cantidad: number;
   public estadoCompra: string;
+  public fechaCreacion: Date;
 }

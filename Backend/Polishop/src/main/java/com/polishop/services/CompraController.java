@@ -158,6 +158,7 @@ public class CompraController {
 					n.setNombreProducto(producto.getNombre());
 					n.setCantidad(prodCar.getCantidad());
 					n.setEstadoCompra(compra.getEstado());
+					n.setFechaCreacion(compra.getFechaCreacion());
 					compras.add(n);
 				}
 			}

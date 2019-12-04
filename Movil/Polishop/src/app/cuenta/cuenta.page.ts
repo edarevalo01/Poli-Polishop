@@ -8,67 +8,67 @@ import { LinksPage } from "../links/links.page";
 import { ObservablePolishop, IObserverPolishop } from "../model/observable-polishop";
 
 @Component({
-  selector: "app-cuenta",
-  templateUrl: "cuenta.page.html",
-  styleUrls: ["cuenta.page.scss"]
+	selector: "app-cuenta",
+	templateUrl: "cuenta.page.html",
+	styleUrls: ["cuenta.page.scss"],
 })
 export class CuentaPage implements IObserverPolishop {
-  private observablePolishop: ObservablePolishop;
-  private settedUsuario: boolean = false;
-  public userLogged: boolean = false;
-  public usuario: Comprador = new Comprador();
+	private observablePolishop: ObservablePolishop;
+	private settedUsuario: boolean = false;
+	public userLogged: boolean = false;
+	public usuario: Comprador = new Comprador();
 
-  constructor(private services: GeneralService, private modalController: ModalController, private storage: Storage) {
-    this.observablePolishop = ObservablePolishop.getInstance(services);
-    this.observablePolishop.addObserver(this);
-  }
+	constructor(private services: GeneralService, private modalController: ModalController, private storage: Storage) {
+		this.observablePolishop = ObservablePolishop.getInstance(services);
+		this.observablePolishop.addObserver(this);
+	}
 
-  refrescarDatos() {
-    if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
+	refrescarDatos() {
+		if (this.observablePolishop.settedUsuario && !this.settedUsuario) {
       this.usuario = this.observablePolishop.usuario;
-      this.userLogged = true;
-      this.settedUsuario = true;
-    }
-  }
+			this.userLogged = true;
+			this.settedUsuario = true;
+		}
+	}
 
-  imagenDefecto() {
-    this.usuario.urlFoto = "assets/profilePhotos/users/sin.png";
-  }
+	imagenDefecto() {
+		this.usuario.urlFoto = "http://192.168.54.6/polishop/assets/profilePhotos/users/sin.png";
+	}
 
-  async iniciarSesion() {
-    if (this.userLogged) {
-      this.userLogged = false;
-      this.settedUsuario = false;
-      this.storage.clear();
-      this.usuario = new Comprador();
-      this.services.setCompradorLogin(null);
-      this.services.setIdUsuario("");
-      this.imagenDefecto();
-      this.observablePolishop.deleteSesionUsuario();
-    } else {
-      const modal = await this.modalController.create({
-        component: ModalPage,
-        componentProps: {}
-      });
+	async iniciarSesion() {
+		if (this.userLogged) {
+			this.userLogged = false;
+			this.settedUsuario = false;
+			this.storage.clear();
+			this.usuario = new Comprador();
+			this.services.setCompradorLogin(null);
+			this.services.setIdUsuario("");
+			this.imagenDefecto();
+			this.observablePolishop.deleteSesionUsuario();
+		} else {
+			const modal = await this.modalController.create({
+				component: ModalPage,
+				componentProps: {},
+			});
 
-      modal.onDidDismiss().then(data => {
-        if (data.data.user !== undefined) {
-          this.usuario = data.data.user;
-          this.userLogged = true;
-          this.services.setCompradorLogin(this.usuario);
-        }
-      });
-      return await modal.present();
-    }
-  }
+			modal.onDidDismiss().then((data) => {
+				if (data.data.user !== undefined) {
+					this.usuario = data.data.user;
+					this.userLogged = true;
+					this.services.setCompradorLogin(this.usuario);
+				}
+			});
+			return await modal.present();
+		}
+	}
 
-  async openLink(opcion: string) {
-    const modal = await this.modalController.create({
-      component: LinksPage,
-      componentProps: {
-        opcionPage: opcion
-      }
-    });
-    return await modal.present();
-  }
+	async openLink(opcion: string) {
+		const modal = await this.modalController.create({
+			component: LinksPage,
+			componentProps: {
+				opcionPage: opcion,
+			},
+		});
+		return await modal.present();
+	}
 }

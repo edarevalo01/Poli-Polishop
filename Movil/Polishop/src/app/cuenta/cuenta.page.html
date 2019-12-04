@@ -10,11 +10,11 @@
   <div class="background-login"></div>
 
   <ion-avatar class="ion-avatar-profile">
-    <img *ngIf="userLogged" class="img-avatar-profile" [src]="usuario.urlFoto" alt="fotoPerfil" (error)="imagenDefecto()" />
+    <img *ngIf="userLogged" class="img-avatar-profile" [src]="'http://192.168.54.6/polishop/'+usuario.urlFoto" alt="fotoPerfil" (error)="imagenDefecto()" />
     <img
       *ngIf="!userLogged"
       class="img-avatar-profile"
-      src="assets/profilePhotos/users/sin.png"
+      src="http://192.168.54.6/polishop/assets/profilePhotos/users/sin.png"
       alt="fotoPerfil"
       (error)="imagenDefecto()"
     />
