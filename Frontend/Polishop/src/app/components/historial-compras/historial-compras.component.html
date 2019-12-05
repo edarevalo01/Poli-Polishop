@@ -1,4 +1,12 @@
 <div id="complete">
+  <button
+    type="button"
+    pButton
+    icon="pi pi-file"
+    iconPos="left"
+    label="Estadistica de ventas"
+    (click)="openEstadistica()"
+  ></button>
   <h3>Historial de productos vendidos</h3>
   <br />
   <p-table
@@ -50,6 +58,19 @@
       </tr>
     </ng-template>
   </p-table>
+
+  <p-dialog
+    header="Estadistica de ventas Anual"
+    [(visible)]="estadistica"
+    [modal]="true"
+    [style]="{ width: '70%', minWidth: '70%' }"
+    [maximizable]="true"
+    [baseZIndex]="10000"
+  >
+    <div>
+      <p-chart type="line" [data]="data" [options]="options"></p-chart>
+    </div>
+  </p-dialog>
 </div>
 
 <p-dialog

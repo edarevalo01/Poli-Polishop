@@ -43,6 +43,7 @@ import { ListboxModule } from "primeng/listbox";
 import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { OverlayPanelModule } from "primeng/overlaypanel";
+import { ChartModule } from "primeng/chart";
 
 /** Componentes Angular creados */
 import { PantallaProductoComponent } from "./components/pantalla-producto/pantalla-producto.component";
@@ -110,7 +111,8 @@ import { HistorialComprasComponent } from "./components/historial-compras/histor
     OverlayModule,
     InputTextModule,
     DropdownModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

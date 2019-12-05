@@ -41,6 +41,24 @@ export class HistorialComprasComponent implements OnInit {
   public labelBtnAvanzar: string = "Cambiar a enviado";
   public showchange: boolean = true;
 
+  public estadistica: boolean = false;
+  public ventas: any = [
+    { mes: "Enero", venta: 0 },
+    { mes: "Febrero", venta: 0 },
+    { mes: "Marzo", venta: 0 },
+    { mes: "Abril", venta: 0 },
+    { mes: "Mayo", venta: 0 },
+    { mes: "Junio", venta: 0 },
+    { mes: "Julio", venta: 0 },
+    { mes: "Agosto", venta: 0 },
+    { mes: "Septiembre", venta: 0 },
+    { mes: "Octubre", venta: 0 },
+    { mes: "Noviembre", venta: 0 },
+    { mes: "Diciembre", venta: 0 }
+  ];
+  public data: any;
+  public options: any;
+
   constructor(
     private productoService: ProductoService,
     private confirmationService: ConfirmationService,
@@ -62,7 +80,9 @@ export class HistorialComprasComponent implements OnInit {
           this.comprasList = comprasObs;
         },
         error => {},
-        () => {}
+        () => {
+          this.metodoEstadistica();
+        }
       );
   }
 
@@ -106,26 +126,33 @@ export class HistorialComprasComponent implements OnInit {
   exportExcel() {
     import("xlsx").then(xlsx => {
       const worksheet = xlsx.utils.json_to_sheet(this.getHistorialExcel());
-      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
+      const excelBuffer: any = xlsx.write(workbook, {
+        bookType: "xlsx",
+        type: "array"
+      });
       this.saveAsExcelFile(excelBuffer, "resumen");
     });
   }
 
   saveAsExcelFile(buffer: any, fileName: string): void {
     import("file-saver").then(FileSaver => {
-      let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-      let EXCEL_EXTENSION = '.xlsx';
+      let EXCEL_TYPE =
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+      let EXCEL_EXTENSION = ".xlsx";
       const data: Blob = new Blob([buffer], {
-          type: EXCEL_TYPE
+        type: EXCEL_TYPE
       });
-      FileSaver.saveAs(data, fileName + '_historialCompras_' + new Date().getTime() + EXCEL_EXTENSION);
+      FileSaver.saveAs(
+        data,
+        fileName + "_historialCompras_" + new Date().getTime() + EXCEL_EXTENSION
+      );
     });
   }
 
   getHistorialExcel() {
     let historial = [];
-    this.comprasList.map( compra => {
+    this.comprasList.map(compra => {
       historial.push({
         Nombre_Producto: compra.nombreProducto,
         Estado_Compra: compra.estadoCompra,
@@ -137,8 +164,57 @@ export class HistorialComprasComponent implements OnInit {
         Telefono_uno: compra.telefono1,
         Telefono_dos: compra.telefono2
       });
-    })
+    });
     return historial;
+  }
+
+  openEstadistica() {
+    this.estadistica = true;
+  }
+
+  metodoEstadistica() {
+    this.comprasList.map(prod => {
+      var mes = new Date(prod.fechaCreacion).getMonth();
+      this.ventas[mes].venta += 1;
+    });
+    // console.log(this.dist.map(a => a.mes));
+    // console.log(this.dist.map(a => a.venta));
+    this.data = {
+      labels: this.ventas.map(a => a.mes),
+      datasets: [
+        {
+          label: "2019",
+          data: this.ventas.map(a => a.venta),
+          fill: false,
+          borderColor: "#4bc0c0",
+          lineTension: 0
+        }
+      ]
+    };
+
+    this.options = {
+      legend: { position: "bottom" },
+      scales: {
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: "Cantidad de productos"
+            },
+            ticks: { stepSize: 1 }
+          }
+        ]
+      },
+      animation: { easing: "easeInQuad" },
+      layout: {
+        padding: {
+          left: 20,
+          right: 50,
+          top: 20,
+          bottom: 0
+        }
+      }
+    };
   }
 
   ngOnInit() {}
