@@ -1,125 +1,118 @@
 <div id="complete">
-  <button
-    type="button"
-    pButton
-    icon="pi pi-file"
-    iconPos="left"
-    label="Estadistica de ventas"
-    (click)="openEstadistica()"
-  ></button>
-  <h3>Historial de productos vendidos</h3>
-  <br />
-  <p-table
-    #dt
-    [columns]="cols"
-    [value]="comprasList"
-    [paginator]="true"
-    [rows]="6"
-  >
-    <ng-template pTemplate="caption">
-      <div class="ui-helper-clearfix" style="text-align: left">
-        <button
-          type="button"
-          pButton
-          icon="pi pi-file"
-          iconPos="left"
-          label="Resumen Excel"
-          (click)="exportExcel()"
-          style="margin-right: 0.5em;"
-        ></button>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" [ngSwitch]="col.field">
-          {{ col.header }}
-          <!--p-dropdown
-            *ngSwitchCase="'estado'"
-            [options]="dropEstados"
-            optionLabel="nombre"
-            (onChange)="dt.filter($event.value, col.field, 'equals')"
-          ></p-dropdown-->
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-compraList let-index>
-      <tr>
-        <td>{{ compraList.nombreProducto }}</td>
-        <td>{{ compraList.estadoCompra }}</td>
-        <td>
-          <button
-            pButton
-            icon="pi pi-pencil"
-            class="ui-button-raised"
-            (click)="showDialog(compraList)"
-            label="Información"
-          ></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-
-  <p-dialog
-    header="Estadistica de ventas Anual"
-    [(visible)]="estadistica"
-    [modal]="true"
-    [style]="{ width: '70%', minWidth: '70%' }"
-    [maximizable]="true"
-    [baseZIndex]="10000"
-  >
-    <div>
-      <p-chart type="line" [data]="data" [options]="options"></p-chart>
-    </div>
-  </p-dialog>
+	<h3>Historial de productos vendidos</h3>
+	<br />
+	<p-table #dt [columns]="cols" [value]="comprasList" [paginator]="true" [rows]="6">
+		<ng-template pTemplate="caption">
+			<div class="ui-helper-clearfix" style="text-align: right">
+				Descargar resumen de ventas
+				<button
+					type="button"
+					pButton
+					icon="pi pi-table"
+					iconPos="left"
+					label="Descargar"
+					(click)="exportExcel()"
+					style="margin-right: 0.5em; margin-left: 0.5em;"
+					class="ui-button-success"
+				></button>
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header" let-columns>
+			<tr>
+				<th style="width: 70%;">
+					Nombre
+				</th>
+				<th style="width: 12%;">
+					Estado
+				</th>
+				<th style="width: 18%;">
+					Información
+				</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-compraList let-index>
+			<tr>
+				<td>{{ compraList.nombreProducto }}</td>
+				<td>{{ compraList.estadoCompra | titlecase }}</td>
+				<td>
+					<button
+						pButton
+						icon="pi pi-info-circle"
+						class="ui-button-raised"
+						(click)="showDialog(compraList)"
+						label="Ver"
+						style="width: 100%;"
+					></button>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+	<br /><br />
+	<div style="width: 100%;">
+		<p-chart type="line" [data]="data" [options]="options"></p-chart>
+	</div>
 </div>
 
 <p-dialog
-  header="Información de la compra"
-  [(visible)]="display"
-  [modal]="true"
-  [responsive]="true"
-  [style]="{ width: '550px', minWidth: '200px' }"
-  [minY]="70"
-  [maximizable]="true"
-  [baseZIndex]="10000"
+	header="Resumen de compra"
+	[(visible)]="display"
+	[modal]="true"
+	[responsive]="true"
+	[style]="{ width: '550px', minWidth: '200px' }"
+	[minY]="70"
+	[maximizable]="true"
+	[baseZIndex]="10000"
 >
-  <div>
-    <h5><b>Información Comprador:</b></h5>
-    <p><b>Nombre:</b> {{ compraSel.nombreComprador }}</p>
-    <p><b>Ciudad:</b> {{ compraSel.ciudadComprador }}</p>
-    <p><b>Dirección:</b> {{ compraSel.direccionComprador }}</p>
-    <p><b>Número Documento:</b> {{ compraSel.documentoComprador }}</p>
-    <p><b>Teléfono 1:</b> {{ compraSel.telefono1 }}</p>
-    <p><b>Teléfono 2:</b> {{ compraSel.telefono2 }}</p>
-    <br />
-    <h5><b>Información del producto: </b></h5>
-    <p><b>Nombre:</b> {{ compraSel.nombreProducto }}</p>
-    <p><b>Cantidad:</b> {{ compraSel.cantidad }}</p>
-    <br />
-    <h5>
-      <b>Estado: {{ compraSel.estadoCompra }}</b>
-    </h5>
-  </div>
-  <p-footer>
-    <button
-      type="button"
-      pButton
-      icon="pi pi-check"
-      (click)="display = false"
-      label="Salir"
-    ></button>
-    <button
-      type="button"
-      pButton
-      icon="pi pi-angle-double-right"
-      (click)="avanzar()"
-      [label]="labelBtnAvanzar"
-      *ngIf="showchange"
-    ></button>
-  </p-footer>
+	<div>
+		<h5><b>Información Comprador:</b></h5>
+		<table style="width: 100%;">
+			<tr class="tr-noborder">
+				<td><b>Nombre:</b></td>
+				<td>{{ compraSel.nombreComprador }}</td>
+			</tr>
+			<tr class="tr-noborder">
+				<td><b>Ciudad:</b></td>
+				<td>{{ compraSel.ciudadComprador }}</td>
+			</tr>
+			<tr class="tr-noborder">
+				<td><b>Dirección:</b></td>
+				<td>{{ compraSel.direccionComprador }}</td>
+			</tr>
+			<tr class="tr-noborder">
+				<td><b>No. Documento</b></td>
+				<td>{{ compraSel.documentoComprador }}</td>
+			</tr>
+			<tr class="tr-noborder">
+				<td><b>Teléfono 1:</b></td>
+				<td>{{ compraSel.telefono1 }}</td>
+			</tr>
+			<tr class="tr-noborder">
+				<td><b>Teléfono 2:</b></td>
+				<td>{{ compraSel.telefono2 }}</td>
+			</tr>
+		</table>
+
+		<br />
+		<h5><b>Información del producto: </b></h5>
+		<p><b>Nombre:</b> {{ compraSel.nombreProducto }}</p>
+		<p><b>Cantidad:</b> {{ compraSel.cantidad }}</p>
+		<br />
+		<h5>
+			<b>Estado: {{ compraSel.estadoCompra | titlecase }}</b>
+		</h5>
+	</div>
+	<p-footer>
+		<button type="button" pButton icon="pi pi-check" (click)="display = false" label="Salir"></button>
+		<button
+			type="button"
+			pButton
+			icon="pi pi-angle-double-right"
+			(click)="avanzar()"
+			[label]="labelBtnAvanzar"
+			*ngIf="showchange"
+			class="ui-button-success"
+		></button>
+	</p-footer>
 </p-dialog>
 
-<p-confirmDialog
-  header="Confirmation"
-  icon="pi pi-exclamation-triangle"
-></p-confirmDialog>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,18 +1,28 @@
 #complete {
-  width: 70%;
-  margin: 2% 15% 2% 15%;
+	width: 70%;
+	margin: 2% 15% 2% 15%;
 }
 
 mat-form-field {
-  width: 80%;
-  margin: 0% 0% 0% 5%;
+	width: 80%;
+	margin: 0% 0% 0% 5%;
 }
 
 .mat-form-field-infix {
-  width: 80px !important;
+	width: 80px !important;
 }
 
 .cdk-global-overlay-wrapper,
 .cdk-overlay-container {
-  z-index: 99999 !important;
+	z-index: 99999 !important;
+}
+
+.tr-noborder {
+	border: 0px !important;
+	/*font-weight: 400 !important;*/
+	font-size: 15px;
+}
+
+td {
+	padding: 2px 0px;
 }

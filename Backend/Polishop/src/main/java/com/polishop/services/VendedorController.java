@@ -96,6 +96,13 @@ public class VendedorController {
 		return vendedorRepositoryDAO.findAll();
 	}
 	
+	@CrossOrigin
+	@RequestMapping("/deleteVendedor")
+	public String deleteVendedor(@RequestParam Long idVendedor) {
+		vendedorRepositoryDAO.deleteById(idVendedor);
+		return "{\"success\": \"" + "Vendedor eliminado." +"\"}";
+	}
+	
 	private void sendMail(String correo) throws Exception{
 		MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
