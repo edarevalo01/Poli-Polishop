@@ -4,7 +4,9 @@ import { Categoria } from "./model/Categoria";
 import { FormControl, Validators } from "@angular/forms";
 import { UsuarioService } from "./services/usuario.service";
 import { Comprador } from "./model/Comprador";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+import { filter } from "rxjs/operators";
+declare var gtag;
 
 @Component({
 	selector: "app-root",
@@ -34,6 +36,13 @@ export class AppComponent {
 	public admin: boolean = false;
 
 	constructor(private categoriaService: CategoriaService, private usuarioService: UsuarioService, private router: Router) {
+		const navEndEvent = this.router.events.pipe(filter((event) => event instanceof NavigationEnd));
+		navEndEvent.subscribe((event: NavigationEnd) => {
+			gtag("config", "UA-154462554-1", {
+				page_path: event.urlAfterRedirects
+			});
+		});
+
 		this.hintColor = "#FFFFFF";
 		this.loadCategorias();
 		if (sessionStorage.getItem("user") != null) {
