@@ -28,6 +28,7 @@ export const environment = {
 	urlSaveCarritoConCompra: "http://localhost:8080/saveCarritoConCompra",
 	urlAddVendedor: "http://localhost:8080/addVendedor",
 	urlGetAllVendedor: "http://localhost:8080/getAllVendedores",
+	urlDeleteVendedor: "http://localhost:8080/deleteVendedor",
 
 	//compra
 	urlGetProductosCarrito: "http://localhost:8080/getProductosCarrito",

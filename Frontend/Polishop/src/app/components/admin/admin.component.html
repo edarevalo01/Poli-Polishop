@@ -34,6 +34,7 @@
 						icon="pi pi-exclamation-triangle"
 						class="ui-button-raised ui-button-danger"
 						style="width: 100%"
+						(click)='deleteVendedor(vend)'
 					></button>
 				</td>
 			</tr>
@@ -75,6 +76,7 @@
 						icon="pi pi-exclamation-triangle"
 						class="ui-button-raised ui-button-danger"
 						style="width: 100%"
+						(click)='deleteProducto(prod)'
 					></button>
 				</td>
 			</tr>
@@ -118,3 +120,7 @@
 		</div>
 	</p-card>
 </p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+<p-toast [style]="{marginTop: '80px'}"></p-toast>

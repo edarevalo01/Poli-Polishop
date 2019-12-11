@@ -60,4 +60,9 @@ export class UsuarioService {
 	getAllVendedores(): Observable<Vendedor[]> {
 		return this.http.get<Vendedor[]>(environment.urlGetAllVendedor);
 	}
+
+	deleteVendedor(idVendedor: number): Observable<any> {
+		const body = new HttpParams().set("idVendedor", idVendedor + "");
+		return this.http.post<any>(environment.urlDeleteVendedor, body);
+	}
 }

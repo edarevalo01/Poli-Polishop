@@ -110,8 +110,10 @@ public class ProductoController {
 	@CrossOrigin
 	@RequestMapping(path = "/deleteProducto")
 	public String deleteProducto(@RequestParam Long idProducto) {
-		productoRepositoryDAO.deleteById(idProducto);
-		return "Producto eliminado.";
+		Optional<Producto> prodOpt = productoRepositoryDAO.findById(idProducto);
+		if(!prodOpt.isPresent()) return "{\"success\": \"Producto no encontrado\"}";
+		productoRepositoryDAO.delete(prodOpt.get());
+		return "{\"success\": \"Producto eliminado\"}";
 	}
 	
 	@CrossOrigin

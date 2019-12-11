@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.polishop.entities.Producto;
 import com.polishop.entities.Vendedor;
 import com.polishop.negocio.GuardarImagenes;
 import com.polishop.negocio.Login;
+import com.polishop.repositories.ProductoRepository;
 import com.polishop.repositories.VendedorRepository;
 
 @RestController
@@ -27,6 +29,9 @@ public class VendedorController {
 	
 	@Autowired
 	private VendedorRepository vendedorRepositoryDAO;
+	
+	@Autowired
+	private ProductoRepository productoRepositoryDAO;
 	
 	@Value("${ruta.files.images}")
 	private String upload_folder;
@@ -99,6 +104,10 @@ public class VendedorController {
 	@CrossOrigin
 	@RequestMapping("/deleteVendedor")
 	public String deleteVendedor(@RequestParam Long idVendedor) {
+		Iterable<Producto> prods = productoRepositoryDAO.findByIdVendedor(idVendedor);
+		for(Producto prod: prods) {
+			productoRepositoryDAO.delete(prod);
+		}
 		vendedorRepositoryDAO.deleteById(idVendedor);
 		return "{\"success\": \"" + "Vendedor eliminado." +"\"}";
 	}

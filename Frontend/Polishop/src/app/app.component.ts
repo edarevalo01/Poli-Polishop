@@ -31,6 +31,8 @@ export class AppComponent {
 	public logueado: boolean = false;
 	public vendedor: boolean = false;
 
+	public admin: boolean = false;
+
 	constructor(private categoriaService: CategoriaService, private usuarioService: UsuarioService, private router: Router) {
 		this.hintColor = "#FFFFFF";
 		this.loadCategorias();
@@ -42,11 +44,18 @@ export class AppComponent {
 			this.loginText = sessionStorage.getItem("nameLogin").toUpperCase();
 			this.vendedor = true;
 		}
+		if (sessionStorage.getItem("NF9AC") != null) {
+			this.admin = true;
+			this.router.navigateByUrl("admin-page");
+			this.loginText = "Administrador";
+			this.logueado = true;
+		}
 	}
 
 	loginComprador() {
 		if (this.email == "admin@poligran.edu.co") {
-			// console.log("Siii");
+			sessionStorage.setItem("NF9AC", "ZDmCIdnAli0a4qvHW8d2");
+			location.reload();
 		} else {
 			this.usuarioService.loginUserComprador(this.email).subscribe(
 				(loginUsuarioObs) => {
@@ -158,8 +167,10 @@ export class AppComponent {
 	}
 
 	goToInicio() {
-		this.router.navigateByUrl("/inicio");
-		this.searchProduct = "";
+		if (!this.admin) {
+			this.router.navigateByUrl("/inicio");
+			this.searchProduct = "";
+		}
 	}
 
 	carritoHabilitado() {
