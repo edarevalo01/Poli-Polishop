@@ -1,0 +1,11 @@
+::ng-deep .ui-rating a {
+	color: rgb(241, 186, 32) !important;
+}
+
+.vendedores {
+	margin: 3%;
+}
+
+.productos {
+	margin: 3%;
+}

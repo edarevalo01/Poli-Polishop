@@ -1,37 +1,38 @@
 export const environment = {
-  production: false,
+	production: false,
 
-  //Productos
-  urlGetProductoById: "http://192.168.54.6/Polishop/getProductoById",
-  urlGetAllProductos: "http://192.168.54.6/Polishop/getAllProductos",
-  urlGetAllProductosByDependencia: "http://192.168.54.6/Polishop/getAllProductosByDependencia",
-  urlGetAllCategorias: "http://192.168.54.6/Polishop/getAllCategorias",
-  urlUpdateProducto: "http://192.168.54.6/Polishop/updateProducto",
-  urldeleteProducto: "http://192.168.54.6/Polishop/deleteProducto",
-  urlGetProductosByVendedor: "http://192.168.54.6/Polishop/getProductosVendedor",
-  urlAddProducto: "http://192.168.54.6/Polishop/addProducto",
-  urlAddImagenProducto: "http://192.168.54.6/Polishop/saveImagenesProducto",
-  urlBusquedaProducto: "http://192.168.54.6/Polishop/busquedaProducto",
+	//Productos
+	urlGetProductoById: "http://localhost:8080/getProductoById",
+	urlGetAllProductos: "http://localhost:8080/getAllProductos",
+	urlGetAllProductosByDependencia: "http://localhost:8080/getAllProductosByDependencia",
+	urlGetAllCategorias: "http://localhost:8080/getAllCategorias",
+	urlUpdateProducto: "http://localhost:8080/updateProducto",
+	urldeleteProducto: "http://localhost:8080/deleteProducto",
+	urlGetProductosByVendedor: "http://localhost:8080/getProductosVendedor",
+	urlAddProducto: "http://localhost:8080/addProducto",
+	urlAddImagenProducto: "http://localhost:8080/saveImagenesProducto",
+	urlBusquedaProducto: "http://localhost:8080/busquedaProducto",
 
-  //Comentarios
-  urlAddComentarioProducto: "http://192.168.54.6/Polishop/addComentario",
-  urlGetProductoComentarios: "http://192.168.54.6/Polishop/getComentarioByProducto",
+	//Comentarios
+	urlAddComentarioProducto: "http://localhost:8080/addComentario",
+	urlGetProductoComentarios: "http://localhost:8080/getComentarioByProducto",
 
-  //Usuarios
-  urlLoginComprador: "http://192.168.54.6/Polishop/loginUsuario",
-  urlLoginVendedor: "http://192.168.54.6/Polishop/loginVendedor",
-  urlLoginAdmin: "http://192.168.54.6/Polishop/loginAdmin",
-  urlGetInfoComprador: "http://192.168.54.6/Polishop/getUsuarioByCorreo",
-  urlGetInfoCompradorById: "http://192.168.54.6/Polishop/getUsuarioById",
-  urlGetInfoVendedor: "http://192.168.54.6/Polishop/getVendedorByCorreo",
-  urlGetInfoVendedorById: "http://192.168.54.6/Polishop/getVendedorById",
-  urlSaveCarritoConCompra: "http://192.168.54.6/Polishop/saveCarritoConCompra",
-  urlAddVendedor: "http://192.168.54.6/Polishop/addVendedor",
+	//Usuarios
+	urlLoginComprador: "http://localhost:8080/loginUsuario",
+	urlLoginVendedor: "http://localhost:8080/loginVendedor",
+	urlLoginAdmin: "http://localhost:8080/loginAdmin",
+	urlGetInfoComprador: "http://localhost:8080/getUsuarioByCorreo",
+	urlGetInfoCompradorById: "http://localhost:8080/getUsuarioById",
+	urlGetInfoVendedor: "http://localhost:8080/getVendedorByCorreo",
+	urlGetInfoVendedorById: "http://localhost:8080/getVendedorById",
+	urlSaveCarritoConCompra: "http://localhost:8080/saveCarritoConCompra",
+	urlAddVendedor: "http://localhost:8080/addVendedor",
+	urlGetAllVendedor: "http://localhost:8080/getAllVendedores",
 
-  //compra
-  urlGetProductosCarrito: "http://192.168.54.6/Polishop/getProductosCarrito",
-  urlEliminarProductoCarrito: "http://192.168.54.6/Polishop/eliminarProductoCarrito",
-  urlGetCompraByVendedor: "http://192.168.54.6/Polishop/getByComprador",
-  urlGetHistorial: "http://192.168.54.6/Polishop/getHistorial",
-  urlRealizarCompra: "http://192.168.54.6/Polishop/realizarCompra"
+	//compra
+	urlGetProductosCarrito: "http://localhost:8080/getProductosCarrito",
+	urlEliminarProductoCarrito: "http://localhost:8080/eliminarProductoCarrito",
+	urlGetCompraByVendedor: "http://localhost:8080/getByComprador",
+	urlGetHistorial: "http://localhost:8080/getHistorial",
+	urlRealizarCompra: "http://localhost:8080/realizarCompra"
 };

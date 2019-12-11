@@ -1,208 +1,224 @@
 <div class="body">
-  <!---------------------------------DESCRIPCION DE PRODUCTO---------------------------------->
-  <div class="descripcion_producto">
-    <!--TMP-->
-    <div id="principal_imagen" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#principal_imagen" data-slide-to="0" class="active"></li>
-        <li data-target="#principal_imagen" data-slide-to="1"></li>
-        <li data-target="#principal_imagen" data-slide-to="2"></li>
-        <li data-target="#principal_imagen" data-slide-to="3"></li>
-        <li data-target="#principal_imagen" data-slide-to="4"></li>
-      </ol>
-      <div class="carousel-inner imagenPrincipal">
-        <div class="carousel-item {{ indice != 0 ? '' : 'active' }}" *ngFor="let img of imgs; let indice = index">
-          <img
-            src="{{ productoTmp.urlCarpetaImagenes }}/{{ img }}"
-            class="d-block w-100"
-            alt="imagennPrincipal"
-            width="100%"
-            id="principalImg"
-          />
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#principal_imagen" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#principal_imagen" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <!--TMP-END-->
-    <div id="descripcion_imagen">
-      <div id="titulo">
-        <div id="titulo-producto">
-          <b>{{ productoTmp.nombre }}</b>
-        </div>
-      </div>
-      <div id="calificacion">
-        <div id="texto-calificacion">
-          <b>Calificacion</b>
-        </div>
-        <div id="calificacion-producto">
-          <img src="{{ imgCalificacionProducto }}" alt="calificacionProducto" height="30%" width="60%" id="calificacionProducto" />
-        </div>
-      </div>
-      <div id="fecha">
-        <div id="fecha-producto">Fecha de publicación: {{ productoTmp.fechaPublicacion }}</div>
-      </div>
-      <div id="precio">
-        <div id="precio-producto">
-          <b>{{ +productoTmp.precio | currency: "USD":"symbol":"1.0-0" }}</b>
-        </div>
-      </div>
-      <div id="descripcion">
-        <div id="descripcion-producto">{{ productoTmp.descripcion }}</div>
-      </div>
-      <div id="carrito">
-        <div id="btnEnviarCarrito">
-          <button
-            id="buttonEnviarCarrito"
-            mat-button
-            (click)="addCarrito()"
-            data-target="#sendCarrito"
-            data-toggle="modal"
-            *ngIf="!compraHabilitada()"
-          >
-            Enviar al carrito de compras
-            <mat-icon aria-label="Example icon-button with a heart icon">add_shopping_cart</mat-icon>
-          </button>
-          <button id="buttonEnviarCarrito" mat-button disabled="true" *ngIf="compraHabilitada()">¡Inicia sesión para comprar!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br />
-  <hr />
-  <!---------------------------------DETALLES DE VENDEDOR---------------------------------->
-  <div class="detalles_vendedor">
-    <div id="tituloDetalles">
-      <h5><b>DETALLES DEL VENDEDOR</b></h5>
-    </div>
-    <div id="detallesV">
-      <div id="fotoVendedor">
-        <img src="{{ productoTmp.imagenVendedor }}" height="100%" alt="imagenVendedor" />
-      </div>
-      <div id="descripcionVendedor">
-        <h6>{{ productoTmp.nombreVendedor }}</h6>
-        <h6>{{ productoTmp.descripcionVendedor }}</h6>
-      </div>
-    </div>
-    <div id="calificacionV">
-      <div id="texto-calificacionV">
-        <b>Calificacion del vendedor</b>
-      </div>
-      <div id="calificacion-vendedor">
-        <img src="{{ imgCalificacionVendedor }}" alt="calificacionVendedor" height="30%" width="60%" id="calificacionVendedor" />
-      </div>
-    </div>
-  </div>
-  <br /><br />
-  <hr />
-  <!--------------------------------------COMENTARIOS--------------------------------------->
-  <div id="completeComentarios">
-    <div class="comentarios">
-      <div id="tituloComentarios">
-        <h5><b>COMENTARIOS DEL PRODUCTO</b></h5>
-      </div>
-      <div id="listComentarios">
-        <div *ngFor="let comentario of comentarios" id="listaComentarios">
-          <app-comentario-producto [mySelectedComentario]="comentario"></app-comentario-producto>
-        </div>
-        <div id="agregarComentario" *ngIf="logueado()">
-          <div id="completeComentAdd">
-            <mat-card class="example-card1">
-              <mat-card-header id="headercard">
-                <div id="titAddComent">
-                  <h6><b>AGREGAR COMENTARIO</b></h6>
-                </div>
-              </mat-card-header>
-              <mat-card-content>
-                <div id="textAreaComent">
-                  <mat-form-field appearance="outline" class="textAreaComent">
-                    <textarea matInput placeholder="Escribir comentario" [(ngModel)]="comentario"></textarea>
-                  </mat-form-field>
-                </div>
-                <div id="buttonComent">
-                  <!--Sorry for this :( it's the only way-->
-                  <div class="btn-group mr-2" role="group" aria-label="First group" id="calificacionBtns">
-                    <h5 id="titCalProdCom">Calificar producto</h5>
-                    <button
-                      mat-fab
-                      type="button"
-                      class="btnCalif"
-                      (click)="clickPuntuacion(1)"
-                      id="1"
-                      [ngStyle]="{ 'background-color': buttonColor1 }"
-                    ></button
-                    ><!--Pregunte si el numero que toca es menor y cambiar el color-->
-                    <button
-                      mat-fab
-                      type="button"
-                      class="btnCalif"
-                      (click)="clickPuntuacion(2)"
-                      id="2"
-                      [ngStyle]="{ 'background-color': buttonColor2 }"
-                    ></button>
-                    <button
-                      mat-fab
-                      type="button"
-                      class="btnCalif"
-                      (click)="clickPuntuacion(3)"
-                      id="3"
-                      [ngStyle]="{ 'background-color': buttonColor3 }"
-                    ></button>
-                    <button
-                      mat-fab
-                      type="button"
-                      class="btnCalif"
-                      (click)="clickPuntuacion(4)"
-                      id="4"
-                      [ngStyle]="{ 'background-color': buttonColor4 }"
-                    ></button>
-                    <button
-                      mat-fab
-                      type="button"
-                      class="btnCalif"
-                      (click)="clickPuntuacion(5)"
-                      id="5"
-                      [ngStyle]="{ 'background-color': buttonColor5 }"
-                    ></button>
-                  </div>
-                  <div id="btnEnviarComent">
-                    <button
-                      id="buttonEnviar"
-                      mat-button
-                      (click)="addComentario()"
-                      [disabled]="comentario.trim() === '' ? true : false"
-                      [ngStyle]="comentario.trim() == '' ? { 'background-color': '#C1C1C1' } : { 'background-color': '#3FA8D9' }"
-                    >
-                      Enviar comentario
-                    </button>
-                  </div>
-                </div>
-              </mat-card-content>
-            </mat-card>
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<!---------------------------------DESCRIPCION DE PRODUCTO---------------------------------->
+	<div class="descripcion_producto">
+		<!--TMP-->
+		<div id="principal_imagen" class="carousel slide" data-ride="carousel">
+			<!--p-galleria
+				[images]="images"
+				panelWidth="100%"
+				panelHeight="400"
+				[showCaption]="false"
+				frameHeight="80"
+				frameWidth="120"
+			></p-galleria-->
+			<ol class="carousel-indicators">
+				<li data-target="#principal_imagen" data-slide-to="0" class="active"></li>
+				<li data-target="#principal_imagen" data-slide-to="1"></li>
+				<li data-target="#principal_imagen" data-slide-to="2"></li>
+				<li data-target="#principal_imagen" data-slide-to="3"></li>
+				<li data-target="#principal_imagen" data-slide-to="4"></li>
+			</ol>
+			<div class="carousel-inner imagenPrincipal">
+				<div class="carousel-item {{ indice != 0 ? '' : 'active' }}" *ngFor="let img of imgs; let indice = index">
+					<img
+						src="{{ productoTmp.urlCarpetaImagenes }}/{{ img }}"
+						class="d-block w-100"
+						alt="imagennPrincipal"
+						width="100%"
+						id="principalImg"
+					/>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#principal_imagen" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#principal_imagen" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		<!--TMP-END-->
+		<div id="descripcion_imagen">
+			<div id="titulo">
+				<div id="titulo-producto">
+					<b>{{ productoTmp.nombre }}</b>
+				</div>
+			</div>
+			<div id="calificacion">
+				<div id="texto-calificacion">
+					<b>Calificacion</b>
+				</div>
+				<div id="calificacion-producto">
+					<img
+						src="{{ imgCalificacionProducto }}"
+						alt="calificacionProducto"
+						height="30%"
+						width="60%"
+						id="calificacionProducto"
+					/>
+				</div>
+			</div>
+			<div id="fecha">
+				<div id="fecha-producto">Fecha de publicación: {{ productoTmp.fechaPublicacion }}</div>
+			</div>
+			<div id="precio">
+				<div id="precio-producto">
+					<b>{{ +productoTmp.precio | currency: "USD":"symbol":"1.0-0" }}</b>
+				</div>
+			</div>
+			<div id="descripcion">
+				<div id="descripcion-producto">{{ productoTmp.descripcion }}</div>
+			</div>
+			<div id="carrito">
+				<div id="btnEnviarCarrito">
+					<button
+						id="buttonEnviarCarrito"
+						mat-button
+						(click)="addCarrito()"
+						data-target="#sendCarrito"
+						data-toggle="modal"
+						*ngIf="!compraHabilitada()"
+					>
+						Enviar al carrito de compras
+						<mat-icon aria-label="Example icon-button with a heart icon">add_shopping_cart</mat-icon>
+					</button>
+					<button id="buttonEnviarCarrito" mat-button disabled="true" *ngIf="compraHabilitada()">
+						¡Inicia sesión para comprar!
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<hr />
+	<!---------------------------------DETALLES DE VENDEDOR---------------------------------->
+	<div class="detalles_vendedor">
+		<div id="tituloDetalles">
+			<h5><b>DETALLES DEL VENDEDOR</b></h5>
+		</div>
+		<div id="detallesV">
+			<div id="fotoVendedor">
+				<img src="{{ productoTmp.imagenVendedor }}" height="100%" alt="imagenVendedor" />
+			</div>
+			<div id="descripcionVendedor">
+				<h6>{{ productoTmp.nombreVendedor }}</h6>
+				<h6>{{ productoTmp.descripcionVendedor }}</h6>
+			</div>
+		</div>
+		<div id="calificacionV">
+			<div id="texto-calificacionV">
+				<b>Calificacion del vendedor</b>
+			</div>
+			<div id="calificacion-vendedor">
+				<img src="{{ imgCalificacionVendedor }}" alt="calificacionVendedor" height="30%" width="60%" id="calificacionVendedor" />
+			</div>
+		</div>
+	</div>
+	<br /><br />
+	<hr />
+	<!--------------------------------------COMENTARIOS--------------------------------------->
+	<div id="completeComentarios">
+		<div class="comentarios">
+			<div id="tituloComentarios">
+				<h5><b>COMENTARIOS DEL PRODUCTO</b></h5>
+			</div>
+			<div id="listComentarios">
+				<div *ngFor="let comentario of comentarios" id="listaComentarios">
+					<app-comentario-producto [mySelectedComentario]="comentario"></app-comentario-producto>
+				</div>
+				<div id="agregarComentario" *ngIf="logueado()">
+					<div id="completeComentAdd">
+						<mat-card class="example-card1">
+							<mat-card-header id="headercard">
+								<div id="titAddComent">
+									<h6><b>AGREGAR COMENTARIO</b></h6>
+								</div>
+							</mat-card-header>
+							<mat-card-content>
+								<div id="textAreaComent">
+									<mat-form-field appearance="outline" class="textAreaComent">
+										<textarea matInput placeholder="Escribir comentario" [(ngModel)]="comentario"></textarea>
+									</mat-form-field>
+								</div>
+								<div id="buttonComent">
+									<!--Sorry for this :( it's the only way-->
+									<div class="btn-group mr-2" role="group" aria-label="First group" id="calificacionBtns">
+										<h5 id="titCalProdCom">Calificar producto</h5>
+										<button
+											mat-fab
+											type="button"
+											class="btnCalif"
+											(click)="clickPuntuacion(1)"
+											id="1"
+											[ngStyle]="{ 'background-color': buttonColor1 }"
+										></button
+										><!--Pregunte si el numero que toca es menor y cambiar el color-->
+										<button
+											mat-fab
+											type="button"
+											class="btnCalif"
+											(click)="clickPuntuacion(2)"
+											id="2"
+											[ngStyle]="{ 'background-color': buttonColor2 }"
+										></button>
+										<button
+											mat-fab
+											type="button"
+											class="btnCalif"
+											(click)="clickPuntuacion(3)"
+											id="3"
+											[ngStyle]="{ 'background-color': buttonColor3 }"
+										></button>
+										<button
+											mat-fab
+											type="button"
+											class="btnCalif"
+											(click)="clickPuntuacion(4)"
+											id="4"
+											[ngStyle]="{ 'background-color': buttonColor4 }"
+										></button>
+										<button
+											mat-fab
+											type="button"
+											class="btnCalif"
+											(click)="clickPuntuacion(5)"
+											id="5"
+											[ngStyle]="{ 'background-color': buttonColor5 }"
+										></button>
+									</div>
+									<div id="btnEnviarComent">
+										<button
+											id="buttonEnviar"
+											mat-button
+											(click)="addComentario()"
+											[disabled]="comentario.trim() === '' ? true : false"
+											[ngStyle]="comentario.trim() == '' ? { 'background-color': '#C1C1C1' } : { 'background-color': '#3FA8D9' }"
+										>
+											Enviar comentario
+										</button>
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+						<br />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!---------------------------Modales---------------------------------->
 <div class="modal fade" id="sendCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¡Producto enviado al carrito de compras!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">¡Producto enviado al carrito de compras!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+	</div>
 </div>

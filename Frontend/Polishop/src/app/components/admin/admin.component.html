@@ -1,0 +1,120 @@
+<div class="vendedores">
+	<h3 class="first">Vendedores</h3>
+	<p-table [value]="vendedores" [paginator]="true" [rows]="10">
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 28%;">Nombres</th>
+				<th style="width: 27%;">Apellidos</th>
+				<th style="width: 15%;">Reputación</th>
+				<th style="width: 15%;">Detalles</th>
+				<th style="width: 15%;">Eliminar</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-vend>
+			<tr>
+				<td>{{ vend.nombres }}</td>
+				<td>{{ vend.apellidos != "undefined" ? vend.apellidos : "N/A" }}</td>
+				<td><p-rating [(ngModel)]="vend.puntuacionVendedor" readonly="true" [cancel]="false"></p-rating></td>
+				<td>
+					<button
+						pButton
+						type="button"
+						label="Detalles"
+						icon="pi pi-external-link"
+						class="ui-button-raised"
+						style="width: 100%"
+						(click)="verDetallesVendedor(vend)"
+					></button>
+				</td>
+				<td>
+					<button
+						pButton
+						type="button"
+						label="Eliminar"
+						icon="pi pi-exclamation-triangle"
+						class="ui-button-raised ui-button-danger"
+						style="width: 100%"
+					></button>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>
+
+<div class="productos">
+	<h3 class="first">Productos</h3>
+	<p-table [value]="productos" [paginator]="true" [rows]="10">
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 55%;">Nombre</th>
+				<th style="width: 15%;">Calificación</th>
+				<th style="width: 15%;">Detalles</th>
+				<th style="width: 15%;">Eliminar</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-prod>
+			<tr>
+				<td>{{ prod.nombre }}</td>
+				<td><p-rating [(ngModel)]="prod.calificacion" readonly="true" [cancel]="false"></p-rating></td>
+				<td>
+					<button
+						pButton
+						type="button"
+						label="Detalles"
+						icon="pi pi-external-link"
+						class="ui-button-raised"
+						style="width: 100%"
+						(click)="verDetallesProducto(prod)"
+					></button>
+				</td>
+				<td>
+					<button
+						pButton
+						type="button"
+						label="Eliminar"
+						icon="pi pi-exclamation-triangle"
+						class="ui-button-raised ui-button-danger"
+						style="width: 100%"
+					></button>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>
+
+<p-dialog header="Detalles Vendedor" [(visible)]="showDetallesVendedor" [modal]="true" [style]="{ height: '610px' }">
+	<p-card
+		[header]="vendedorSel.nombres"
+		[subheader]="vendedorSel.correo"
+		[style]="{ width: '360px' }"
+		styleClass="ui-card-shadow"
+	>
+		<p-header>
+			<img src="{{ vendedorSel.urlFoto }}" alt="imagenVendedor" />
+		</p-header>
+		<div>
+			<b>Celular:</b> {{ vendedorSel.celular }} <br />
+			<b>Descripción:</b> {{ vendedorSel.descripcion }} <br />
+			<b>Reputación:</b> {{ vendedorSel.puntuacionVendedor }} <br />
+		</div>
+	</p-card>
+</p-dialog>
+
+<p-dialog header="Detalles Producto" [(visible)]="showDetallesProducto" [modal]="true" [style]="{ height: '610px' }">
+	<p-card
+		[header]="productoSel.nombre"
+		[subheader]="productoSel.vendedor.nombres"
+		[style]="{ width: '360px' }"
+		styleClass="ui-card-shadow"
+	>
+		<p-header>
+			<img src="{{ productoSel.urlCarpetaImagenes }}/p1.png" alt="imagenProducto" />
+		</p-header>
+		<div>
+			<b>Fecha Publicación:</b> {{ productoSel.fechaPublicacion }} <br />
+			<b>Descripción:</b> {{ productoSel.descripcion }} <br />
+			<b>Precio:</b> {{ productoSel.precio | currency: "USD":"symbol":"1.0-0" }} <br />
+			<b>Reputación:</b> {{ productoSel.calificacion }} <br />
+		</div>
+	</p-card>
+</p-dialog>

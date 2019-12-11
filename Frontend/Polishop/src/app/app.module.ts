@@ -44,6 +44,9 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { OverlayPanelModule } from "primeng/overlaypanel";
 import { ChartModule } from "primeng/chart";
+import { GalleriaModule } from "primeng/galleria";
+import { RatingModule } from "primeng/rating";
+import { CardModule } from "primeng/card";
 
 /** Componentes Angular creados */
 import { PantallaProductoComponent } from "./components/pantalla-producto/pantalla-producto.component";
@@ -58,63 +61,68 @@ import { BusquedaComponent } from "./components/busqueda/busqueda.component";
 import { AyudaComponent } from "./components/ayuda/ayuda.component";
 import { PantallaCarritoComponent } from "./components/pantalla-carrito/pantalla-carrito.component";
 import { HistorialComprasComponent } from "./components/historial-compras/historial-compras.component";
+import { AdminComponent } from "./components/admin/admin.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PantallaProductoComponent,
-    PantallaInicioComponent,
-    ProductoPrincipalSliderComponent,
-    ProductoPrincipalPequenoComponent,
-    ComentarioProductoComponent,
-    PantallaVenderComponent,
-    PantallaVendedorComponent,
-    BusquedaComponent,
-    AyudaComponent,
-    PantallaCarritoComponent,
-    HistorialComprasComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatMenuModule,
-    MatIconModule,
-    MatListModule,
-    MatDividerModule,
-    MatCardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatTooltipModule,
-    MatStepperModule,
-    ToastModule,
-    MessagesModule,
-    MessageModule,
-    TableModule,
-    ButtonModule,
-    DialogModule,
-    InputTextareaModule,
-    KeyFilterModule,
-    InputMaskModule,
-    ConfirmDialogModule,
-    FileUploadModule,
-    ListboxModule,
-    MatDialogModule,
-    OverlayModule,
-    InputTextModule,
-    DropdownModule,
-    OverlayPanelModule,
-    ChartModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		PantallaProductoComponent,
+		PantallaInicioComponent,
+		ProductoPrincipalSliderComponent,
+		ProductoPrincipalPequenoComponent,
+		ComentarioProductoComponent,
+		PantallaVenderComponent,
+		PantallaVendedorComponent,
+		BusquedaComponent,
+		AyudaComponent,
+		PantallaCarritoComponent,
+		HistorialComprasComponent,
+		AdminComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		MatButtonModule,
+		MatCheckboxModule,
+		MatFormFieldModule,
+		MatSelectModule,
+		MatInputModule,
+		MatMenuModule,
+		MatIconModule,
+		MatListModule,
+		MatDividerModule,
+		MatCardModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatSnackBarModule,
+		MatExpansionModule,
+		MatTooltipModule,
+		MatStepperModule,
+		ToastModule,
+		MessagesModule,
+		MessageModule,
+		TableModule,
+		ButtonModule,
+		DialogModule,
+		InputTextareaModule,
+		KeyFilterModule,
+		InputMaskModule,
+		ConfirmDialogModule,
+		FileUploadModule,
+		ListboxModule,
+		MatDialogModule,
+		OverlayModule,
+		InputTextModule,
+		DropdownModule,
+		OverlayPanelModule,
+		ChartModule,
+		GalleriaModule,
+		RatingModule,
+		CardModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}
