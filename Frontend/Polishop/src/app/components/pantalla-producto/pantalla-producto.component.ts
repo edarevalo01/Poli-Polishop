@@ -12,7 +12,7 @@ import { Comentario } from "src/app/model/Comentario";
 export class PantallaProductoComponent implements OnInit {
 	public imgCalificacionProducto: string;
 	public imgCalificacionVendedor: string;
-	public productoTmp: Producto;
+	public productoTmp: Producto = new Producto();
 	public comentarios: Array<Comentario>;
 
 	public calificacionComentario: number = 5;
