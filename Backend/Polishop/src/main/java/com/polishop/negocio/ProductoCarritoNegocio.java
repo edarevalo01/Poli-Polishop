@@ -17,6 +17,8 @@ public class ProductoCarritoNegocio {
 	private Long idCarrito;
 	
 	private Long idCompra;
+	
+	private EstadosEnum estado;
 
 	public Long getIdProducto() {
 		return idProducto;
@@ -80,6 +82,14 @@ public class ProductoCarritoNegocio {
 
 	public void setIdCompra(Long idCompra) {
 		this.idCompra = idCompra;
+	}
+
+	public EstadosEnum getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadosEnum estado) {
+		this.estado = estado;
 	}
 
 }

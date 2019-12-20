@@ -1,61 +1,110 @@
 package com.polishop.negocio;
 
+import java.util.ArrayList;
 import java.util.Date;
 
+import com.polishop.entities.Producto;
+
 public class CompraNegocio {
+
+	private Long id;
 	
-	private String nombreComprador;
+	private String numeroPedido; 
 	
-	private String ciudadComprador;
+	private Long idComprador;
 	
-	private String direccionComprador;
+	private String pais;
 	
-	private String documentoComprador;
+	private String departamento;
+	
+	private String ciudad;
+	
+	private String tipoDocumento;
+	
+	private String numeroDocumento;
 	
 	private String nombreDestinatario;
 	
-	private String telefono1;
+	private String direccionEnvio;
 	
-	private String telefono2;
+	private String observaciones; 
 	
-	private String nombreProducto;
+	private String telefonoUno;
 	
-	private Long cantidad;
+	private String telefonoDos;
 	
 	private Date fechaCreacion;
 	
-	private String estadoCompra;
+	private Date fechaEstimadaEntrega;
+	
+	private String metodoPago;
+	
+	private EstadosEnum estado;
+	
+	private ArrayList<Producto> productos;
 
-	public String getNombreComprador() {
-		return nombreComprador;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNombreComprador(String nombreComprador) {
-		this.nombreComprador = nombreComprador;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getCiudadComprador() {
-		return ciudadComprador;
+	public String getNumeroPedido() {
+		return numeroPedido;
 	}
 
-	public void setCiudadComprador(String ciudadComprador) {
-		this.ciudadComprador = ciudadComprador;
+	public void setNumeroPedido(String numeroPedido) {
+		this.numeroPedido = numeroPedido;
 	}
 
-	public String getDireccionComprador() {
-		return direccionComprador;
+	public Long getIdComprador() {
+		return idComprador;
 	}
 
-	public void setDireccionComprador(String direccionComprador) {
-		this.direccionComprador = direccionComprador;
+	public void setIdComprador(Long idComprador) {
+		this.idComprador = idComprador;
 	}
 
-	public String getDocumentoComprador() {
-		return documentoComprador;
+	public String getPais() {
+		return pais;
 	}
 
-	public void setDocumentoComprador(String documentoComprador) {
-		this.documentoComprador = documentoComprador;
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 
 	public String getNombreDestinatario() {
@@ -66,44 +115,36 @@ public class CompraNegocio {
 		this.nombreDestinatario = nombreDestinatario;
 	}
 
-	public String getTelefono1() {
-		return telefono1;
+	public String getDireccionEnvio() {
+		return direccionEnvio;
 	}
 
-	public void setTelefono1(String telefono1) {
-		this.telefono1 = telefono1;
+	public void setDireccionEnvio(String direccionEnvio) {
+		this.direccionEnvio = direccionEnvio;
 	}
 
-	public String getTelefono2() {
-		return telefono2;
+	public String getObservaciones() {
+		return observaciones;
 	}
 
-	public void setTelefono2(String telefono2) {
-		this.telefono2 = telefono2;
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
 	}
 
-	public String getNombreProducto() {
-		return nombreProducto;
+	public String getTelefonoUno() {
+		return telefonoUno;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public void setTelefonoUno(String telefonoUno) {
+		this.telefonoUno = telefonoUno;
 	}
 
-	public Long getCantidad() {
-		return cantidad;
+	public String getTelefonoDos() {
+		return telefonoDos;
 	}
 
-	public void setCantidad(Long cantidad) {
-		this.cantidad = cantidad;
-	}
-
-	public String getEstadoCompra() {
-		return estadoCompra;
-	}
-
-	public void setEstadoCompra(String estadoCompra) {
-		this.estadoCompra = estadoCompra;
+	public void setTelefonoDos(String telefonoDos) {
+		this.telefonoDos = telefonoDos;
 	}
 
 	public Date getFechaCreacion() {
@@ -112,6 +153,38 @@ public class CompraNegocio {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaEstimadaEntrega() {
+		return fechaEstimadaEntrega;
+	}
+
+	public void setFechaEstimadaEntrega(Date fechaEstimadaEntrega) {
+		this.fechaEstimadaEntrega = fechaEstimadaEntrega;
+	}
+
+	public String getMetodoPago() {
+		return metodoPago;
+	}
+
+	public void setMetodoPago(String metodoPago) {
+		this.metodoPago = metodoPago;
+	}
+
+	public EstadosEnum getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadosEnum estado) {
+		this.estado = estado;
+	}
+
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(ArrayList<Producto> productos) {
+		this.productos = productos;
 	}
 	
 }

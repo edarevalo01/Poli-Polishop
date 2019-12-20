@@ -4,6 +4,8 @@ public class ComentarioNegocio {
 	
 	private Long id;
 	
+	private Long idComprador;
+	
 	private String nombreComprador;
 	
 	private String nombreProducto;
@@ -22,6 +24,14 @@ public class ComentarioNegocio {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getIdComprador() {
+		return idComprador;
+	}
+
+	public void setIdComprador(Long idComprador) {
+		this.idComprador = idComprador;
 	}
 
 	public String getNombreComprador() {

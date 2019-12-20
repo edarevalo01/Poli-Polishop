@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.polishop.entities.Carrito;
 import com.polishop.entities.Compra;
 import com.polishop.entities.ProductoCarrito;
+import com.polishop.negocio.EstadosEnum;
+import com.polishop.negocio.Respuesta;
 import com.polishop.repositories.CarritoRepository;
 import com.polishop.repositories.CompraRepository;
 import com.polishop.repositories.ProductoCarritoRepository;
@@ -33,36 +35,53 @@ public class CarritoController {
 
 	@CrossOrigin
 	@RequestMapping(path = "/addCarrito", method = RequestMethod.POST)
-	public @ResponseBody String addCarrito() {
-		Carrito c = new Carrito();
-		c.setFechaModificacion(new Date());
-		carritoRepositoryDAO.save(c);
-		return "Carrito guardado." + c.getId();
+	public @ResponseBody Respuesta addCarrito() {
+		try {			
+			Carrito carrito = new Carrito();
+			carrito.setFechaModificacion(new Date());
+			carritoRepositoryDAO.save(carrito);
+			return new Respuesta(Respuesta.OK, "Carrito creado.");
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/updateCarrito", method = RequestMethod.POST)
-	public @ResponseBody String updateCarrito(@RequestParam Long id) {
-		Carrito c = carritoRepositoryDAO.findById(id).get();
-		c.setFechaModificacion(new Date());
-		carritoRepositoryDAO.save(c);
-		return "Carrito guardado.";
+	@RequestMapping(path = "/updateCarrito", method = RequestMethod.PUT)
+	public @ResponseBody Respuesta updateCarrito(@RequestParam Long id) {
+		try {
+			Carrito c = carritoRepositoryDAO.findById(id).get();
+			c.setFechaModificacion(new Date());
+			carritoRepositoryDAO.save(c);
+			return new Respuesta(Respuesta.OK, "Carrito actualizado.");			
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/deleteCarrito")
-	public String deleteCarrito(@RequestParam Long idCarrito) {
-		carritoRepositoryDAO.deleteById(idCarrito);
-		return "Carrito eliminado.";
+	@RequestMapping(path = "/deleteCarrito", method = RequestMethod.DELETE)
+	public Respuesta deleteCarrito(@RequestParam Long idCarrito) {
+		try {
+			Optional<Carrito> optCarrito = carritoRepositoryDAO.findById(idCarrito);
+			if(!optCarrito.isPresent()) {
+				return new Respuesta(Respuesta.FAIL, "El carrito no existe.");
+			}
+			carritoRepositoryDAO.deleteById(idCarrito);
+			return new Respuesta(Respuesta.OK, "Carrito eliminado.");
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/saveCarritoConCompra")
-	public String saveCarritoConCompra(@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam Long cantidad) {
+	@RequestMapping(path = "/saveCarritoConCompra", method = RequestMethod.PUT)
+	public Respuesta saveCarritoConCompra(@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam Long cantidad) {
 		boolean nuevo = false;
-		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, "comprando");
+		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, EstadosEnum.comprando);
 		if(!optCompra.isPresent()) {
 			nuevo = true;
+			
 			Date date = new Date();
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
@@ -89,7 +108,7 @@ public class CarritoController {
 			newCompra.setFechaEstimadaEntrega(calendar.getTime());
 			newCompra.setMetodoPago("");
 			newCompra.setIdCarrito(newCarrito.getId());
-			newCompra.setEstado("comprando");
+			newCompra.setEstado(EstadosEnum.comprando);
 			compraRepositoryDAO.save(newCompra);
 			
 			ProductoCarrito newProductoCarrito = new ProductoCarrito();
@@ -114,17 +133,22 @@ public class CarritoController {
 				productoCarritoRepositoryDAO.save(newProductoCarrito);
 			}
 		}
-		return nuevo? "{\"success\": \"Pedido creado\"}" : "{\"success\": \"Pedido modificado\"}";
+		if(nuevo) {
+			return new Respuesta(Respuesta.OK, "Pedido creado.");
+		}
+		else {			
+			return new Respuesta(Respuesta.OK, "Pedido modificado.");
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path="/addInfoCompra")
-	public String addInfoCompra(
+	@RequestMapping(path="/addInfoCompra", method = RequestMethod.PUT)
+	public Respuesta addInfoCompra(
 			@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam String pais,
 			@RequestParam String departamento, @RequestParam String ciudad, @RequestParam String numeroDocumento,
 			@RequestParam String nombreDestinatario, @RequestParam String direccionEnvio, @RequestParam String observaciones,
 			@RequestParam String telUno, @RequestParam String telDos) {
-		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, "comprando");
+		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, EstadosEnum.comprando);
 		if(optCompra.isPresent()) {
 			Compra newCompra = optCompra.get();
 			newCompra.setPais(pais);
@@ -138,20 +162,22 @@ public class CarritoController {
 			newCompra.setTelefonoUno(telUno);
 			newCompra.setTelefonoDos(telDos);
 			newCompra.setMetodoPago("no-reply");
-			newCompra.setEstado("pendiente");
+			newCompra.setEstado(EstadosEnum.pendiente);
 			compraRepositoryDAO.save(newCompra);
-			return "Informacion agregada.";
+			return new Respuesta(Respuesta.OK, "Información agregada.");
 		}
-		return "La compra no existe.";
+		return new Respuesta(Respuesta.FAIL, "La compra no existe.");
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/eliminarProductoCarrito")
-	public String eliminarProductoCarrito (@RequestParam Long idCarrito, @RequestParam Long idProducto) {
+	@RequestMapping(path = "/eliminarProductoCarrito", method = RequestMethod.DELETE)
+	public Respuesta eliminarProductoCarrito (@RequestParam Long idCarrito, @RequestParam Long idProducto) {
 		Optional<ProductoCarrito> optPC = productoCarritoRepositoryDAO.findByIdProductoAndIdCarrito(idProducto, idCarrito);
-		if(!optPC.isPresent()) return "El producto no existe en este carrito";
+		if(!optPC.isPresent()) {
+			return new Respuesta(Respuesta.FAIL, "El producto no existe en este carrito.");
+		}
 		productoCarritoRepositoryDAO.deleteById(optPC.get().getId());
-		return "{\"success\": \"Producto Eliminado\"}";
+		return new Respuesta(Respuesta.OK, "El producto ha sido eliminado del carrito de compras.");
 	}
 	
 }

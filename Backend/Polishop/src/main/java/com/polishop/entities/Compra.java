@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.polishop.negocio.EstadosEnum;
 
 @Entity
 @Table(name = "COMPRA")
@@ -61,7 +62,7 @@ public class Compra {
 	
 	private String metodoPago;
 	
-	private String estado; //comprando pendiente enviado entregado
+	private EstadosEnum estado;
 	
 	private Long idCarrito;
 	
@@ -203,11 +204,11 @@ public class Compra {
 		this.metodoPago = metodoPago;
 	}
 
-	public String getEstado() {
+	public EstadosEnum getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(EstadosEnum estado) {
 		this.estado = estado;
 	}
 

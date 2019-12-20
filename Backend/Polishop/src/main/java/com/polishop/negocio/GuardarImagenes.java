@@ -9,7 +9,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class GuardarImagenes {
 
-	public String cargaArchivos(MultipartFile eventImage, String upload_folder, String nombreImagen) throws IOException {
+	public String cargaArchivos(MultipartFile eventImage, String upload_folder, String nombreImagen) {
+		try {
+			return subirArchivos(eventImage, upload_folder, nombreImagen);
+		} catch (IOException e) {
+			System.out.println(e);
+			return "fail";
+		}
+	}
+	
+	private String subirArchivos(MultipartFile eventImage, String upload_folder, String nombreImagen) throws IOException {
 		if(!eventImage.isEmpty()) {
 			byte[] bytes= eventImage.getBytes();
 			Path path = Paths.get(upload_folder + (nombreImagen+".png"));

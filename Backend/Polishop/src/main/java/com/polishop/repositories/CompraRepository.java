@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.polishop.entities.Compra;
+import com.polishop.negocio.EstadosEnum;
 
 @Repository
 public interface CompraRepository extends CrudRepository<Compra, Long>{
@@ -18,6 +19,6 @@ public interface CompraRepository extends CrudRepository<Compra, Long>{
 	
 	public Optional<Compra> findByIdCarrito(Long idCarrito);
 	
-	public Optional<Compra> findByIdCompradorAndEstado(Long idComprador, String estado);
+	public Optional<Compra> findByIdCompradorAndEstado(Long idComprador, EstadosEnum estado);
 	
 }
