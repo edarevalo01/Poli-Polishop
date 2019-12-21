@@ -51,6 +51,8 @@ public class Producto {
 	
 	private Long idPropietario;
 	
+	private Long cantidadImagenes;
+	
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idVendedor", referencedColumnName = "id", insertable = false, updatable = false)
@@ -62,15 +64,15 @@ public class Producto {
 	private PropietarioNegocio propietario; // Relacion - Tabla PROPIETARIO_NEGOCIO
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Comentario> comentarios = new ArrayList<Comentario>(); //Relacion - Tabla COMENTARIO
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ProductoCarrito> productoCarrito = new ArrayList<ProductoCarrito>(); //Relacion - Tabla PRODUCTO_CARRITO
 
 	@JsonBackReference
-	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<CategoriaProducto> categoriaProducto = new ArrayList<CategoriaProducto>(); //Relacion - Tabla CATEGORIA_PRODUCTO
 
 	public Long getId() {
@@ -191,6 +193,14 @@ public class Producto {
 
 	public void setDependencia(String dependencia) {
 		this.dependencia = dependencia;
+	}
+
+	public Long getCantidadImagenes() {
+		return cantidadImagenes;
+	}
+
+	public void setCantidadImagenes(Long cantidadImagenes) {
+		this.cantidadImagenes = cantidadImagenes;
 	}
 	
 }

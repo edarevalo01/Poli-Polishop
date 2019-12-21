@@ -51,7 +51,7 @@ public class Vendedor {
 	private Long puntuacionVendedor;
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Producto> productos = new ArrayList<Producto>(); // Relacion - Tabla PRODUCTO
 
 	public Long getId() {

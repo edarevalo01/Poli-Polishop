@@ -27,11 +27,11 @@ public class Carrito {
 	private Date fechaModificacion;
 	
 	@JsonBackReference
-	@OneToOne(mappedBy = "carrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "carrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private Compra compra;  //Relacion - Tabla COMPRA
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "carrito", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "carrito", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ProductoCarrito> productoCarrito = new ArrayList<ProductoCarrito>(); //Relacion - Tabla PRODUCTO_CARRITO
 
 	public Long getId() {

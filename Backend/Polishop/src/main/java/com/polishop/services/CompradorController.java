@@ -1,5 +1,7 @@
 package com.polishop.services;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.StringTokenizer;
 
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.polishop.entities.Comprador;
+import com.polishop.negocio.CompradorNegocio;
 import com.polishop.negocio.GuardarImagenes;
-import com.polishop.negocio.Login;
 import com.polishop.negocio.Respuesta;
 import com.polishop.repositories.CompradorRepository;
 
@@ -33,7 +35,7 @@ public class CompradorController {
 	public @ResponseBody Respuesta addComprador
 	(@RequestParam String nombres, @RequestParam String apellidos,
 			@RequestParam String correo, @RequestParam String contrasena, @RequestParam String pais, 
-			@RequestParam String ciudad, @RequestParam("urlFoto") MultipartFile urlFoto, @RequestParam Long puntuacion){
+			@RequestParam String ciudad, @RequestParam("urlFoto") MultipartFile urlFoto, @RequestParam Long puntuacion) {
 		try {
 			Optional<Comprador> compradorOpt = compradorRepositoryDAO.findByCorreo(correo);
 			if(compradorOpt.isPresent()) {
@@ -69,7 +71,7 @@ public class CompradorController {
 		try {
 			Optional<Comprador> optComprador = compradorRepositoryDAO.findById(idComprador);
 			if(!optComprador.isPresent()) {
-				return new Respuesta(Respuesta.FAIL, "El comprador no existe.");
+				return new Respuesta(Respuesta.FAIL, "El usuario no existe.");
 			}
 			Comprador comprador = optComprador.get();
 			comprador.setContrasena(null);
@@ -85,7 +87,7 @@ public class CompradorController {
 		try {
 			Optional<Comprador> optComprador = compradorRepositoryDAO.findByCorreo(correo.toLowerCase());
 			if(!optComprador.isPresent()) {
-				return new Respuesta(Respuesta.FAIL, "El comprador no existe.");
+				return new Respuesta(Respuesta.FAIL, "El usuario no existe.");
 			}
 			Comprador comprador = optComprador.get();
 			comprador.setContrasena(null);
@@ -96,20 +98,50 @@ public class CompradorController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/loginUsuario")
-	public Login getLoginComprador(@RequestParam String correo) {
+	@RequestMapping(path = "/loginUsuario", method = RequestMethod.GET)
+	public Respuesta getLoginComprador(@RequestParam String correo, @RequestParam String contrasena) {
 		Optional<Comprador> optComprador = compradorRepositoryDAO.findByCorreo(correo.toLowerCase());
-		if(!optComprador.isPresent()) return null;
-		Login login = new Login();
-		login.setCorreo(correo.toLowerCase());
-		login.setContrasena(optComprador.get().getContrasena());
-		return login;
+		if(!optComprador.isPresent()) {
+			return new Respuesta(Respuesta.FAIL, "Correo o contraseña incorrectos.");
+		}
+		if(optComprador.get().getContrasena().equals(contrasena)) {
+			return new Respuesta(Respuesta.OK, new CompradorNegocio(optComprador.get()));
+		}
+		else {
+			return new Respuesta(Respuesta.FAIL, "Correo o contraseña incorrectos.");
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping("/getAllCompradores")
-	public Iterable<Comprador> getAllCompradores() {
-		return compradorRepositoryDAO.findAll();
+	@RequestMapping(path = "/getAllCompradores", method = RequestMethod.GET)
+	public Respuesta getAllCompradores() {
+		try {
+			ArrayList<CompradorNegocio> listaComprador = new ArrayList<>();
+			Iterable<Comprador> iterableComprador = compradorRepositoryDAO.findAll();
+			for(Comprador comprador: iterableComprador) {
+				listaComprador.add(new CompradorNegocio(comprador));
+			}
+			return new Respuesta(Respuesta.OK, listaComprador);
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
+	}
+	
+	@CrossOrigin
+	@RequestMapping(path = "/eliminarComprador", method = RequestMethod.DELETE)
+	public Respuesta eliminarComprador(@RequestParam Long idComprador) {
+		try {
+			Optional<Comprador> optComprador = compradorRepositoryDAO.findById(idComprador);
+			if(!optComprador.isPresent()) {
+				return new Respuesta(Respuesta.FAIL, "El usuario no existe.");
+			}
+			File directorio = new File(upload_folder + optComprador.get().getUrlFoto().substring(7));
+			directorio.delete();
+			compradorRepositoryDAO.deleteById(idComprador);
+			return new Respuesta(Respuesta.OK, "Usuario eliminado.");
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 
 }

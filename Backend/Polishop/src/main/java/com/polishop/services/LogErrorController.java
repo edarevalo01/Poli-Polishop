@@ -1,7 +1,6 @@
 package com.polishop.services;
 
 import java.util.Date;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.polishop.entities.LogError;
+import com.polishop.negocio.Respuesta;
 import com.polishop.repositories.LogErrorRepository;
 
 @RestController
@@ -22,28 +22,40 @@ public class LogErrorController {
 	
 	@CrossOrigin
 	@RequestMapping(path = "/addLogError", method = RequestMethod.POST)
-	public @ResponseBody String addLogError
+	public @ResponseBody Respuesta addLogError
 	(@RequestParam String nombreError, @RequestParam String descripcion) {
-		LogError logError = new LogError();
-		logError.setNombreError(nombreError);
-		logError.setDescripcion(descripcion);
-		logError.setFecha(new Date());
-		logErrorRepositoryDAO.save(logError);
-		return "Log de Error agregado.";
+		try {
+			LogError logError = new LogError();
+			logError.setNombreError(nombreError);
+			logError.setDescripcion(descripcion);
+			logError.setFecha(new Date());
+			logErrorRepositoryDAO.save(logError);
+			return new Respuesta(Respuesta.OK, "Error reportado.");
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/getLogErrorByNombreError")
-	public LogError getLogErrorByNombreError(@RequestParam String nombreError) {
-		Optional<LogError> optLogErr = logErrorRepositoryDAO.findByNombreError(nombreError);
-		if(!optLogErr.isPresent()) return null;
-		return optLogErr.get();
+	@RequestMapping(path = "/getLogErrorByNombreError", method = RequestMethod.GET)
+	public Respuesta getLogErrorByNombreError(@RequestParam String nombreError) {
+		try {
+			Iterable<LogError> listaLog = logErrorRepositoryDAO.findAllByNombreError(nombreError);
+			return new Respuesta(Respuesta.OK, listaLog);
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/getAllLogError")
-	public Iterable<LogError> getAllLogError(){
-		return logErrorRepositoryDAO.findAll();
+	@RequestMapping(path = "/getAllLogError", method = RequestMethod.GET)
+	public Respuesta getAllLogError(){
+		try {
+			Iterable<LogError> listaLog = logErrorRepositoryDAO.findAll();
+			return new Respuesta(Respuesta.OK, listaLog);
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 
 }

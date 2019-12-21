@@ -16,11 +16,11 @@ public class LogActividades {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nombreActividad;
+	private String nombreActividad; //Eliminar Usuario, Agregar Usuario, (lo mismo para productos)
 	
 	private String descripcion;
 	
-	private String usuario; //Concatena id y nombre: 42Alejandro, 32Felipe
+	private String usuario; //Concatena id, nombre y dependencia: 42;Alejandro;admin, 32;Felipe;vendedor
 	
 	private Date fecha;
 

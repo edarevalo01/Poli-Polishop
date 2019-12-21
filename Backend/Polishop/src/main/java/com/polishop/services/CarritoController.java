@@ -169,15 +169,4 @@ public class CarritoController {
 		return new Respuesta(Respuesta.FAIL, "La compra no existe.");
 	}
 	
-	@CrossOrigin
-	@RequestMapping(path = "/eliminarProductoCarrito", method = RequestMethod.DELETE)
-	public Respuesta eliminarProductoCarrito (@RequestParam Long idCarrito, @RequestParam Long idProducto) {
-		Optional<ProductoCarrito> optPC = productoCarritoRepositoryDAO.findByIdProductoAndIdCarrito(idProducto, idCarrito);
-		if(!optPC.isPresent()) {
-			return new Respuesta(Respuesta.FAIL, "El producto no existe en este carrito.");
-		}
-		productoCarritoRepositoryDAO.deleteById(optPC.get().getId());
-		return new Respuesta(Respuesta.OK, "El producto ha sido eliminado del carrito de compras.");
-	}
-	
 }

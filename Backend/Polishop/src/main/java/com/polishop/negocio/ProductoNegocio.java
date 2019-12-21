@@ -31,6 +31,8 @@ public class ProductoNegocio {
 	private String dependencia;
 	
 	private Long idPropietario;
+	
+	private Long cantidadImagenes;
 
 	public Long getId() {
 		return id;
@@ -134,6 +136,14 @@ public class ProductoNegocio {
 
 	public void setDependencia(String dependencia) {
 		this.dependencia = dependencia;
+	}
+
+	public Long getCantidadImagenes() {
+		return cantidadImagenes;
+	}
+
+	public void setCantidadImagenes(Long cantidadImagenes) {
+		this.cantidadImagenes = cantidadImagenes;
 	}
 	
 }

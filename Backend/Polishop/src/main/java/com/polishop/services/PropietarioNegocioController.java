@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.polishop.entities.PropietarioNegocio;
-import com.polishop.negocio.Login;
+import com.polishop.negocio.Respuesta;
 import com.polishop.repositories.PropietarioNegocioRepository;
 
 @RestController
@@ -22,41 +22,51 @@ public class PropietarioNegocioController {
 	
 	@CrossOrigin
 	@RequestMapping(path = "/addPropietario", method = RequestMethod.POST)
-	public @ResponseBody String addPropietario
+	public @ResponseBody Respuesta addPropietario
 	(@RequestParam String nombres, @RequestParam String apellidos,
-			@RequestParam String correo, @RequestParam String contrasena){
-		PropietarioNegocio propietarioNegocio = new PropietarioNegocio();
-		propietarioNegocio.setNombres(nombres);
-		propietarioNegocio.setApellidos(apellidos);
-		propietarioNegocio.setCorreo(correo.toLowerCase());
-		propietarioNegocio.setContrasena(contrasena);
-		propietarioNegocioRepositoryDAO.save(propietarioNegocio);
-		return "Propietario guardado.";
+			@RequestParam String correo, @RequestParam String contrasena) {
+		try {
+			Optional<PropietarioNegocio> optPropietarioNegocio = propietarioNegocioRepositoryDAO.findByCorreo(correo.toLowerCase());
+			if(optPropietarioNegocio.isPresent()) {
+				return new Respuesta(Respuesta.FAIL, "El usuario asociado a este correo ya existe.");
+			}
+			PropietarioNegocio propietarioNegocio = new PropietarioNegocio();
+			propietarioNegocio.setNombres(nombres);
+			propietarioNegocio.setApellidos(apellidos);
+			propietarioNegocio.setCorreo(correo.toLowerCase());
+			propietarioNegocio.setContrasena(contrasena);
+			propietarioNegocioRepositoryDAO.save(propietarioNegocio);
+			return new Respuesta(Respuesta.OK, "Propietario guardado.");
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/getPropietarioByCorreo")
-	public PropietarioNegocio getPropietarioByCorreo(@RequestParam String correo) {
-		Optional<PropietarioNegocio> optPropietarioNegocio = propietarioNegocioRepositoryDAO.findByCorreo(correo.toLowerCase());
-		if(!optPropietarioNegocio.isPresent()) return null;
-		return optPropietarioNegocio.get();
+	@RequestMapping(path = "/getPropietarioByCorreo", method = RequestMethod.GET)
+	public Respuesta getPropietarioByCorreo(@RequestParam String correo) {
+		try {			
+			Optional<PropietarioNegocio> optPropietarioNegocio = propietarioNegocioRepositoryDAO.findByCorreo(correo.toLowerCase());
+			if(!optPropietarioNegocio.isPresent()) {
+				return new Respuesta(Respuesta.FAIL, "El usuario asociado a este correo no existe");
+			}
+			PropietarioNegocio prop = optPropietarioNegocio.get();
+			prop.setContrasena(null);
+			return new Respuesta(Respuesta.OK, prop);
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 	
 	@CrossOrigin
-	@RequestMapping(path = "/loginPropietario")
-	public Login getLoginPropietario(@RequestParam String correo) {
-		Optional<PropietarioNegocio> optPropietarioNegocio = propietarioNegocioRepositoryDAO.findByCorreo(correo.toLowerCase());
-		if(!optPropietarioNegocio.isPresent()) return null;
-		Login login = new Login();
-		login.setCorreo(correo.toLowerCase());
-		login.setContrasena(optPropietarioNegocio.get().getContrasena());
-		return login;
-	}
-	
-	@CrossOrigin
-	@RequestMapping("/getAllPropietarios")
-	public Iterable<PropietarioNegocio> getAllPropietarios() {
-		return propietarioNegocioRepositoryDAO.findAll();
+	@RequestMapping(path = "/getAllPropietarios", method = RequestMethod.GET)
+	public Respuesta getAllPropietarios() {
+		try {
+			Iterable<PropietarioNegocio> listaPropietarios = propietarioNegocioRepositoryDAO.findAll();
+			return new Respuesta(Respuesta.OK, listaPropietarios);
+		} catch (Exception e) {
+			return new Respuesta(Respuesta.FAIL, e);
+		}
 	}
 
 }

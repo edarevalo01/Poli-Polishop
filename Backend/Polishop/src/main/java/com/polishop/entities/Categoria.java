@@ -29,7 +29,7 @@ public class Categoria {
 	private String descripcion;
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<CategoriaProducto> categoriaProducto = new ArrayList<CategoriaProducto>(); //Relacion - Tabla CATEGORIA_PRODUCTO
 
 	public Long getId() {

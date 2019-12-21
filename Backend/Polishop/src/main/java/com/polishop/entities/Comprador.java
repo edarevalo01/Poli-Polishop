@@ -49,11 +49,11 @@ public class Comprador {
 	private Long puntuacion;
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "comprador", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "comprador", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Comentario> comentarios = new ArrayList<Comentario>(); //Relacion - Tabla COMENTARIO
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "comprador", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "comprador", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Compra> compras = new ArrayList<Compra>(); //Relacion - Table COMPRA
 
 	public Long getId() {
