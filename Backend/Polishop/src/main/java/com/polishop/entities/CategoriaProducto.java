@@ -13,20 +13,20 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "CATEGORIA_PRODUCTO")
 public class CategoriaProducto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Long idCategoria;
-	
+
 	private Long idProducto;
-	
+
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idCategoria", referencedColumnName = "id", insertable = false, updatable = false)
 	private Categoria categoria;
-	
+
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idProducto", referencedColumnName = "id", insertable = false, updatable = false)

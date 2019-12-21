@@ -8,39 +8,39 @@ import com.polishop.entities.Producto;
 public class CompraNegocio {
 
 	private Long id;
-	
+
 	private String numeroPedido; 
-	
+
 	private Long idComprador;
-	
+
 	private String pais;
-	
+
 	private String departamento;
-	
+
 	private String ciudad;
-	
+
 	private String tipoDocumento;
-	
+
 	private String numeroDocumento;
-	
+
 	private String nombreDestinatario;
-	
+
 	private String direccionEnvio;
-	
+
 	private String observaciones; 
-	
+
 	private String telefonoUno;
-	
+
 	private String telefonoDos;
-	
+
 	private Date fechaCreacion;
-	
+
 	private Date fechaEstimadaEntrega;
-	
+
 	private String metodoPago;
-	
+
 	private EstadosEnum estado;
-	
+
 	private ArrayList<Producto> productos;
 
 	public Long getId() {
@@ -186,5 +186,5 @@ public class CompraNegocio {
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
 	}
-	
+
 }

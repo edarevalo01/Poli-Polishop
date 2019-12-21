@@ -16,10 +16,10 @@ import com.polishop.repositories.LogErrorRepository;
 
 @RestController
 public class LogErrorController {
-	
+
 	@Autowired
 	private LogErrorRepository logErrorRepositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addLogError", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addLogError
@@ -35,7 +35,7 @@ public class LogErrorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getLogErrorByNombreError", method = RequestMethod.GET)
 	public Respuesta getLogErrorByNombreError(@RequestParam String nombreError) {
@@ -46,7 +46,7 @@ public class LogErrorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getAllLogError", method = RequestMethod.GET)
 	public Respuesta getAllLogError(){

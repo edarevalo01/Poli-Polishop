@@ -7,7 +7,7 @@ import com.polishop.entities.LogError;
 
 @Repository
 public interface LogErrorRepository extends CrudRepository<LogError, Long>{
-	
+
 	public Iterable<LogError> findAllByNombreError(String nombreError);
 
 }

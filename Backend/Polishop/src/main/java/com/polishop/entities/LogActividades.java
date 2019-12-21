@@ -11,17 +11,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LOG_ACTIVIDADES")
 public class LogActividades {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String nombreActividad; //Eliminar Usuario, Agregar Usuario, (lo mismo para productos)
-	
+
+	/* Eliminar Usuario; Agregar Usuario; Eliminar Producto */
+	private String nombreActividad;
+
 	private String descripcion;
-	
-	private String usuario; //Concatena id, nombre y dependencia: 42;Alejandro;admin, 32;Felipe;vendedor
-	
+
+	/* ID + Nombre + Dependencia (42;Alejandro;admin) (32;Felipe;vendedor) */
+	private String usuario;
+
 	private Date fecha;
 
 	public Long getId() {

@@ -16,10 +16,10 @@ import com.polishop.repositories.LogActividadesRepository;
 
 @RestController
 public class LogActividadesController {
-	
+
 	@Autowired
 	private LogActividadesRepository logActividadesRepositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addLogActividades", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addLogActividades
@@ -36,7 +36,7 @@ public class LogActividadesController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getLogActividadByNombre", method = RequestMethod.GET)
 	public Respuesta getLogActividadByNombre(@RequestParam String nombreActividad) {
@@ -47,7 +47,7 @@ public class LogActividadesController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getAllLogActividades", method = RequestMethod.GET)
 	public Respuesta getAllActividades(){

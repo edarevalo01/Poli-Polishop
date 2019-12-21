@@ -11,5 +11,5 @@ import com.polishop.entities.Administrador;
 public interface AdministradorRepository extends CrudRepository<Administrador, Long>{
 
 	public Optional<Administrador> findByCorreo(String correo);
-	
+
 }

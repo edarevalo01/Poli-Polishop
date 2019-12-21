@@ -18,41 +18,42 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "VENDEDOR")
 public class Vendedor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String nombres;
-	
+
 	@NotNull
 	private String apellidos;
-	
+
 	@NotNull
 	@Column(unique = true)
 	private String correo;
-	
+
 	@NotNull
 	private String contrasena;
-	
+
 	private String descripcion;
-	
+
 	@NotNull
 	private String pais;
-	
+
 	@NotNull
 	private String ciudad;
-	
+
 	private String urlFoto;
-	
+
 	private String celular;
-	
+
 	private Long puntuacionVendedor;
-	
+
+	/* Relacion - Tabla PRODUCTO */
 	@JsonBackReference
 	@OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Producto> productos = new ArrayList<Producto>(); // Relacion - Tabla PRODUCTO
+	private List<Producto> productos = new ArrayList<Producto>(); 
 
 	public Long getId() {
 		return id;

@@ -1,5 +1,9 @@
-{"properties": [{
-  "name": "ruta.files.images",
-  "type": "java.lang.String",
-  "description": "Ruta de la carpeta donde se almacenan los archivos en el servidor"
-}]}
+{
+	"properties": [
+		{
+			"name": "ruta.files.images",
+			"type": "java.lang.String",
+			"description": "Ruta de la carpeta donde se almacenan los archivos en el servidor"
+		}
+	]
+}

@@ -3,15 +3,15 @@ package com.polishop.negocio;
 import com.polishop.entities.CategoriaProducto;
 
 public class CategoriaProductoNegocio {
-	
+
 	private Long idCategoriaProducto;
-	
+
 	private Long idCategoria;
-	
+
 	private Long idProducto;
-	
+
 	private String nombreCategoria;
-	
+
 	private String nombreProducto;
 
 	public CategoriaProductoNegocio(CategoriaProducto cp) {

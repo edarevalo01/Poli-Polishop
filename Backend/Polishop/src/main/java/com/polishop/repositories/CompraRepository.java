@@ -10,15 +10,15 @@ import com.polishop.negocio.EstadosEnum;
 
 @Repository
 public interface CompraRepository extends CrudRepository<Compra, Long>{
-	
+
 	public Optional<Compra> findByNumeroPedido(String numeroPedido);
-	
+
 	public Iterable<Compra> findByIdComprador(Long idComprador);
-	
+
 	public Iterable<Compra> findByNumeroDocumento(String numeroDocumento);
-	
+
 	public Optional<Compra> findByIdCarrito(Long idCarrito);
-	
+
 	public Optional<Compra> findByIdCompradorAndEstado(Long idComprador, EstadosEnum estado);
-	
+
 }

@@ -239,7 +239,7 @@ public class ProductoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	private ArrayList<ProductoNegocio> getProductosDepurados(Iterable<Producto> productoIterable){
 		ArrayList<ProductoNegocio> productosNegocio = new ArrayList<ProductoNegocio>();
 		for(Producto producto: productoIterable) {

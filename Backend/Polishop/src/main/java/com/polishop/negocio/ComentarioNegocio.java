@@ -1,21 +1,21 @@
 package com.polishop.negocio;
 
 public class ComentarioNegocio {
-	
+
 	private Long id;
-	
+
 	private Long idComprador;
-	
+
 	private String nombreComprador;
-	
+
 	private String nombreProducto;
-	
+
 	private String comentario;
-	
+
 	private String fecha;
-	
+
 	private String imagenComprador;
-	
+
 	private Long puntuacionProducto;
 
 	public Long getId() {

@@ -16,28 +16,28 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "COMENTARIO")
 public class Comentario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Long idComprador;
-	
+
 	private Long idProducto;
-	
+
 	@NotNull
 	private String comentario;
-	
+
 	@NotNull
 	private Date fecha;
-	
+
 	private Long puntuacion;
-	
+
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idComprador", referencedColumnName = "id", insertable = false, updatable = false)
 	private Comprador comprador;
-	
+
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idProducto", referencedColumnName = "id", insertable = false, updatable = false)
@@ -106,5 +106,5 @@ public class Comentario {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-	
+
 }

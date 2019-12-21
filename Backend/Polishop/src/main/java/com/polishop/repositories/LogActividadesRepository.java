@@ -7,7 +7,7 @@ import com.polishop.entities.LogActividades;
 
 @Repository
 public interface LogActividadesRepository extends CrudRepository<LogActividades, Long>{
-	
+
 	public Iterable<LogActividades> findAllByNombreActividad(String nombreActividad);
 
 }

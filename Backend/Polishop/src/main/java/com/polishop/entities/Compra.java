@@ -18,59 +18,61 @@ import com.polishop.negocio.EstadosEnum;
 @Entity
 @Table(name = "COMPRA")
 public class Compra {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	/* Fecha + IDCompra + UDUsuario */
 	@NotNull
-	private String numeroPedido; //fecha+idcompra+idusuario
-	
+	private String numeroPedido;
+
 	private Long idComprador;
-	
+
 	@NotNull
 	private String pais;
-	
+
 	private String departamento;
-	
+
 	@NotNull
 	private String ciudad;
-	
+
 	@NotNull
 	private String tipoDocumento;
-	
+
 	@NotNull
 	private String numeroDocumento;
-	
+
 	@NotNull
 	private String nombreDestinatario;
-	
+
 	@NotNull
 	private String direccionEnvio;
-	
-	private String observaciones; //Ej. Torre 5, apartamento 4, barrio chapinero...
-	
+
+	/* Ej:. Torre 5; Apartamento 4; Barrio Chapinero... */
+	private String observaciones;
+
 	@NotNull
 	private String telefonoUno;
-	
+
 	private String telefonoDos;
-	
+
 	@NotNull
 	private Date fechaCreacion;
-	
+
 	private Date fechaEstimadaEntrega;
-	
+
 	private String metodoPago;
-	
+
 	private EstadosEnum estado;
-	
+
 	private Long idCarrito;
-	
+
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idComprador", referencedColumnName = "id", insertable = false, updatable = false)
 	private Comprador comprador;
-	
+
 	@JsonManagedReference
 	@OneToOne
 	@JoinColumn(name = "idCarrito", referencedColumnName = "id", insertable = false, updatable = false)

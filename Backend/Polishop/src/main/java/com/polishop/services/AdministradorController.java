@@ -25,7 +25,8 @@ public class AdministradorController {
 	@CrossOrigin
 	@RequestMapping(path = "/addAdmin", method = RequestMethod.POST) 
 	public @ResponseBody Respuesta addAdmin
-	(@RequestParam String nombres, @RequestParam String apellidos, @RequestParam String correo, @RequestParam String contrasena) {
+	(@RequestParam String nombres, @RequestParam String apellidos, 
+			@RequestParam String correo, @RequestParam String contrasena) {
 		Respuesta respuesta = new Respuesta();
 		try {
 			Optional<Administrador> optAdmin = administradorRepositoryDAO.findByCorreo(correo);

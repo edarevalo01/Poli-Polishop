@@ -10,11 +10,11 @@ import com.polishop.entities.CategoriaProducto;
 
 @Repository
 public interface CategoriaProductoRepository extends CrudRepository<CategoriaProducto, Long>{
-	
+
 	public ArrayList<CategoriaProducto> findByIdProducto(Long idProducto);
-	
+
 	public ArrayList<CategoriaProducto> findByIdCategoria(Long idCategoria);
-	
+
 	public Optional<CategoriaProducto> findByIdCategoriaAndIdProducto(Long idCategoria, Long idProducto);
 
 }

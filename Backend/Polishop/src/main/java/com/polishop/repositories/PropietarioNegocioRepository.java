@@ -9,7 +9,7 @@ import com.polishop.entities.PropietarioNegocio;
 
 @Repository
 public interface PropietarioNegocioRepository extends CrudRepository<PropietarioNegocio, Long>{
-	
+
 	Optional<PropietarioNegocio> findByCorreo(String correo);
 
 }

@@ -1,23 +1,23 @@
 package com.polishop.negocio;
 
 public class ProductoCarritoNegocio {
-	
+
 	private Long idProducto;
-	
+
 	private String nombreProducto;
-	
+
 	private String nombreVendedor;
-	
+
 	private String valor;
-	
+
 	private Long cantidad;
-	
+
 	private String urlCarpetaImagenes;
-	
+
 	private Long idCarrito;
-	
+
 	private Long idCompra;
-	
+
 	private EstadosEnum estado;
 
 	public Long getIdProducto() {

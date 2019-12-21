@@ -5,13 +5,13 @@ import com.polishop.entities.Administrador;
 public class AdministradorNegocio {
 
 	private Long id;
-	
+
 	private String nombres;
-	
+
 	private String apellidos;
-	
+
 	private String correo;
-	
+
 	public AdministradorNegocio(Administrador administrador) {
 		this.id = administrador.getId();
 		this.nombres = administrador.getNombres();

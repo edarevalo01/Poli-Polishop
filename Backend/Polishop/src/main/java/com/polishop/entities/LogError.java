@@ -11,15 +11,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LOG_ERROR")
 public class LogError {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nombreError;
-	
+
 	private String descripcion;
-	
+
 	private Date fecha;
 
 	public Long getId() {
@@ -53,5 +53,5 @@ public class LogError {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+
 }

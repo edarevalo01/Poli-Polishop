@@ -23,13 +23,13 @@ import com.polishop.repositories.ProductoCarritoRepository;
 
 @RestController
 public class CarritoController {
-	
+
 	@Autowired
 	private CarritoRepository carritoRepositoryDAO;
-	
+
 	@Autowired
 	private CompraRepository compraRepositoryDAO;
-	
+
 	@Autowired
 	private ProductoCarritoRepository productoCarritoRepositoryDAO;
 
@@ -45,7 +45,7 @@ public class CarritoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/updateCarrito", method = RequestMethod.PUT)
 	public @ResponseBody Respuesta updateCarrito(@RequestParam Long id) {
@@ -58,7 +58,7 @@ public class CarritoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/deleteCarrito", method = RequestMethod.DELETE)
 	public Respuesta deleteCarrito(@RequestParam Long idCarrito) {
@@ -73,24 +73,25 @@ public class CarritoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/saveCarritoConCompra", method = RequestMethod.PUT)
-	public Respuesta saveCarritoConCompra(@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam Long cantidad) {
+	public Respuesta saveCarritoConCompra
+	(@RequestParam Long idProducto, @RequestParam Long idComprador, @RequestParam Long cantidad) {
 		boolean nuevo = false;
 		Optional<Compra> optCompra = compraRepositoryDAO.findByIdCompradorAndEstado(idComprador, EstadosEnum.comprando);
 		if(!optCompra.isPresent()) {
 			nuevo = true;
-			
+
 			Date date = new Date();
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
 			calendar.add(Calendar.DATE, 5); // Adding 5 days
-			
+
 			Carrito newCarrito = new Carrito();
 			newCarrito.setFechaModificacion(new Date());
 			carritoRepositoryDAO.save(newCarrito);
-			
+
 			Compra newCompra = new Compra();
 			newCompra.setNumeroPedido(date.getTime()+"-"+idComprador);
 			newCompra.setIdComprador(idComprador);
@@ -110,7 +111,7 @@ public class CarritoController {
 			newCompra.setIdCarrito(newCarrito.getId());
 			newCompra.setEstado(EstadosEnum.comprando);
 			compraRepositoryDAO.save(newCompra);
-			
+
 			ProductoCarrito newProductoCarrito = new ProductoCarrito();
 			newProductoCarrito.setIdCarrito(newCarrito.getId());
 			newProductoCarrito.setIdProducto(idProducto);
@@ -140,7 +141,7 @@ public class CarritoController {
 			return new Respuesta(Respuesta.OK, "Pedido modificado.");
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path="/addInfoCompra", method = RequestMethod.PUT)
 	public Respuesta addInfoCompra(
@@ -168,5 +169,5 @@ public class CarritoController {
 		}
 		return new Respuesta(Respuesta.FAIL, "La compra no existe.");
 	}
-	
+
 }

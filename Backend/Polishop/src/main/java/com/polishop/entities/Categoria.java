@@ -17,20 +17,21 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "CATEGORIA")
 public class Categoria {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String nombre; 
-	
+
 	@NotNull
 	private String descripcion;
-	
+
+	/* Relacion - Tabla CATEGORIA_PRODUCTO */
 	@JsonBackReference
 	@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<CategoriaProducto> categoriaProducto = new ArrayList<CategoriaProducto>(); //Relacion - Tabla CATEGORIA_PRODUCTO
+	private List<CategoriaProducto> categoriaProducto = new ArrayList<CategoriaProducto>();
 
 	public Long getId() {
 		return id;

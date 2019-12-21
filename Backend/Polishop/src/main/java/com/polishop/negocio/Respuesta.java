@@ -11,32 +11,32 @@ public class Respuesta {
 
 	private String status;
 	private Object mensaje;
-	
+
 	public Respuesta() {
 		this("","");
 	}
-	
+
 	public Respuesta(String status, Object mensaje) {
 		this.status = status;
 		this.mensaje = mensaje;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public Object getMensaje() {
 		return mensaje;
 	}
-	
+
 	public void setMensaje(Object mensaje) {
 		this.mensaje = mensaje;
 	}
-	
+
 	@Override
 	public String toString() {
 		try {

@@ -10,19 +10,19 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "ADMINISTRADOR")
 public class Administrador {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String nombres;
-	
+
 	private String apellidos;
-	
+
 	@NotNull
 	private String correo;
-	
+
 	@NotNull
 	private String contrasena;
 

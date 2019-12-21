@@ -3,27 +3,27 @@ package com.polishop.negocio;
 import java.util.Date;
 
 public class CompraHistorial {
-	
+
 	private String nombreComprador;
-	
+
 	private String ciudadComprador;
-	
+
 	private String direccionComprador;
-	
+
 	private String documentoComprador;
-	
+
 	private String nombreDestinatario;
-	
+
 	private String telefono1;
-	
+
 	private String telefono2;
-	
+
 	private String nombreProducto;
-	
+
 	private Long cantidad;
-	
+
 	private Date fechaCreacion;
-	
+
 	private EstadosEnum estadoCompra;
 
 	public String getNombreComprador() {
@@ -113,5 +113,5 @@ public class CompraHistorial {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	
+
 }

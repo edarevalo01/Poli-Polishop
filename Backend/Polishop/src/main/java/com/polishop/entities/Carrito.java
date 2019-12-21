@@ -19,20 +19,22 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "CARRITO")
 public class Carrito {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Date fechaModificacion;
-	
+
+	/* Relacion - Tabla COMPRA */
 	@JsonBackReference
 	@OneToOne(mappedBy = "carrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	private Compra compra;  //Relacion - Tabla COMPRA
-	
+	private Compra compra;
+
+	/* Relacion - Tabla PRODUCTO_CARRITO */
 	@JsonBackReference
 	@OneToMany(mappedBy = "carrito", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<ProductoCarrito> productoCarrito = new ArrayList<ProductoCarrito>(); //Relacion - Tabla PRODUCTO_CARRITO
+	private List<ProductoCarrito> productoCarrito = new ArrayList<ProductoCarrito>();
 
 	public Long getId() {
 		return id;

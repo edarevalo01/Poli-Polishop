@@ -18,10 +18,10 @@ import com.polishop.repositories.ProductoCarritoRepository;
 
 @RestController
 public class ProductoCarritoController {
-	
+
 	@Autowired
 	private ProductoCarritoRepository productoCarritoRepositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addProductoCarrito", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addProductoCarrito
@@ -37,7 +37,7 @@ public class ProductoCarritoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getProductoByCarrito", method = RequestMethod.GET)
 	public Respuesta getProductoByCarrito(@RequestParam Long idCarrito){
@@ -66,7 +66,7 @@ public class ProductoCarritoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/eliminarProductoCarrito", method = RequestMethod.DELETE)
 	public Respuesta eliminarProductoCarrito (@RequestParam Long idCarrito, @RequestParam Long idProducto) {
@@ -77,5 +77,5 @@ public class ProductoCarritoController {
 		productoCarritoRepositoryDAO.deleteById(optPC.get().getId());
 		return new Respuesta(Respuesta.OK, "El producto ha sido eliminado del carrito de compras.");
 	}
-	
+
 }

@@ -28,16 +28,16 @@ public class ComentarioController {
 
 	@Autowired
 	private ComentarioRepository comentarioRepositoryDAO;
-	
+
 	@Autowired
 	private CompradorRepository compradorRepositoryDAO;
-	
+
 	@Autowired
 	private ProductoRepository productoRepositoryDAO;
-	
+
 	@Autowired
 	private VendedorRepository vendedorRespositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addComentario", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addComentario
@@ -98,7 +98,7 @@ public class ComentarioController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/modificarComentario", method = RequestMethod.PUT)
 	public Respuesta modificarComentario(@RequestParam Long idComentario, @RequestParam String comentario) {
@@ -115,11 +115,11 @@ public class ComentarioController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	private void setCalificacion(Long idProducto) {
 		setCalificacionProducto(idProducto);
 	}
-	
+
 	private void setCalificacionProducto(Long idProducto) {
 		Iterable<Comentario> comentariosTotales = comentarioRepositoryDAO.findByIdProducto(idProducto);
 		double sum = 0, size = 0;
@@ -133,7 +133,7 @@ public class ComentarioController {
 		productoRepositoryDAO.save(producto);
 		setCalificacionVendedor(producto);
 	}
-	
+
 	private void setCalificacionVendedor(Producto producto) {
 		Iterable<Producto> productos = productoRepositoryDAO.findByIdVendedor(producto.getVendedor().getId());
 		double sum = 0, size = 0;

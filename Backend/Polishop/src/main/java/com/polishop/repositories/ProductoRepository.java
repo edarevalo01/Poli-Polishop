@@ -7,15 +7,15 @@ import com.polishop.entities.Producto;
 
 @Repository
 public interface ProductoRepository extends CrudRepository<Producto, Long>{
-	
+
 	public Iterable<Producto> findByIdVendedor(Long idVendedor);
-	
+
 	public Iterable<Producto> findByIdPropietario(Long idPropietario);
-	
+
 	public Iterable<Producto> findByCalificacion(Long calificacion);
-	
+
 	public Iterable<Producto> findByDependenciaOrderByCalificacionDesc(String dependencia);
-	
+
 	public Iterable<Producto> findByNombreContaining(String nombre);
-	
+
 }

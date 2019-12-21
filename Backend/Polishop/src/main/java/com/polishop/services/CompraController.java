@@ -35,7 +35,7 @@ public class CompraController {
 
 	@Autowired
 	private ProductoCarritoRepository productoCarritoRepositoryDAO;
-	
+
 	@Autowired
 	private CarritoRepository carritoRepositoryDAO;
 
@@ -44,10 +44,10 @@ public class CompraController {
 
 	@Autowired
 	private ProductoRepository productoRepositoryDAO;
-	
+
 	@Autowired
 	private CompradorRepository compradorRepositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getByIdCompra", method = RequestMethod.GET)
 	public Respuesta getByIdCompra(@RequestParam Long idCompra) {
@@ -93,7 +93,7 @@ public class CompraController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getAllCompras", method = RequestMethod.GET)
 	public Respuesta getAllCompras(){
@@ -235,7 +235,7 @@ public class CompraController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path="/eliminarCompra", method = RequestMethod.DELETE)
 	public Respuesta eliminarCompra(@RequestParam Long idCompra) {
@@ -256,5 +256,5 @@ public class CompraController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 }

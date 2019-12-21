@@ -9,7 +9,7 @@ import com.polishop.entities.Comprador;
 
 @Repository
 public interface CompradorRepository extends CrudRepository<Comprador, Long>{
-	
+
 	public Optional<Comprador> findByCorreo(String correo);
 
 }

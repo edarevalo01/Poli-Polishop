@@ -18,10 +18,10 @@ import com.polishop.repositories.CategoriaProductoRepository;
 
 @RestController
 public class CategoriaProductoController {
-	
+
 	@Autowired
 	private CategoriaProductoRepository categoriaProductoRepositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addCategoriaProducto", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addCategoriaProducto
@@ -40,7 +40,7 @@ public class CategoriaProductoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getCategoriasByProducto", method = RequestMethod.GET)
 	public Respuesta getCategoriaByProducto(@RequestParam Long idProducto){
@@ -55,7 +55,7 @@ public class CategoriaProductoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getProductosByCategoria", method = RequestMethod.GET)
 	public Respuesta getProductoByCategoria(@RequestParam Long idCategoria){
@@ -70,7 +70,7 @@ public class CategoriaProductoController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/deleteCategoriaProducto", method = RequestMethod.DELETE)
 	public Respuesta deleteCategoriaProducto(@RequestParam Long idCategoria, Long idProducto) {

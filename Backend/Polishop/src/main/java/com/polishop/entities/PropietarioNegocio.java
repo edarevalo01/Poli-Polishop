@@ -36,9 +36,10 @@ public class PropietarioNegocio {
 	@NotNull
 	private String contrasena;
 	
+	/* Relacion - Tabla PRODUCTO */
 	@JsonBackReference
 	@OneToMany(mappedBy = "propietario", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Producto> productos = new ArrayList<Producto>(); // Relacion - Tabla PRODUCTO
+	private List<Producto> productos = new ArrayList<Producto>();
 
 	public Long getId() {
 		return id;

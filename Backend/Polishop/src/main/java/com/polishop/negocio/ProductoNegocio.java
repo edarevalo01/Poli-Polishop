@@ -1,37 +1,33 @@
 package com.polishop.negocio;
 
-/**
- * @author Alejandro
- * Clase para gestionar información de productos
- */
 public class ProductoNegocio {
-	
+
 	private Long id;
-	
+
 	private String nombre;
-	 
+
 	private String descripcion;
-	
+
 	private String precio;
-	
+
 	private Long calificacion;
-	
+
 	private String fechaPublicacion;
-	
+
 	private String urlCarpetaImagenes;
-	
+
 	private String nombreVendedor;
-	
+
 	private String descripcionVendedor;
-	
+
 	private String imagenVendedor;
-	
+
 	private Long calificacionVendedor;
-	
+
 	private String dependencia;
-	
+
 	private Long idPropietario;
-	
+
 	private Long cantidadImagenes;
 
 	public Long getId() {
@@ -145,5 +141,5 @@ public class ProductoNegocio {
 	public void setCantidadImagenes(Long cantidadImagenes) {
 		this.cantidadImagenes = cantidadImagenes;
 	}
-	
+
 }

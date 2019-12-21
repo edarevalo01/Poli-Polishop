@@ -23,19 +23,19 @@ import com.polishop.repositories.CompradorRepository;
 
 @RestController
 public class CompradorController {
-	
+
 	@Autowired
 	private CompradorRepository compradorRepositoryDAO;
-	
+
 	@Value("${ruta.files.images}")
 	private String upload_folder;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addComprador", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addComprador
-	(@RequestParam String nombres, @RequestParam String apellidos,
-			@RequestParam String correo, @RequestParam String contrasena, @RequestParam String pais, 
-			@RequestParam String ciudad, @RequestParam("urlFoto") MultipartFile urlFoto, @RequestParam Long puntuacion) {
+	(@RequestParam String nombres, @RequestParam String apellidos, @RequestParam String correo, 
+			@RequestParam String contrasena, @RequestParam String pais, @RequestParam String ciudad, 
+			@RequestParam("urlFoto") MultipartFile urlFoto, @RequestParam Long puntuacion) {
 		try {
 			Optional<Comprador> compradorOpt = compradorRepositoryDAO.findByCorreo(correo);
 			if(compradorOpt.isPresent()) {
@@ -64,7 +64,7 @@ public class CompradorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getUsuarioById", method = RequestMethod.GET)
 	public Respuesta getCompradorById(@RequestParam Long idComprador) {
@@ -80,7 +80,7 @@ public class CompradorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getUsuarioByCorreo", method = RequestMethod.GET)
 	public Respuesta getCompradorByCorreo(@RequestParam String correo) {
@@ -96,7 +96,7 @@ public class CompradorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/loginUsuario", method = RequestMethod.GET)
 	public Respuesta getLoginComprador(@RequestParam String correo, @RequestParam String contrasena) {
@@ -111,7 +111,7 @@ public class CompradorController {
 			return new Respuesta(Respuesta.FAIL, "Correo o contraseña incorrectos.");
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getAllCompradores", method = RequestMethod.GET)
 	public Respuesta getAllCompradores() {
@@ -126,7 +126,7 @@ public class CompradorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/eliminarComprador", method = RequestMethod.DELETE)
 	public Respuesta eliminarComprador(@RequestParam Long idComprador) {

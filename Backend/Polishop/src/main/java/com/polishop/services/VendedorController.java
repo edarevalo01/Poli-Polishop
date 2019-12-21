@@ -22,13 +22,13 @@ import com.polishop.repositories.VendedorRepository;
 
 @RestController
 public class VendedorController {
-	
+
 	@Autowired
 	private VendedorRepository vendedorRepositoryDAO;
-	
+
 	@Value("${ruta.files.images}")
 	private String upload_folder;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addVendedor", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addVendedor
@@ -79,7 +79,7 @@ public class VendedorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getVendedorByCorreo", method = RequestMethod.GET)
 	public Respuesta getVendedorByCorreo(@RequestParam String correo) {
@@ -94,7 +94,7 @@ public class VendedorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/loginVendedor", method = RequestMethod.GET)
 	public Respuesta getLoginVendedor(@RequestParam String correo, @RequestParam String contrasena) {
@@ -109,7 +109,7 @@ public class VendedorController {
 			return new Respuesta(Respuesta.FAIL, "Correo o contraseña incorrectos.");
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getAllVendedores", method = RequestMethod.GET)
 	public Respuesta getAllVendedores() {
@@ -124,7 +124,7 @@ public class VendedorController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/deleteVendedor", method = RequestMethod.DELETE)
 	public Respuesta deleteVendedor(@RequestParam Long idVendedor) {

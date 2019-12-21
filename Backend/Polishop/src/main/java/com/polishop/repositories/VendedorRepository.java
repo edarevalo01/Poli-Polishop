@@ -11,5 +11,5 @@ import com.polishop.entities.Vendedor;
 public interface VendedorRepository extends CrudRepository<Vendedor, Long>{
 
 	Optional<Vendedor> findByCorreo(String correo);
-	
+
 }

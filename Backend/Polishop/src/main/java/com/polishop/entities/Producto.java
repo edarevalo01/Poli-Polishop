@@ -22,58 +22,64 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "PRODUCTO")
 public class Producto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String nombre;
-	
+
 	@NotNull
 	@Column(length = 3000) 
 	private String descripcion;
-	
+
 	@NotNull
 	private String precio;
-	
+
 	private Long calificacion;
-	
+
 	@NotNull
 	private Date fechaPublicacion;
-	
+
 	private String urlCarpetaImagenes;
-	
-	private String dependencia; //Si es poli o comunidad
-	
+
+	/* poli - comunidad */
+	private String dependencia;
+
 	@NotNull
 	private Long idVendedor;
-	
+
 	private Long idPropietario;
-	
+
 	private Long cantidadImagenes;
-	
+
+	/* Relacion - Tabla VENDEDOR */
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idVendedor", referencedColumnName = "id", insertable = false, updatable = false)
-	private Vendedor vendedor; // Relacion - Tabla VENDEDOR
-	
+	private Vendedor vendedor;
+
+	/* Relacion - Tabla PROPIETARIO_NEGOCIO */
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "idPropietario", referencedColumnName = "id", insertable = false, updatable = false)
-	private PropietarioNegocio propietario; // Relacion - Tabla PROPIETARIO_NEGOCIO
-	
-	@JsonBackReference
-	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Comentario> comentarios = new ArrayList<Comentario>(); //Relacion - Tabla COMENTARIO
-	
-	@JsonBackReference
-	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<ProductoCarrito> productoCarrito = new ArrayList<ProductoCarrito>(); //Relacion - Tabla PRODUCTO_CARRITO
+	private PropietarioNegocio propietario;
 
+	/* Relacion - Tabla COMENTARIO */
 	@JsonBackReference
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<CategoriaProducto> categoriaProducto = new ArrayList<CategoriaProducto>(); //Relacion - Tabla CATEGORIA_PRODUCTO
+	private List<Comentario> comentarios = new ArrayList<Comentario>();
+
+	/* Relacion - Tabla PRODUCTO_CARRITO */
+	@JsonBackReference
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<ProductoCarrito> productoCarrito = new ArrayList<ProductoCarrito>();
+
+	/* Relacion - Tabla CATEGORIA_PRODUCTO */
+	@JsonBackReference
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<CategoriaProducto> categoriaProducto = new ArrayList<CategoriaProducto>();
 
 	public Long getId() {
 		return id;
@@ -202,5 +208,5 @@ public class Producto {
 	public void setCantidadImagenes(Long cantidadImagenes) {
 		this.cantidadImagenes = cantidadImagenes;
 	}
-	
+
 }

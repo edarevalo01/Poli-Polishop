@@ -16,10 +16,10 @@ import com.polishop.repositories.PropietarioNegocioRepository;
 
 @RestController
 public class PropietarioNegocioController {
-	
+
 	@Autowired
 	private PropietarioNegocioRepository propietarioNegocioRepositoryDAO;
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/addPropietario", method = RequestMethod.POST)
 	public @ResponseBody Respuesta addPropietario
@@ -41,7 +41,7 @@ public class PropietarioNegocioController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getPropietarioByCorreo", method = RequestMethod.GET)
 	public Respuesta getPropietarioByCorreo(@RequestParam String correo) {
@@ -57,7 +57,7 @@ public class PropietarioNegocioController {
 			return new Respuesta(Respuesta.FAIL, e);
 		}
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(path = "/getAllPropietarios", method = RequestMethod.GET)
 	public Respuesta getAllPropietarios() {

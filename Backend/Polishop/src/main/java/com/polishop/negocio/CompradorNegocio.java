@@ -3,25 +3,25 @@ package com.polishop.negocio;
 import com.polishop.entities.Comprador;
 
 public class CompradorNegocio {
-	
+
 	private Long id;
-	
+
 	private String nombres;
-	
+
 	private String apellidos;
-	
+
 	private String username; 
-	
+
 	private String correo;
-	
+
 	private String pais;
-	
+
 	private String ciudad;
-	
+
 	private String urlFoto;
-	
+
 	private Long puntuacion;
-	
+
 	public CompradorNegocio(Comprador comprador) {
 		this.id = comprador.getId();
 		this.nombres = comprador.getNombres();
